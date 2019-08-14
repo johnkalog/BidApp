@@ -1,0 +1,33 @@
+/* import "fonts/icomoon/style.css"
+
+    import "css/bootstrap.min.css"
+    import "css/jquery-ui.css"
+    import "css/owl.carousel.min.css"
+    import "css/owl.theme.default.min.css"
+    import "css/owl.theme.default.min.css"
+
+    import "css/jquery.fancybox.min.css"
+
+    import "css/bootstrap-datepicker.css"
+
+    import "fonts/flaticon/font/flaticon.css"
+
+    import "css/aos.css"
+
+    import "css/style.css" */
+
+/* import "./style2.css" */
+
+/* @import './css*.css'; */
+
+.site-navbar-target {
+  background-color: #333333;
+}
+
+.slide-1 {
+  background-image: url('images/hero_1.jpg');
+}
+
+.container {
+  padding-top: 250px;
+}
