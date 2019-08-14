@@ -2,6 +2,13 @@
 
 # dependencies
 /node_modules
+/src/components/fonts
+/src/components/images
+/src/components/2css
+/src/components/css
+/src/components/js
+/src/components/scss
+/src/components/style2.css
 
 # testing
 /coverage
