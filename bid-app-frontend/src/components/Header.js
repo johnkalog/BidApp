@@ -1,35 +1,19 @@
 import React from 'react';
-// import './general.css';
-// import './fonts/icomoon/style.css';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getUsers } from '../actions/userActions';
 
-// import './css/bootstrap.min.css';
-// import './css/jquery-ui.css';
-// import './css/owl.carousel.min.css';
-// import './css/owl.theme.default.min.css';
-
-// import './css/jquery.fancybox.min.css';
-
-// import './css/bootstrap-datepicker.css';
-
-// import './fonts/flaticon/font/flaticon.css';
-
-// // import './css/aos.css';
-
-// import './css/style.css';
-
-// import './style2.css';
-
-const Header = () => {
+const Header = ({ getUsers }) => {
   return (
     <div>
-      <div classNameName="site-wrap">
-        <div classNameName="site-mobile-menu site-navbar-target">
-          <div classNameName="site-mobile-menu-header">
-            <div classNameName="site-mobile-menu-close mt-3">
-              <span classNameName="icon-close2 js-menu-toggle" />
+      <div className="site-wrap">
+        <div className="site-mobile-menu site-navbar-target">
+          <div className="site-mobile-menu-header">
+            <div className="site-mobile-menu-close mt-3">
+              <span className="icon-close2 js-menu-toggle" />
             </div>
           </div>
-          <div classNameName="site-mobile-menu-body" />
+          <div className="site-mobile-menu-body" />
         </div>
       </div>
       <header
@@ -50,14 +34,18 @@ const Header = () => {
               >
                 <ul className="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
                   <li>
-                    <a href="./index.html" className="nav-link">
+                    <Link to="./" className="nav-link">
                       Home
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="./products.html" className="nav-link">
+                    <Link
+                      to="./products"
+                      className="nav-link"
+                      onClick={() => getUsers()}
+                    >
                       Products
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <a href="#programs-section" className="nav-link">
@@ -79,4 +67,9 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default connect(
+  null,
+  dispatch => ({
+    getUsers: getUsers(dispatch)
+  })
+)(Header);

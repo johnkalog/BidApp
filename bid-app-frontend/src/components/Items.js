@@ -1,29 +1,8 @@
 import React from 'react';
-// import './general.css';
-// import './fonts/icomoon/style.css';
+import { connect } from 'react-redux';
 
-// import './css/bootstrap.min.css';
-// import './css/jquery-ui.css';
-// import './css/owl.carousel.min.css';
-// import './css/owl.theme.default.min.css';
-
-// import './css/jquery.fancybox.min.css';
-
-// import './css/bootstrap-datepicker.css';
-
-// import './fonts/flaticon/font/flaticon.css';
-
-// // import './css/aos.css';
-
-// import './css/style.css';
-
-// import './style2.css';
-
-// import './2css/main.css';
-
-// import './2css/responsive.css';
-
-const Items = () => {
+const Items = ({ users }) => {
+  console.log(users);
   return (
     <div>
       <section>
@@ -857,4 +836,9 @@ const Items = () => {
   );
 };
 
-export default Items;
+export default connect(
+  state => ({
+    users: state.usersData.users
+  }),
+  null
+)(Items);
