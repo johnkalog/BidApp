@@ -7,9 +7,7 @@ import Header from './components/Header';
 import store from './store';
 
 import './components/general.css';
-import './components/2css/main.css';
 
-import './components/2css/responsive.css';
 import './components/fonts/icomoon/style.css';
 
 import './components/css/bootstrap.min.css';
@@ -26,6 +24,7 @@ import './components/fonts/flaticon/font/flaticon.css';
 // import './components/css/aos.css';
 
 import './components/css/style.css';
+import './components/css/style3.css';
 
 import './components/style2.css';
 

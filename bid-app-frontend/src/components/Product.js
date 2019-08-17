@@ -1,16 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const Product = () => {
+const Product = ({ productName, bestBid }) => {
   return (
     <div class="col-lg-4 col-sm-6">
       <div class="single_product_item">
-        <img src="img/product/product_1.png" alt="" />
+        <img src={require('./img/product/product_1.png')} alt="" />
         <div class="single_product_text">
-          <h4>Quartz Belt Watch</h4>
-          <h3>$150.00</h3>
+          <h4>{productName}</h4>
+          <h3>{bestBid}</h3>
           <a href="#" class="add_cart">
-            + add to cart<i class="ti-heart" />
+            + add to cart
+            <i class="ti-heart" />
           </a>
         </div>
       </div>
@@ -19,6 +20,9 @@ const Product = () => {
 };
 
 export default connect(
-  null,
+  (state, ownProps) => ({
+    productName: ownProps.productName,
+    bestBid: ownProps.bestBid
+  }),
   null
 )(Product);

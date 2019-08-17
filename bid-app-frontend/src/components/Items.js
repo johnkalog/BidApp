@@ -1,832 +1,191 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Product from './Product';
 
 const Items = ({ products }) => {
   console.log(products);
   return (
     <div>
       <section>
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-3">
-              <div className="left-sidebar">
-                <h2>Category</h2>
-                <div className="panel-group category-products" id="accordian">
-                  <div className="panel panel-default">
-                    <div className="panel-heading">
-                      <h4 className="panel-title">
-                        <a
-                          data-toggle="collapse"
-                          data-parent="#accordian"
-                          href="#sportswear"
-                        >
-                          <span className="badge pull-right">
-                            <i className="fa fa-plus" />
-                          </span>
-                          Sportswear
-                        </a>
-                      </h4>
-                    </div>
-                    <div id="sportswear" className="panel-collapse collapse">
-                      <div className="panel-body">
-                        <ul>
-                          <li>
-                            <a href="">Nike </a>
-                          </li>
-                          <li>
-                            <a href="">Under Armour </a>
-                          </li>
-                          <li>
-                            <a href="">Adidas </a>
-                          </li>
-                          <li>
-                            <a href="">Puma</a>
-                          </li>
-                          <li>
-                            <a href="">ASICS </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3">
+              <div class="left_sidebar_area">
+                <aside class="left_widgets p_filter_widgets">
+                  <div class="l_w_title">
+                    <h3>Browse Categories</h3>
                   </div>
-                  <div className="panel panel-default">
-                    <div className="panel-heading">
-                      <h4 className="panel-title">
-                        <a
-                          data-toggle="collapseb"
-                          data-parent="#accordian"
-                          href="#mens"
-                        >
-                          <span className="badge pull-right">
-                            <i className="fa fa-plus" />
-                          </span>
-                          Mens
-                        </a>
-                      </h4>
-                    </div>
-                    <div id="mens" className="panel-collapse collapse">
-                      <div className="panel-body">
-                        <ul>
-                          <li>
-                            <a href="">Fendi</a>
-                          </li>
-                          <li>
-                            <a href="">Guess</a>
-                          </li>
-                          <li>
-                            <a href="">Valentino</a>
-                          </li>
-                          <li>
-                            <a href="">Dior</a>
-                          </li>
-                          <li>
-                            <a href="">Versace</a>
-                          </li>
-                          <li>
-                            <a href="">Armani</a>
-                          </li>
-                          <li>
-                            <a href="">Prada</a>
-                          </li>
-                          <li>
-                            <a href="">Dolce and Gabbana</a>
-                          </li>
-                          <li>
-                            <a href="">Chanel</a>
-                          </li>
-                          <li>
-                            <a href="">Gucci</a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="panel panel-default">
-                    <div className="panel-heading">
-                      <h4 className="panel-title">
-                        <a
-                          data-toggle="collapse"
-                          data-parent="#accordian"
-                          href="#womens"
-                        >
-                          <span className="badge pull-right">
-                            <i className="fa fa-plus" />
-                          </span>
-                          Womens
-                        </a>
-                      </h4>
-                    </div>
-                    <div id="womens" className="panel-collapse collapse">
-                      <div className="panel-body">
-                        <ul>
-                          <li>
-                            <a href="">Fendi</a>
-                          </li>
-                          <li>
-                            <a href="">Guess</a>
-                          </li>
-                          <li>
-                            <a href="">Valentino</a>
-                          </li>
-                          <li>
-                            <a href="">Dior</a>
-                          </li>
-                          <li>
-                            <a href="">Versace</a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="panel panel-default">
-                    <div className="panel-heading">
-                      <h4 className="panel-title">
-                        <a href="#">Kids</a>
-                      </h4>
-                    </div>
-                  </div>
-                  <div className="panel panel-default">
-                    <div className="panel-heading">
-                      <h4 className="panel-title">
-                        <a href="#">Fashion</a>
-                      </h4>
-                    </div>
-                  </div>
-                  <div className="panel panel-default">
-                    <div className="panel-heading">
-                      <h4 className="panel-title">
-                        <a href="#">Households</a>
-                      </h4>
-                    </div>
-                  </div>
-                  <div className="panel panel-default">
-                    <div className="panel-heading">
-                      <h4 className="panel-title">
-                        <a href="#">Interiors</a>
-                      </h4>
-                    </div>
-                  </div>
-                  <div className="panel panel-default">
-                    <div className="panel-heading">
-                      <h4 className="panel-title">
-                        <a href="#">Clothing</a>
-                      </h4>
-                    </div>
-                  </div>
-                  <div className="panel panel-default">
-                    <div className="panel-heading">
-                      <h4 className="panel-title">
-                        <a href="#">Bags</a>
-                      </h4>
-                    </div>
-                  </div>
-                  <div className="panel panel-default">
-                    <div className="panel-heading">
-                      <h4 className="panel-title">
-                        <a href="#">Shoes</a>
-                      </h4>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="brands_products">
-                  <h2>Brands</h2>
-                  <div className="brands-name">
-                    <ul className="nav nav-pills nav-stacked">
+                  <div class="widgets_inner">
+                    <ul class="list">
                       <li>
-                        <a href="">
-                          {' '}
-                          <span className="pull-right">(50)</span>Acne
-                        </a>
+                        <a href="#">Frozen Fish</a>
+                        <span>(250)</span>
                       </li>
                       <li>
-                        <a href="">
-                          {' '}
-                          <span className="pull-right">(56)</span>Grüne Erde
-                        </a>
+                        <a href="#">Dried Fish</a>
+                        <span>(250)</span>
                       </li>
                       <li>
-                        <a href="">
-                          {' '}
-                          <span className="pull-right">(27)</span>Albiro
-                        </a>
+                        <a href="#">Fresh Fish</a>
+                        <span>(250)</span>
                       </li>
                       <li>
-                        <a href="">
-                          {' '}
-                          <span className="pull-right">(32)</span>Ronhill
-                        </a>
+                        <a href="#">Meat Alternatives</a>
+                        <span>(250)</span>
                       </li>
                       <li>
-                        <a href="">
-                          {' '}
-                          <span className="pull-right">(5)</span>Oddmolly
-                        </a>
+                        <a href="#">Fresh Fish</a>
+                        <span>(250)</span>
                       </li>
                       <li>
-                        <a href="">
-                          {' '}
-                          <span className="pull-right">(9)</span>Boudestijn
-                        </a>
+                        <a href="#">Meat Alternatives</a>
+                        <span>(250)</span>
                       </li>
                       <li>
-                        <a href="">
-                          {' '}
-                          <span className="pull-right">(4)</span>Rösch creative
-                          culture
-                        </a>
+                        <a href="#">Meat</a>
+                        <span>(250)</span>
                       </li>
                     </ul>
                   </div>
-                </div>
+                </aside>
 
-                <div className="price-range">
-                  <h2>Price Range</h2>
-                  <div className="well">
-                    <input
-                      type="text"
-                      className="span2"
-                      value=""
-                      data-slider-min="0"
-                      data-slider-max="600"
-                      data-slider-step="5"
-                      data-slider-value="[250,450]"
-                      id="sl2"
-                    />
-                    <br />
-                    <b>$ 0</b> <b className="pull-right">$ 600</b>
+                <aside class="left_widgets p_filter_widgets">
+                  <div class="l_w_title">
+                    <h3>Product filters</h3>
                   </div>
-                </div>
+                  <div class="widgets_inner">
+                    <ul class="list">
+                      <li>
+                        <a href="#">Apple</a>
+                      </li>
+                      <li>
+                        <a href="#">Asus</a>
+                      </li>
+                      <li class="active">
+                        <a href="#">Gionee</a>
+                      </li>
+                      <li>
+                        <a href="#">Micromax</a>
+                      </li>
+                      <li>
+                        <a href="#">Samsung</a>
+                      </li>
+                    </ul>
+                    <ul class="list">
+                      <li>
+                        <a href="#">Apple</a>
+                      </li>
+                      <li>
+                        <a href="#">Asus</a>
+                      </li>
+                      <li class="active">
+                        <a href="#">Gionee</a>
+                      </li>
+                      <li>
+                        <a href="#">Micromax</a>
+                      </li>
+                      <li>
+                        <a href="#">Samsung</a>
+                      </li>
+                    </ul>
+                  </div>
+                </aside>
 
-                <div className="shipping text-center">
-                  <img src={require('./images/home/shipping.jpg')} alt="" />
-                </div>
+                <aside class="left_widgets p_filter_widgets">
+                  <div class="l_w_title">
+                    <h3>Color Filter</h3>
+                  </div>
+                  <div class="widgets_inner">
+                    <ul class="list">
+                      <li>
+                        <a href="#">Black</a>
+                      </li>
+                      <li>
+                        <a href="#">Black Leather</a>
+                      </li>
+                      <li class="active">
+                        <a href="#">Black with red</a>
+                      </li>
+                      <li>
+                        <a href="#">Gold</a>
+                      </li>
+                      <li>
+                        <a href="#">Spacegrey</a>
+                      </li>
+                    </ul>
+                  </div>
+                </aside>
+
+                <aside class="left_widgets p_filter_widgets price_rangs_aside">
+                  <div class="l_w_title">
+                    <h3>Price Filter</h3>
+                  </div>
+                  <div class="widgets_inner">
+                    <div class="range_item">
+                      <input type="text" class="js-range-slider" value="" />
+                      <div class="d-flex">
+                        <div class="price_text">
+                          <p>Price :</p>
+                        </div>
+                        <div class="price_value d-flex justify-content-center">
+                          <input
+                            type="text"
+                            class="js-input-from"
+                            id="amount"
+                            readonly
+                          />
+                          <span>to</span>
+                          <input
+                            type="text"
+                            class="js-input-to"
+                            id="amount"
+                            readonly
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </aside>
               </div>
             </div>
+            <div class="col-lg-9">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="product_top_bar d-flex justify-content-between align-items-center">
+                    <div class="single_product_menu">
+                      <p>
+                        <span>10000 </span> Prodict Found
+                      </p>
+                    </div>
+                    <div class="single_product_menu d-flex">
+                      <h5>short by : </h5>
+                      <select>
+                        <option data-display="Select">name</option>
+                        <option value="1">price</option>
+                        <option value="2">product</option>
+                      </select>
+                    </div>
+                    <div class="single_product_menu d-flex">
+                      <h5>show :</h5>
+                      <div class="top_pageniation">
+                        <ul>
+                          <li>1</li>
+                          <li>2</li>
+                          <li>3</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-            <div className="col-sm-9 padding-right">
-              <div className="features_items">
-                <h2 className="title text-center">Features Items</h2>
-                <div className="col-sm-4">
-                  <div className="product-image-wrapper">
-                    <div className="single-products">
-                      <div className="productinfo text-center">
-                        <img
-                          src={require('./images/shop/product12.jpg')}
-                          alt=""
-                        />
-                        <h2>$56</h2>
-                        <p>Easy Polo Black Edition</p>
-                        <a href="#" className="btn btn-default add-to-cart">
-                          <i className="fa fa-shopping-cart" />
-                          Add to cart
-                        </a>
-                      </div>
-                      <div className="product-overlay">
-                        <div className="overlay-content">
-                          <h2>$56</h2>
-                          <p>Easy Polo Black Edition</p>
-                          <a href="#" className="btn btn-default add-to-cart">
-                            <i className="fa fa-shopping-cart" />
-                            Add to cart
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="choose">
-                      <ul className="nav nav-pills nav-justified">
-                        <li>
-                          <a href="">
-                            <i className="fa fa-plus-square" />
-                            Add to wishlist
-                          </a>
-                        </li>
-                        <li>
-                          <a href="">
-                            <i className="fa fa-plus-square" />
-                            Add to compare
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-sm-4">
-                  <div className="product-image-wrapper">
-                    <div className="single-products">
-                      <div className="productinfo text-center">
-                        <img
-                          src={require('./images/shop/product11.jpg')}
-                          alt=""
-                        />
-                        <h2>$56</h2>
-                        <p>Easy Polo Black Edition</p>
-                        <a href="#" className="btn btn-default add-to-cart">
-                          <i className="fa fa-shopping-cart" />
-                          Add to cart
-                        </a>
-                      </div>
-                      <div className="product-overlay">
-                        <div className="overlay-content">
-                          <h2>$56</h2>
-                          <p>Easy Polo Black Edition</p>
-                          <a href="#" className="btn btn-default add-to-cart">
-                            <i className="fa fa-shopping-cart" />
-                            Add to cart
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="choose">
-                      <ul className="nav nav-pills nav-justified">
-                        <li>
-                          <a href="">
-                            <i className="fa fa-plus-square" />
-                            Add to wishlist
-                          </a>
-                        </li>
-                        <li>
-                          <a href="">
-                            <i className="fa fa-plus-square" />
-                            Add to compare
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-sm-4">
-                  <div className="product-image-wrapper">
-                    <div className="single-products">
-                      <div className="productinfo text-center">
-                        <img
-                          src={require('./images/shop/product10.jpg')}
-                          alt=""
-                        />
-                        <h2>$56</h2>
-                        <p>Easy Polo Black Edition</p>
-                        <a href="#" className="btn btn-default add-to-cart">
-                          <i className="fa fa-shopping-cart" />
-                          Add to cart
-                        </a>
-                      </div>
-                      <div className="product-overlay">
-                        <div className="overlay-content">
-                          <h2>$56</h2>
-                          <p>Easy Polo Black Edition</p>
-                          <a href="#" className="btn btn-default add-to-cart">
-                            <i className="fa fa-shopping-cart" />
-                            Add to cart
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="choose">
-                      <ul className="nav nav-pills nav-justified">
-                        <li>
-                          <a href="">
-                            <i className="fa fa-plus-square" />
-                            Add to wishlist
-                          </a>
-                        </li>
-                        <li>
-                          <a href="">
-                            <i className="fa fa-plus-square" />
-                            Add to compare
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-sm-4">
-                  <div className="product-image-wrapper">
-                    <div className="single-products">
-                      <div className="productinfo text-center">
-                        <img
-                          src={require('./images/shop/product9.jpg')}
-                          alt=""
-                        />
-                        <h2>$56</h2>
-                        <p>Easy Polo Black Edition</p>
-                        <a href="#" className="btn btn-default add-to-cart">
-                          <i className="fa fa-shopping-cart" />
-                          Add to cart
-                        </a>
-                      </div>
-                      <div className="product-overlay">
-                        <div className="overlay-content">
-                          <h2>$56</h2>
-                          <p>Easy Polo Black Edition</p>
-                          <a href="#" className="btn btn-default add-to-cart">
-                            <i className="fa fa-shopping-cart" />
-                            Add to cart
-                          </a>
-                        </div>
-                      </div>
-                      <img
-                        src={require('./images/home/new.png')}
-                        className="new"
-                        alt=""
-                      />
-                    </div>
-                    <div className="choose">
-                      <ul className="nav nav-pills nav-justified">
-                        <li>
-                          <a href="">
-                            <i className="fa fa-plus-square" />
-                            Add to wishlist
-                          </a>
-                        </li>
-                        <li>
-                          <a href="">
-                            <i className="fa fa-plus-square" />
-                            Add to compare
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-sm-4">
-                  <div className="product-image-wrapper">
-                    <div className="single-products">
-                      <div className="productinfo text-center">
-                        <img
-                          src={require('./images/shop/product8.jpg')}
-                          alt=""
-                        />
-                        <h2>$56</h2>
-                        <p>Easy Polo Black Edition</p>
-                        <a href="#" className="btn btn-default add-to-cart">
-                          <i className="fa fa-shopping-cart" />
-                          Add to cart
-                        </a>
-                      </div>
-                      <div className="product-overlay">
-                        <div className="overlay-content">
-                          <h2>$56</h2>
-                          <p>Easy Polo Black Edition</p>
-                          <a href="#" className="btn btn-default add-to-cart">
-                            <i className="fa fa-shopping-cart" />
-                            Add to cart
-                          </a>
-                        </div>
-                      </div>
-                      <img
-                        src={require('./images/home/sale.png')}
-                        className="new"
-                        alt=""
-                      />
-                    </div>
-                    <div className="choose">
-                      <ul className="nav nav-pills nav-justified">
-                        <li>
-                          <a href="">
-                            <i className="fa fa-plus-square" />
-                            Add to wishlist
-                          </a>
-                        </li>
-                        <li>
-                          <a href="">
-                            <i className="fa fa-plus-square" />
-                            Add to compare
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-sm-4">
-                  <div className="product-image-wrapper">
-                    <div className="single-products">
-                      <div className="productinfo text-center">
-                        <img
-                          src={require('./images/shop/product7.jpg')}
-                          alt=""
-                        />
-                        <h2>$56</h2>
-                        <p>Easy Polo Black Edition</p>
-                        <a href="#" className="btn btn-default add-to-cart">
-                          <i className="fa fa-shopping-cart" />
-                          Add to cart
-                        </a>
-                      </div>
-                      <div className="product-overlay">
-                        <div className="overlay-content">
-                          <h2>$56</h2>
-                          <p>Easy Polo Black Edition</p>
-                          <a href="#" className="btn btn-default add-to-cart">
-                            <i className="fa fa-shopping-cart" />
-                            Add to cart
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="choose">
-                      <ul className="nav nav-pills nav-justified">
-                        <li>
-                          <a href="">
-                            <i className="fa fa-plus-square" />
-                            Add to wishlist
-                          </a>
-                        </li>
-                        <li>
-                          <a href="">
-                            <i className="fa fa-plus-square" />
-                            Add to compare
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-sm-4">
-                  <div className="product-image-wrapper">
-                    <div className="single-products">
-                      <div className="productinfo text-center">
-                        <img
-                          src={require('./images/home/product6.jpg')}
-                          alt=""
-                        />
-                        <h2>$56</h2>
-                        <p>Easy Polo Black Edition</p>
-                        <a href="#" className="btn btn-default add-to-cart">
-                          <i className="fa fa-shopping-cart" />
-                          Add to cart
-                        </a>
-                      </div>
-                      <div className="product-overlay">
-                        <div className="overlay-content">
-                          <h2>$56</h2>
-                          <p>Easy Polo Black Edition</p>
-                          <a href="#" className="btn btn-default add-to-cart">
-                            <i className="fa fa-shopping-cart" />
-                            Add to cart
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="choose">
-                      <ul className="nav nav-pills nav-justified">
-                        <li>
-                          <a href="">
-                            <i className="fa fa-plus-square" />
-                            Add to wishlist
-                          </a>
-                        </li>
-                        <li>
-                          <a href="">
-                            <i className="fa fa-plus-square" />
-                            Add to compare
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-sm-4">
-                  <div className="product-image-wrapper">
-                    <div className="single-products">
-                      <div className="productinfo text-center">
-                        <img
-                          src={require('./images/home/product5.jpg')}
-                          alt=""
-                        />
-                        <h2>$56</h2>
-                        <p>Easy Polo Black Edition</p>
-                        <a href="#" className="btn btn-default add-to-cart">
-                          <i className="fa fa-shopping-cart" />
-                          Add to cart
-                        </a>
-                      </div>
-                      <div className="product-overlay">
-                        <div className="overlay-content">
-                          <h2>$56</h2>
-                          <p>Easy Polo Black Edition</p>
-                          <a href="#" className="btn btn-default add-to-cart">
-                            <i className="fa fa-shopping-cart" />
-                            Add to cart
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="choose">
-                      <ul className="nav nav-pills nav-justified">
-                        <li>
-                          <a href="">
-                            <i className="fa fa-plus-square" />
-                            Add to wishlist
-                          </a>
-                        </li>
-                        <li>
-                          <a href="">
-                            <i className="fa fa-plus-square" />
-                            Add to compare
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-sm-4">
-                  <div className="product-image-wrapper">
-                    <div className="single-products">
-                      <div className="productinfo text-center">
-                        <img
-                          src={require('./images/home/product4.jpg')}
-                          alt=""
-                        />
-                        <h2>$56</h2>
-                        <p>Easy Polo Black Edition</p>
-                        <a href="#" className="btn btn-default add-to-cart">
-                          <i className="fa fa-shopping-cart" />
-                          Add to cart
-                        </a>
-                      </div>
-                      <div className="product-overlay">
-                        <div className="overlay-content">
-                          <h2>$56</h2>
-                          <p>Easy Polo Black Edition</p>
-                          <a href="#" className="btn btn-default add-to-cart">
-                            <i className="fa fa-shopping-cart" />
-                            Add to cart
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="choose">
-                      <ul className="nav nav-pills nav-justified">
-                        <li>
-                          <a href="">
-                            <i className="fa fa-plus-square" />
-                            Add to wishlist
-                          </a>
-                        </li>
-                        <li>
-                          <a href="">
-                            <i className="fa fa-plus-square" />
-                            Add to compare
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-sm-4">
-                  <div className="product-image-wrapper">
-                    <div className="single-products">
-                      <div className="productinfo text-center">
-                        <img
-                          src={require('./images/home/product3.jpg')}
-                          alt=""
-                        />
-                        <h2>$56</h2>
-                        <p>Easy Polo Black Edition</p>
-                        <a href="#" className="btn btn-default add-to-cart">
-                          <i className="fa fa-shopping-cart" />
-                          Add to cart
-                        </a>
-                      </div>
-                      <div className="product-overlay">
-                        <div className="overlay-content">
-                          <h2>$56</h2>
-                          <p>Easy Polo Black Edition</p>
-                          <a href="#" className="btn btn-default add-to-cart">
-                            <i className="fa fa-shopping-cart" />
-                            Add to cart
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="choose">
-                      <ul className="nav nav-pills nav-justified">
-                        <li>
-                          <a href="">
-                            <i className="fa fa-plus-square" />
-                            Add to wishlist
-                          </a>
-                        </li>
-                        <li>
-                          <a href="">
-                            <i className="fa fa-plus-square" />
-                            Add to compare
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-sm-4">
-                  <div className="product-image-wrapper">
-                    <div className="single-products">
-                      <div className="productinfo text-center">
-                        <img
-                          src={require('./images/home/product2.jpg')}
-                          alt=""
-                        />
-                        <h2>$56</h2>
-                        <p>Easy Polo Black Edition</p>
-                        <a href="#" className="btn btn-default add-to-cart">
-                          <i className="fa fa-shopping-cart" />
-                          Add to cart
-                        </a>
-                      </div>
-                      <div className="product-overlay">
-                        <div className="overlay-content">
-                          <h2>$56</h2>
-                          <p>Easy Polo Black Edition</p>
-                          <a href="#" className="btn btn-default add-to-cart">
-                            <i className="fa fa-shopping-cart" />
-                            Add to cart
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="choose">
-                      <ul className="nav nav-pills nav-justified">
-                        <li>
-                          <a href="">
-                            <i className="fa fa-plus-square" />
-                            Add to wishlist
-                          </a>
-                        </li>
-                        <li>
-                          <a href="">
-                            <i className="fa fa-plus-square" />
-                            Add to compare
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-sm-4">
-                  <div className="product-image-wrapper">
-                    <div className="single-products">
-                      <div className="productinfo text-center">
-                        <img
-                          src={require('./images/home/product1.jpg')}
-                          alt=""
-                        />
-                        <h2>$56</h2>
-                        <p>Easy Polo Black Edition</p>
-                        <a href="#" className="btn btn-default add-to-cart">
-                          <i className="fa fa-shopping-cart" />
-                          Add to cart
-                        </a>
-                      </div>
-                      <div className="product-overlay">
-                        <div className="overlay-content">
-                          <h2>$56</h2>
-                          <p>Easy Polo Black Edition</p>
-                          <a href="#" className="btn btn-default add-to-cart">
-                            <i className="fa fa-shopping-cart" />
-                            Add to cart
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="choose">
-                      <ul className="nav nav-pills nav-justified">
-                        <li>
-                          <a href="">
-                            <i className="fa fa-plus-square" />
-                            Add to wishlist
-                          </a>
-                        </li>
-                        <li>
-                          <a href="">
-                            <i className="fa fa-plus-square" />
-                            Add to compare
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <ul className="pagination">
-                  <li className="active">
-                    <a href="">1</a>
-                  </li>
-                  <li>
-                    <a href="">2</a>
-                  </li>
-                  <li>
-                    <a href="">3</a>
-                  </li>
-                  <li>
-                    <a href="">&raquo;</a>
-                  </li>
-                </ul>
+              <div class="row align-items-center latest_product_inner">
+                {products.map(item => (
+                  <Product
+                    productName={item.productName}
+                    bestBid={item.bestBid}
+                  />
+                ))}
               </div>
             </div>
           </div>
