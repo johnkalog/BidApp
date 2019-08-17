@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getUsers } from '../actions/userActions';
+import { getProducts } from '../actions/productActions';
 
-const Header = ({ getUsers }) => {
+const Header = ({ getProducts }) => {
   return (
     <div>
       <div className="site-wrap">
@@ -42,7 +42,7 @@ const Header = ({ getUsers }) => {
                     <Link
                       to="./products"
                       className="nav-link"
-                      onClick={() => getUsers()}
+                      onClick={() => getProducts()}
                     >
                       Products
                     </Link>
@@ -70,6 +70,6 @@ const Header = ({ getUsers }) => {
 export default connect(
   null,
   dispatch => ({
-    getUsers: getUsers(dispatch)
+    getProducts: getProducts(dispatch)
   })
 )(Header);

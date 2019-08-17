@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const Items = ({ users }) => {
-  console.log(users);
+const Items = ({ products }) => {
+  console.log(products);
   return (
     <div>
       <section>
@@ -53,7 +53,7 @@ const Items = ({ users }) => {
                     <div className="panel-heading">
                       <h4 className="panel-title">
                         <a
-                          data-toggle="collapse"
+                          data-toggle="collapseb"
                           data-parent="#accordian"
                           href="#mens"
                         >
@@ -838,7 +838,7 @@ const Items = ({ users }) => {
 
 export default connect(
   state => ({
-    users: state.usersData.users
+    products: state.productsData.products
   }),
   null
 )(Items);
