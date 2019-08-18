@@ -5,10 +5,10 @@
 /src/components/fonts
 /src/components/images
 /src/components/img
-/src/components/css
-/src/components/js
-/src/components/scss
-/src/components/style2.css
+# /src/components/css
+# /src/components/js
+# /src/components/scss
+# /src/components/style2.css
 
 # testing
 /coverage
