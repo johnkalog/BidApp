@@ -2,13 +2,19 @@ import {
   GET_USERS,
   DELETE_USER,
   GET_USER,
-  CHANGE_LOGIN
+  CHANGE_LOGIN,
+  INPUT_ERROR
 } from '../actions/types';
 
 const initialState = {
   users: [],
   user: {},
-  login: true
+  login: true,
+  errors: {
+    username: false,
+    password: false,
+    re_type: false
+  }
 };
 
 const userReducer = (state = initialState, action) => {
@@ -34,6 +40,14 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         login: !state.login
+      };
+    case INPUT_ERROR:
+      return {
+        ...state,
+        errors: {
+          ...state.errors,
+          [`${action.payload}`]: true
+        }
       };
     default:
       return state;
