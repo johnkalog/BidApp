@@ -1,6 +1,11 @@
+import { connect } from 'react-redux';
 import React from 'react';
+import Login from './Login';
+import SignUp from './SignUp';
+import { changeLogin } from '../actions/userActions';
 
-const Bid = () => {
+const Bid = ({ login, changeLogin }) => {
+  const forms = login ? <Login /> : <SignUp />;
   return (
     <div>
       <div className="site-wrap">
@@ -40,72 +45,21 @@ const Bid = () => {
                     >
                       <div className="tab-content">
                         <ul className="tab-group">
-                          <li className="tab active">
+                          <li
+                            className={login ? 'tab active' : 'tab'}
+                            onClick={() => changeLogin()}
+                          >
                             <a href="#login">Log In</a>
                           </li>
-                          <li className="tab ">
+                          <li
+                            className={!login ? 'tab active' : 'tab'}
+                            onClick={() => changeLogin()}
+                          >
                             <a href="#signup">Sign Up</a>
                           </li>
                         </ul>
-                        <div id="login">
-                          <form action="" method="post" className="form-box">
-                            <h3 className="h4 text-black mb-4">Log In</h3>
-                            <div className="form-group">
-                              <input
-                                type="text"
-                                className="form-control"
-                                placeholder="Username"
-                              />
-                            </div>
-                            <div className="form-group">
-                              <input
-                                type="password"
-                                className="form-control"
-                                placeholder="Password"
-                              />
-                            </div>
-                            <div className="form-group">
-                              <input
-                                type="submit"
-                                className="btn btn-primary btn-pill"
-                                value="log in"
-                              />
-                            </div>
-                          </form>
-                        </div>
-                        <div id="signup">
-                          <form action="" method="post" className="form-box">
-                            <h3 className="h4 text-black mb-4">Sign Up</h3>
-                            <div className="form-group">
-                              <input
-                                type="text"
-                                className="form-control"
-                                placeholder="Email Addresss"
-                              />
-                            </div>
-                            <div className="form-group">
-                              <input
-                                type="password"
-                                className="form-control"
-                                placeholder="Password"
-                              />
-                            </div>
-                            <div className="form-group mb-4">
-                              <input
-                                type="password"
-                                className="form-control"
-                                placeholder="Re-type Password"
-                              />
-                            </div>
-                            <div className="form-group">
-                              <input
-                                type="submit"
-                                className="btn btn-primary btn-pill"
-                                value="Sign up"
-                              />
-                            </div>
-                          </form>
-                        </div>
+                        {forms}
+                        <div />
                       </div>
                     </div>
                   </div>
@@ -119,4 +73,11 @@ const Bid = () => {
   );
 };
 
-export default Bid;
+export default connect(
+  state => ({
+    login: state.usersData.login
+  }),
+  dispatch => ({
+    changeLogin: changeLogin(dispatch)
+  })
+)(Bid);

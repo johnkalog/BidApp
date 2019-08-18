@@ -1,15 +1,17 @@
 import {
   GET_USERS,
   DELETE_USER,
-  GET_USER
-} from "../actions/types";
+  GET_USER,
+  CHANGE_LOGIN
+} from '../actions/types';
 
 const initialState = {
   users: [],
-  user: {}
+  user: {},
+  login: true
 };
 
-const userReducer =  (state = initialState, action) => {
+const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_USERS:
       return {
@@ -26,13 +28,16 @@ const userReducer =  (state = initialState, action) => {
     case DELETE_USER:
       return {
         ...state,
-        users: state.users.filter(
-          user => user.id !== action.payload
-        )
+        users: state.users.filter(user => user.id !== action.payload)
+      };
+    case CHANGE_LOGIN:
+      return {
+        ...state,
+        login: !state.login
       };
     default:
       return state;
   }
-}
+};
 
 export default userReducer;

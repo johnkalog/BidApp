@@ -22,6 +22,11 @@ public class UserService {
     public User findById(Long id){
         return userRepository.getById(id);
     }
+    public User findByUsername(String username){
+        return userRepository.getByUsername(username);
+    }
+
+
 
     public void delete(Long id){
         User user = findById(id);
