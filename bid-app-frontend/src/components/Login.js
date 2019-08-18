@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { inputError, checkUser } from '../actions/userActions';
-import { changeLogin } from '../actions/userActions';
 import classnames from 'classnames';
 
 const logIn = (event, inputError, checkUser) => {

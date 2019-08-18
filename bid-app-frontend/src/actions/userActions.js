@@ -5,7 +5,8 @@ import {
   GET_USER,
   CHANGE_LOGIN,
   INPUT_ERROR,
-  LOGIN_MESSAGE
+  LOGIN_MESSAGE,
+  SIGNUP_MESSAGE
 } from './types';
 
 export const getUsers = dispatch => () => {
@@ -48,4 +49,33 @@ export const checkUser = dispatch => forCheckUser => {
         });
       }
     });
+};
+
+export const newUser = dispatch => theNewUser => {
+  const result = axios
+    .post('http://localhost:8080/api/users/new', theNewUser)
+    .then(result => {
+      if (result.data === '') {
+        const res = axios
+          .post('http://localhost:8080/api/users/', theNewUser)
+          .then(res => {
+            dispatch({
+              type: GET_USER,
+              payload: res.data
+            });
+          });
+      } else {
+        dispatch({
+          type: SIGNUP_MESSAGE,
+          payload: result.data
+        });
+      }
+    });
+};
+
+export const notSamePasswords = dispatch => message => {
+  dispatch({
+    type: SIGNUP_MESSAGE,
+    payload: message
+  });
 };

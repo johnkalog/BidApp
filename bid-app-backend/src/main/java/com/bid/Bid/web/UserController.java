@@ -58,4 +58,15 @@ public class UserController {
         }
 //        return new ResponseEntity<String>("User found?", HttpStatus.OK);
     }
+
+    @PostMapping("/new")
+    public ResponseEntity<?> checkNew(@RequestBody  LoginRequest loginRequest){
+        User user = userService.findByUsername(loginRequest.getUsername());
+        if(user!=null) {
+            return new ResponseEntity<String>("error: user already exists", HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<String>("", HttpStatus.OK);
+        }
+    }
 }

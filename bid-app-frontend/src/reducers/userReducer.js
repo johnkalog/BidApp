@@ -4,7 +4,8 @@ import {
   GET_USER,
   CHANGE_LOGIN,
   INPUT_ERROR,
-  LOGIN_MESSAGE
+  LOGIN_MESSAGE,
+  SIGNUP_MESSAGE
 } from '../actions/types';
 
 const initialState = {
@@ -16,7 +17,8 @@ const initialState = {
     password: false,
     re_type: false
   },
-  loginMessage: ''
+  loginMessage: '',
+  signUpMessage: ''
 };
 
 const userReducer = (state = initialState, action) => {
@@ -31,7 +33,13 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.payload,
-        loginMessage: ''
+        errors: {
+          username: false,
+          password: false,
+          re_type: false
+        },
+        loginMessage: '',
+        signUpMessage: ''
       };
 
     case DELETE_USER:
@@ -56,6 +64,11 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         loginMessage: action.payload
+      };
+    case SIGNUP_MESSAGE:
+      return {
+        ...state,
+        signUpMessage: action.payload
       };
     default:
       return state;
