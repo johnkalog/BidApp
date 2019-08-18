@@ -3,7 +3,8 @@ import {
   DELETE_USER,
   GET_USER,
   CHANGE_LOGIN,
-  INPUT_ERROR
+  INPUT_ERROR,
+  LOGIN_MESSAGE
 } from '../actions/types';
 
 const initialState = {
@@ -14,7 +15,8 @@ const initialState = {
     username: false,
     password: false,
     re_type: false
-  }
+  },
+  loginMessage: ''
 };
 
 const userReducer = (state = initialState, action) => {
@@ -28,7 +30,8 @@ const userReducer = (state = initialState, action) => {
     case GET_USER:
       return {
         ...state,
-        user: action.payload
+        user: action.payload,
+        loginMessage: ''
       };
 
     case DELETE_USER:
@@ -48,6 +51,11 @@ const userReducer = (state = initialState, action) => {
           ...state.errors,
           [`${action.payload}`]: true
         }
+      };
+    case LOGIN_MESSAGE:
+      return {
+        ...state,
+        loginMessage: action.payload
       };
     default:
       return state;

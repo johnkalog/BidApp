@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { inputError } from '../actions/userActions';
+import { inputError, checkUser } from '../actions/userActions';
 import { changeLogin } from '../actions/userActions';
 import classnames from 'classnames';
 
-const logIn = (event, inputError) => {
+const logIn = (event, inputError, checkUser) => {
   event.preventDefault();
   const username = event.target[0].value;
   if (username.length === 0) {
@@ -13,14 +13,26 @@ const logIn = (event, inputError) => {
   const password = event.target[1].value;
   if (password.length === 0) {
     inputError('password');
+    return;
   }
+  checkUser({ username, password });
 };
 
-const Login = ({ username, password, inputError }) => {
-  console.log(username, password);
+const Login = ({
+  user,
+  username,
+  password,
+  loginMessage,
+  inputError,
+  checkUser
+}) => {
+  console.log(user, loginMessage);
   return (
     <div id="login">
-      <form className="form-box" onSubmit={event => logIn(event, inputError)}>
+      <form
+        className="form-box"
+        onSubmit={event => logIn(event, inputError, checkUser)}
+      >
         <h3 className="h4 text-black mb-4">Log In</h3>
         <div className="form-group">
           <input
@@ -41,6 +53,7 @@ const Login = ({ username, password, inputError }) => {
             placeholder="Password"
           />
         </div>
+        <h6>{loginMessage}</h6>
         <div className="form-group">
           <input
             type="submit"
@@ -56,9 +69,12 @@ const Login = ({ username, password, inputError }) => {
 export default connect(
   state => ({
     username: state.usersData.errors.username,
-    password: state.usersData.errors.password
+    password: state.usersData.errors.password,
+    loginMessage: state.usersData.loginMessage,
+    user: state.usersData.user
   }),
   dispatch => ({
-    inputError: inputError(dispatch)
+    inputError: inputError(dispatch),
+    checkUser: checkUser(dispatch)
   })
 )(Login);
