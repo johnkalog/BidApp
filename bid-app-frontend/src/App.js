@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import Bid from './components/Bid';
 import Items from './components/Items';
 import Header from './components/Header';
 import store from './store';
+import history from './history';
 
 import './components/general.css';
 
@@ -32,7 +33,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router>
+        <Router history={history}>
           <Header />
           <Route exact path="/" component={Bid} />
           <Route exact path="/products" component={Items} />

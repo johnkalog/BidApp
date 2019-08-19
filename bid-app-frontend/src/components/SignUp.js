@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { inputError, newUser, notSamePasswords } from '../actions/userActions';
 import classnames from 'classnames';
+import history from '../history';
 
 const logIn = (event, inputError, newUser, notSamePasswords) => {
   event.preventDefault();
@@ -23,6 +24,7 @@ const logIn = (event, inputError, newUser, notSamePasswords) => {
     return;
   }
   newUser({ username, password });
+  history.push('/products');
 };
 
 const SignUp = ({

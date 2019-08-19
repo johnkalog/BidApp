@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getProducts } from '../actions/productActions';
 
-const Header = ({ getProducts }) => {
+const Header = ({ user, getProducts }) => {
+  const userRightUp = Object.keys(user).length === 0 ? '' : user.username;
   return (
     <div>
       <div className="site-wrap">
@@ -60,6 +61,13 @@ const Header = ({ getProducts }) => {
                 </ul>
               </nav>
             </div>
+            <div class="ml-auto w-25">
+              <ul class="site-menu main-menu site-menu-dark js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
+                <li class="cta">
+                  <span>{userRightUp}</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </header>
@@ -68,7 +76,9 @@ const Header = ({ getProducts }) => {
 };
 
 export default connect(
-  null,
+  state => ({
+    user: state.usersData.user
+  }),
   dispatch => ({
     getProducts: getProducts(dispatch)
   })
