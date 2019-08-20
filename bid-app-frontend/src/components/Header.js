@@ -2,9 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getProducts } from '../actions/productActions';
+import { logOutUser } from '../actions/userActions';
 
-const Header = ({ user, getProducts }) => {
+const Header = ({ user, getProducts, logOutUser }) => {
   const userRightUp = Object.keys(user).length === 0 ? '' : user.username;
+  const logOut = Object.keys(user).length === 0 ? '' : 'Log Out';
   return (
     <div>
       <div className="site-wrap">
@@ -62,9 +64,12 @@ const Header = ({ user, getProducts }) => {
               </nav>
             </div>
             <div class="ml-auto w-25">
-              <ul class="site-menu main-menu site-menu-dark js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
-                <li class="cta">
-                  <span>{userRightUp}</span>
+              <ul id="user">
+                <li>
+                  <span>{userRightUp + ' '}</span>
+                </li>
+                <li class="logOut" onClick={() => logOutUser()}>
+                  <span>{logOut}</span>
                 </li>
               </ul>
             </div>
@@ -80,6 +85,7 @@ export default connect(
     user: state.usersData.user
   }),
   dispatch => ({
-    getProducts: getProducts(dispatch)
+    getProducts: getProducts(dispatch),
+    logOutUser: logOutUser(dispatch)
   })
 )(Header);

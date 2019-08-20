@@ -48,6 +48,7 @@ export const checkUser = dispatch => forCheckUser => {
           type: GET_USER,
           payload: result.data
         });
+        history.push('products');
       }
     });
 };
@@ -80,4 +81,12 @@ export const notSamePasswords = dispatch => message => {
     type: SIGNUP_MESSAGE,
     payload: message
   });
+};
+
+export const logOutUser = dispatch => () => {
+  dispatch({
+    type: GET_USER,
+    payload: {}
+  });
+  history.push('/');
 };

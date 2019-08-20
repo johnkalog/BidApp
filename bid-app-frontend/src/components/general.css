@@ -26,9 +26,18 @@
 
 .slide-1 {
   background-image: url('images/hero_1.jpg');
-  height:100vh;
+  height: 100vh;
 }
 
 .container {
   padding-top: 0px;
+}
+
+/* ul#user li {
+  display: inline;
+} */
+
+.logOut {
+  text-decoration: underline;
+  cursor: pointer;
 }

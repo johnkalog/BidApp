@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { inputError, checkUser } from '../actions/userActions';
 import classnames from 'classnames';
-import history from '../history';
 
 const logIn = (event, inputError, checkUser) => {
   event.preventDefault();
@@ -16,7 +15,6 @@ const logIn = (event, inputError, checkUser) => {
     return;
   }
   checkUser({ username, password });
-  history.push('/products');
 };
 
 const Login = ({
