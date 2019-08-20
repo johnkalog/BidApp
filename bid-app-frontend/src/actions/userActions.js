@@ -8,6 +8,7 @@ import {
   LOGIN_MESSAGE,
   SIGNUP_MESSAGE
 } from './types';
+import history from '../history';
 
 export const getUsers = dispatch => () => {
   const result = axios
@@ -63,6 +64,7 @@ export const newUser = dispatch => theNewUser => {
               type: GET_USER,
               payload: res.data
             });
+            history.push('products');
           });
       } else {
         dispatch({

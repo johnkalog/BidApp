@@ -6,6 +6,8 @@ import Items from './components/Items';
 import Header from './components/Header';
 import store from './store';
 import history from './history';
+import Users from './components/Users';
+import Shop from './components/Shop';
 
 import './components/general.css';
 
@@ -37,6 +39,8 @@ class App extends Component {
           <Header />
           <Route exact path="/" component={Bid} />
           <Route exact path="/products" component={Items} />
+          <Route exact path="/users" component={Users} />
+          <Route exact path="/shop" component={Shop} />
         </Router>
       </Provider>
     );

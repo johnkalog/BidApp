@@ -49,14 +49,14 @@ const Header = ({ user, getProducts }) => {
                     </Link>
                   </li>
                   <li>
-                    <a href="#programs-section" className="nav-link">
-                      Programs
-                    </a>
+                    <Link to="./users" className="nav-link">
+                      Users
+                    </Link>
                   </li>
                   <li>
-                    <a href="#teachers-section" className="nav-link">
-                      Teachers
-                    </a>
+                    <Link to="./shop" className="nav-link">
+                      Shop
+                    </Link>
                   </li>
                 </ul>
               </nav>

@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { inputError, newUser, notSamePasswords } from '../actions/userActions';
 import classnames from 'classnames';
-import history from '../history';
 
 const logIn = (event, inputError, newUser, notSamePasswords) => {
   event.preventDefault();
@@ -23,8 +22,24 @@ const logIn = (event, inputError, newUser, notSamePasswords) => {
     notSamePasswords("Passwords don't match");
     return;
   }
-  newUser({ username, password });
-  history.push('/products');
+  const firstName = event.target[3].value;
+  const lastName = event.target[4].value;
+  const email = event.target[5].value;
+  const phone = event.target[6].value;
+  const location = event.target[7].value;
+  const afm = event.target[8].value;
+  const type = event.target[9].value;
+  newUser({
+    username,
+    password,
+    firstName,
+    lastName,
+    email,
+    phone,
+    location,
+    afm,
+    type
+  });
 };
 
 const SignUp = ({
@@ -72,6 +87,62 @@ const SignUp = ({
               'is-invalid': re_type
             })}
             placeholder="Re-type Password"
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            name="firstName"
+            className="form-control"
+            placeholder="First Name"
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            name="lastName"
+            className="form-control"
+            placeholder="Last Name"
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="email"
+            name="email"
+            className="form-control"
+            placeholder="Email"
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            name="phone"
+            className="form-control"
+            placeholder="Phone"
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            name="location"
+            className="form-control"
+            placeholder="Location"
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            name="afm"
+            className="form-control"
+            placeholder="Afm"
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            name="type"
+            className="form-control"
+            placeholder="Type"
           />
         </div>
         <h6>{signUpMessage}</h6>
