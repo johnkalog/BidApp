@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { inputError, checkUser } from '../actions/userActions';
 import classnames from 'classnames';
 
-const logIn = (event, inputError, checkUser) => {
+const logIn = (event, inputError, checkUser, status) => {
   event.preventDefault();
   const username = event.target[0].value;
   if (username.length === 0) {
@@ -14,7 +14,7 @@ const logIn = (event, inputError, checkUser) => {
     inputError('password');
     return;
   }
-  checkUser({ username, password });
+  checkUser({ username, password }, status);
 };
 
 const Login = ({
@@ -30,7 +30,7 @@ const Login = ({
     <div id="login">
       <form
         className="form-box"
-        onSubmit={event => logIn(event, inputError, checkUser)}
+        onSubmit={event => logIn(event, inputError, checkUser, user.status)}
       >
         <h3 className="h4 text-black mb-4">Log In</h3>
         <div className="form-group">
@@ -39,7 +39,7 @@ const Login = ({
             className={classnames('form-control', {
               'is-invalid': username
             })}
-            placeholder="Username"
+            placeholder="Username *"
           />
         </div>
         <div className="form-group">
@@ -49,7 +49,7 @@ const Login = ({
             className={classnames('form-control', {
               'is-invalid': password
             })}
-            placeholder="Password"
+            placeholder="Password *"
           />
         </div>
         <h6>{loginMessage}</h6>

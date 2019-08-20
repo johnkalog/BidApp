@@ -5,8 +5,11 @@ import { getProducts } from '../actions/productActions';
 import { logOutUser, getUsers } from '../actions/userActions';
 
 const Header = ({ user, getProducts, logOutUser, getUsers }) => {
-  const userRightUp = Object.keys(user).length === 0 ? '' : user.username;
-  const logOut = Object.keys(user).length === 0 ? '' : 'Log Out';
+  const userRightUp =
+    Object.keys(user).length === 0 || user.status === 'Waiting'
+      ? ''
+      : user.username;
+  const logOut = Object.keys(user).length === 0 || user.status ? '' : 'Log Out';
   return (
     <div>
       <div className="site-wrap">

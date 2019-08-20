@@ -34,7 +34,7 @@ export const inputError = dispatch => field => {
   });
 };
 
-export const checkUser = dispatch => forCheckUser => {
+export const checkUser = dispatch => (forCheckUser, status) => {
   const result = axios
     .post('http://localhost:8080/api/users/auth', forCheckUser)
     .then(result => {
@@ -48,7 +48,11 @@ export const checkUser = dispatch => forCheckUser => {
           type: GET_USER,
           payload: result.data
         });
-        history.push('products');
+        if (status === 'Accepeted') {
+          history.push('products');
+        } else if (status === 'Waiting') {
+          history.push('waiting');
+        }
       }
     });
 };
@@ -65,7 +69,7 @@ export const newUser = dispatch => theNewUser => {
               type: GET_USER,
               payload: res.data
             });
-            history.push('products');
+            history.push('waiting');
           });
       } else {
         dispatch({

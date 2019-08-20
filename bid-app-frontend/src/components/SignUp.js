@@ -67,7 +67,7 @@ const SignUp = ({
             className={classnames('form-control', {
               'is-invalid': username
             })}
-            placeholder="Username"
+            placeholder="Username *"
           />
         </div>
         <div className="form-group">
@@ -77,7 +77,7 @@ const SignUp = ({
             className={classnames('form-control', {
               'is-invalid': password
             })}
-            placeholder="Password"
+            placeholder="Password *"
           />
         </div>
         <div className="form-group">
@@ -87,7 +87,7 @@ const SignUp = ({
             className={classnames('form-control', {
               'is-invalid': re_type
             })}
-            placeholder="Re-type Password"
+            placeholder="Re-type Password *"
           />
         </div>
         <div className="form-group">
