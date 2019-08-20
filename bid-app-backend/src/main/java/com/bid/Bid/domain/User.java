@@ -1,5 +1,8 @@
 package com.bid.Bid.domain;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.event.EventListener;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,6 +22,18 @@ public class User {
     private String location;
     private String afm;
     private String type;
+
+    public User(String username, String password, String firstName, String lastName, String email, String phone, String location, String afm, String type) {
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.location = location;
+        this.afm = afm;
+        this.type = type;
+    }
 
     public User() {
     }
