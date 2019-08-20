@@ -9,7 +9,10 @@ const Header = ({ user, getProducts, logOutUser, getUsers }) => {
     Object.keys(user).length === 0 || user.status === 'Waiting'
       ? ''
       : user.username;
-  const logOut = Object.keys(user).length === 0 || user.status ? '' : 'Log Out';
+  const logOut =
+    Object.keys(user).length === 0 || user.status === 'Waiting'
+      ? ''
+      : 'Log Out';
   return (
     <div>
       <div className="site-wrap">

@@ -6,7 +6,8 @@ import {
   CHANGE_LOGIN,
   INPUT_ERROR,
   LOGIN_MESSAGE,
-  SIGNUP_MESSAGE
+  SIGNUP_MESSAGE,
+  CHANGE_STATUS
 } from './types';
 import history from '../history';
 
@@ -48,8 +49,8 @@ export const checkUser = dispatch => (forCheckUser, status) => {
           type: GET_USER,
           payload: result.data
         });
-        if (status === 'Accepeted') {
-          history.push('products');
+        if (status === 'Accepted') {
+          history.push('/products');
         } else if (status === 'Waiting') {
           history.push('waiting');
         }
@@ -93,4 +94,21 @@ export const logOutUser = dispatch => () => {
     payload: {}
   });
   history.push('/');
+};
+
+export const deleteUser = dispatch => id => {
+  axios.delete(`http://localhost:8080/api/users/${id}`);
+  dispatch({
+    type: DELETE_USER,
+    payload: id
+  });
+};
+
+export const changeStatus = dispatch => user => {
+  const newUser = { ...user, status: 'Accepted' };
+  axios.post('http://localhost:8080/api/users/', newUser);
+  dispatch({
+    type: CHANGE_STATUS,
+    payload: newUser
+  });
 };

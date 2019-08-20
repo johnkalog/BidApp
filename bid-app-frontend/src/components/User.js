@@ -1,24 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { deleteUser, changeStatus } from '../actions/userActions';
 
-const User = ({ username, status }) => {
+const User = ({ user, deleteUser, changeStatus }) => {
   return (
     <tr>
       <td>
         <div class="media">
           <div class="media-body">
-            <p>{username}</p>
+            <p>{user.username}</p>
           </div>
         </div>
       </td>
       <td>
-        <h5>{status}</h5>
+        <h5>{user.status}</h5>
       </td>
       <td>
         <div class="product_count">
           <button
-            onclick="location.href=#"
             class="genric-btn info-border circle"
+            onClick={() => changeStatus(user)}
           >
             Accept
           </button>
@@ -28,8 +29,8 @@ const User = ({ username, status }) => {
       <td>
         <div class="product_count">
           <button
-            onclick="location.href=#"
             class="genric-btn danger-border circle"
+            onClick={() => deleteUser(user.id)}
           >
             Delete
           </button>
@@ -41,8 +42,10 @@ const User = ({ username, status }) => {
 
 export default connect(
   (state, ownProps) => ({
-    username: ownProps.username,
-    status: ownProps.status
+    user: ownProps.user
   }),
-  null
+  dispatch => ({
+    deleteUser: deleteUser(dispatch),
+    changeStatus: changeStatus(dispatch)
+  })
 )(User);

@@ -5,6 +5,7 @@ export const CHANGE_LOGIN = 'CHANGE_LOGIN';
 export const INPUT_ERROR = 'INPUT_ERROR';
 export const LOGIN_MESSAGE = 'LOGIN_MESSAGE';
 export const SIGNUP_MESSAGE = 'SIGNUP_MESSAGE';
+export const CHANGE_STATUS = 'CHANGE_STATUS';
 
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const GET_PRODUCT = 'GET_PRODUCT';

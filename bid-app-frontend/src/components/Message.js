@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const Message = () => {
-  const message = 'Waiting for ';
   return (
     <div>
       <div className="intro-section" id="home-section">
@@ -13,7 +12,6 @@ const Message = () => {
                 <div class="check_title">
                   <h2>
                     Waiting for Administrator to accept you...
-                    {/* <a href="#">Click here to login</a> */}
                   </h2>
                 </div>
               </div>

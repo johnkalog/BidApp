@@ -5,7 +5,8 @@ import {
   CHANGE_LOGIN,
   INPUT_ERROR,
   LOGIN_MESSAGE,
-  SIGNUP_MESSAGE
+  SIGNUP_MESSAGE,
+  CHANGE_STATUS
 } from '../actions/types';
 
 const initialState = {
@@ -45,7 +46,8 @@ const userReducer = (state = initialState, action) => {
     case DELETE_USER:
       return {
         ...state,
-        users: state.users.filter(user => user.id !== action.payload)
+        users: state.users.filter(user => user.id !== action.payload),
+        user: {}
       };
     case CHANGE_LOGIN:
       return {
@@ -69,6 +71,13 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         signUpMessage: action.payload
+      };
+    case CHANGE_STATUS:
+      return {
+        ...state,
+        users: state.users.map(user =>
+          user.id !== action.payload.id ? user : { ...action.payload }
+        )
       };
     default:
       return state;
