@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Product from './Product';
+import Item from './Item';
 
-const Items = ({ products }) => {
+const ItemsList = ({ products }) => {
   console.log(products);
   return (
     <div>
@@ -181,10 +181,7 @@ const Items = ({ products }) => {
 
               <div class="row align-items-center latest_product_inner">
                 {products.map(item => (
-                  <Product
-                    productName={item.productName}
-                    bestBid={item.bestBid}
-                  />
+                  <Item productName={item.productName} bestBid={item.bestBid} />
                 ))}
               </div>
             </div>
@@ -200,4 +197,4 @@ export default connect(
     products: state.productsData.products
   }),
   null
-)(Items);
+)(ItemsList);

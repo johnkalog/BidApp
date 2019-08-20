@@ -2,15 +2,14 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { Router, Route } from 'react-router-dom';
 import Bid from './components/Bid';
-import Items from './components/Items';
+import ItemsList from './components/ItemsList';
 import Header from './components/Header';
 import store from './store';
 import history from './history';
-import Users from './components/Users';
+import UsersList from './components/UsersList';
 import Shop from './components/Shop';
 
 import './components/general.css';
-
 import './components/fonts/icomoon/style.css';
 
 import './components/css/bootstrap.min.css';
@@ -38,8 +37,8 @@ class App extends Component {
         <Router history={history}>
           <Header />
           <Route exact path="/" component={Bid} />
-          <Route exact path="/products" component={Items} />
-          <Route exact path="/users" component={Users} />
+          <Route exact path="/products" component={ItemsList} />
+          <Route exact path="/users" component={UsersList} />
           <Route exact path="/shop" component={Shop} />
         </Router>
       </Provider>

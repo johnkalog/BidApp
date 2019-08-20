@@ -38,7 +38,8 @@ const logIn = (event, inputError, newUser, notSamePasswords) => {
     phone,
     location,
     afm,
-    type
+    type,
+    status: 'Waiting'
   });
 };
 

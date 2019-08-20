@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getProducts } from '../actions/productActions';
-import { logOutUser } from '../actions/userActions';
+import { logOutUser, getUsers } from '../actions/userActions';
 
-const Header = ({ user, getProducts, logOutUser }) => {
+const Header = ({ user, getProducts, logOutUser, getUsers }) => {
   const userRightUp = Object.keys(user).length === 0 ? '' : user.username;
   const logOut = Object.keys(user).length === 0 ? '' : 'Log Out';
   return (
@@ -51,7 +51,11 @@ const Header = ({ user, getProducts, logOutUser }) => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="./users" className="nav-link">
+                    <Link
+                      to="./users"
+                      className="nav-link"
+                      onClick={() => getUsers()}
+                    >
                       Users
                     </Link>
                   </li>
@@ -86,6 +90,7 @@ export default connect(
   }),
   dispatch => ({
     getProducts: getProducts(dispatch),
-    logOutUser: logOutUser(dispatch)
+    logOutUser: logOutUser(dispatch),
+    getUsers: getUsers(dispatch)
   })
 )(Header);

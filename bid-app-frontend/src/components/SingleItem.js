@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const SingleItem = ({ product }) => {
-  console.log(product);
+const SingleItem = () => {
   return (
     <div>
       <div class="product_image_area section_padding">
@@ -647,8 +646,6 @@ const SingleItem = ({ product }) => {
 };
 
 export default connect(
-  state => ({
-    product: state.productsData.product
-  }),
+  null,
   null
 )(SingleItem);

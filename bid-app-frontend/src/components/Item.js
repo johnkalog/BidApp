@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const Product = ({ productName, bestBid }) => {
+const Item = ({ productName, bestBid }) => {
   return (
     <div class="col-lg-4 col-sm-6">
       <div class="single_product_item">
@@ -25,4 +25,4 @@ export default connect(
     bestBid: ownProps.bestBid
   }),
   null
-)(Product);
+)(Item);

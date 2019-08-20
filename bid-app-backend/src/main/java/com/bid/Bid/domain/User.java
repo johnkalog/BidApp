@@ -22,8 +22,9 @@ public class User {
     private String location;
     private String afm;
     private String type;
+    private String status;
 
-    public User(String username, String password, String firstName, String lastName, String email, String phone, String location, String afm, String type) {
+    public User(String username, String password, String firstName, String lastName, String email, String phone, String location, String afm, String type, String status) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -33,6 +34,7 @@ public class User {
         this.location = location;
         this.afm = afm;
         this.type = type;
+        this.status = status;
     }
 
     public User() {
@@ -116,5 +118,13 @@ public class User {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
