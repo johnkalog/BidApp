@@ -1,55 +1,43 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-function MydModalWithGrid(props) {
+const Info = () => {
   return (
-    <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Using Grid in Modal
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <Container>
-          <Row className="show-grid">
-            <Col xs={12} md={8}>
-              <code>.col-xs-12 .col-md-8</code>
-            </Col>
-            <Col xs={6} md={4}>
-              <code>.col-xs-6 .col-md-4</code>
-            </Col>
-          </Row>
-
-          <Row className="show-grid">
-            <Col xs={6} md={4}>
-              <code>.col-xs-6 .col-md-4</code>
-            </Col>
-            <Col xs={6} md={4}>
-              <code>.col-xs-6 .col-md-4</code>
-            </Col>
-            <Col xs={6} md={4}>
-              <code>.col-xs-6 .col-md-4</code>
-            </Col>
-          </Row>
-        </Container>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
-    </Modal>
+    <div className="popup">
+      <div className="popup_inner">
+        <h4>{'User Info'}</h4>
+        <ul class="poplist">
+          <li>
+            <p>{'Username: oioi'}</p>
+          </li>
+          <li>
+            <p>{'First Name: oioi'}</p>
+          </li>
+          <li>
+            <p>{'Last Name: oioi'}</p>
+          </li>
+          <li>
+            <p>{'Email: oioi'}</p>
+          </li>
+          <li>
+            <p>{'Phone: oioi'}</p>
+          </li>
+          <li>
+            <p>{'Location: oioi'}</p>
+          </li>
+          <li>
+            <p>{'Afm: oioi'}</p>
+          </li>
+          <li>
+            <p>{'Type: oioi'}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
   );
-}
+};
 
-function App() {
-  const [modalShow, setModalShow] = useState(false);
-
-  return (
-    <ButtonToolbar>
-      <Button variant="primary" onClick={() => setModalShow(true)}>
-        Launch modal with grid
-      </Button>
-
-      <MydModalWithGrid show={modalShow} onHide={() => setModalShow(false)} />
-    </ButtonToolbar>
-  );
-}
-export default App;
+export default connect(
+  null,
+  null
+)(Info);

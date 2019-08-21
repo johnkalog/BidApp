@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { deleteUser, changeStatus } from '../actions/userActions';
+import { deleteUser, changeStatus, changePop } from '../actions/userActions';
+import Info from './Info';
 
-const User = ({ user, deleteUser, changeStatus }) => {
+const User = ({ user, popup, deleteUser, changeStatus, changePop }) => {
   return (
     <tr class="shipping_area">
       <td>
@@ -45,17 +46,30 @@ const User = ({ user, deleteUser, changeStatus }) => {
           </button>
         </div>
       </td>
+      <td>
+        <div class="product_count">
+          <button
+            class="genric-btn info-border circle"
+            onClick={() => changePop()}
+          >
+            Show
+          </button>
+        </div>
+      </td>
       <td />
+      {popup ? <Info /> : null}
     </tr>
   );
 };
 
 export default connect(
   (state, ownProps) => ({
-    user: ownProps.user
+    user: ownProps.user,
+    popup: state.usersData.popup
   }),
   dispatch => ({
     deleteUser: deleteUser(dispatch),
-    changeStatus: changeStatus(dispatch)
+    changeStatus: changeStatus(dispatch),
+    changePop: changePop(dispatch)
   })
 )(User);

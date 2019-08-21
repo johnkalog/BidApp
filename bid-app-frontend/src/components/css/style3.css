@@ -427,6 +427,9 @@ ul {
     max-width: 1170px;
   }
   .container2 {
+    padding-top: 100px;
+  }
+  .container3 {
     padding-top: 250px;
   }
 }

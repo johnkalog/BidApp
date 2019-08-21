@@ -7,7 +7,8 @@ import {
   INPUT_ERROR,
   LOGIN_MESSAGE,
   SIGNUP_MESSAGE,
-  CHANGE_STATUS
+  CHANGE_STATUS,
+  POP_INFO
 } from './types';
 import history from '../history';
 
@@ -110,5 +111,11 @@ export const changeStatus = dispatch => (user, newStatus) => {
   dispatch({
     type: CHANGE_STATUS,
     payload: newUser
+  });
+};
+
+export const changePop = dispatch => () => {
+  dispatch({
+    type: POP_INFO
   });
 };

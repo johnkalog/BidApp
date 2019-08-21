@@ -7,7 +7,7 @@ const ItemsList = ({ products }) => {
   return (
     <div>
       <section>
-        <div class="container container2">
+        <div class="container container3">
           <div class="row">
             <div class="col-lg-3">
               <div class="left_sidebar_area">

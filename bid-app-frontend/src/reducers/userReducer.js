@@ -6,7 +6,8 @@ import {
   INPUT_ERROR,
   LOGIN_MESSAGE,
   SIGNUP_MESSAGE,
-  CHANGE_STATUS
+  CHANGE_STATUS,
+  POP_INFO
 } from '../actions/types';
 
 const initialState = {
@@ -19,7 +20,8 @@ const initialState = {
     re_type: false
   },
   loginMessage: '',
-  signUpMessage: ''
+  signUpMessage: '',
+  popup: false
 };
 
 const userReducer = (state = initialState, action) => {
@@ -78,6 +80,11 @@ const userReducer = (state = initialState, action) => {
         users: state.users.map(user =>
           user.id !== action.payload.id ? user : { ...action.payload }
         )
+      };
+    case POP_INFO:
+      return {
+        ...state,
+        popup: !state.popup
       };
     default:
       return state;
