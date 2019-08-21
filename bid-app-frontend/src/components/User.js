@@ -4,7 +4,7 @@ import { deleteUser, changeStatus } from '../actions/userActions';
 
 const User = ({ user, deleteUser, changeStatus }) => {
   return (
-    <tr>
+    <tr class="shipping_area">
       <td>
         <div class="media">
           <div class="media-body">
@@ -18,14 +18,23 @@ const User = ({ user, deleteUser, changeStatus }) => {
       <td>
         <div class="product_count">
           <button
-            class="genric-btn info-border circle"
-            onClick={() => changeStatus(user)}
+            class="genric-btn success-border circle"
+            onClick={() => changeStatus(user, 'Accepted')}
           >
             Accept
           </button>
         </div>
       </td>
-
+      <td>
+        <div class="product_count">
+          <button
+            class="genric-btn warning-border circle"
+            onClick={() => changeStatus(user, 'Blocked')}
+          >
+            Block
+          </button>
+        </div>
+      </td>
       <td>
         <div class="product_count">
           <button
@@ -36,6 +45,7 @@ const User = ({ user, deleteUser, changeStatus }) => {
           </button>
         </div>
       </td>
+      <td />
     </tr>
   );
 };

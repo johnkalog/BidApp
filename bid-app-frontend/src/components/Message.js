@@ -1,7 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const Message = () => {
+const Message = ({ status }) => {
+  const message =
+    status === 'Waiting'
+      ? 'Waiting for Administrator to accept you...'
+      : "You've been blocked from the Administrator...";
   return (
     <div>
       <div className="intro-section" id="home-section">
@@ -10,9 +14,7 @@ const Message = () => {
             <div class="container">
               <div class="returning_customer">
                 <div class="check_title">
-                  <h2>
-                    Waiting for Administrator to accept you...
-                  </h2>
+                  <h2>{message}</h2>
                 </div>
               </div>
             </div>
@@ -24,6 +26,8 @@ const Message = () => {
 };
 
 export default connect(
-  null,
+  (state, ownProps) => ({
+    status: ownProps.status
+  }),
   null
 )(Message);

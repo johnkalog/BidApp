@@ -53,6 +53,8 @@ export const checkUser = dispatch => (forCheckUser, status) => {
           history.push('/products');
         } else if (status === 'Waiting') {
           history.push('waiting');
+        } else if (status === 'Blocked') {
+          history.push('blocked');
         }
       }
     });
@@ -104,8 +106,8 @@ export const deleteUser = dispatch => id => {
   });
 };
 
-export const changeStatus = dispatch => user => {
-  const newUser = { ...user, status: 'Accepted' };
+export const changeStatus = dispatch => (user, newStatus) => {
+  const newUser = { ...user, status: newStatus };
   axios.post('http://localhost:8080/api/users/', newUser);
   dispatch({
     type: CHANGE_STATUS,

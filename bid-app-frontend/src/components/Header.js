@@ -6,11 +6,11 @@ import { logOutUser, getUsers } from '../actions/userActions';
 
 const Header = ({ user, getProducts, logOutUser, getUsers }) => {
   const userRightUp =
-    Object.keys(user).length === 0 || user.status === 'Waiting'
+    Object.keys(user).length === 0 || user.status !== 'Accepted'
       ? ''
       : user.username;
   const logOut =
-    Object.keys(user).length === 0 || user.status === 'Waiting'
+    Object.keys(user).length === 0 || user.status !== 'Accepted'
       ? ''
       : 'Log Out';
   return (
@@ -68,6 +68,11 @@ const Header = ({ user, getProducts, logOutUser, getUsers }) => {
                   <li>
                     <Link to="./shop" className="nav-link">
                       Shop
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="./contact" className="nav-link">
+                      Contact
                     </Link>
                   </li>
                 </ul>

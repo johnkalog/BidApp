@@ -16,7 +16,9 @@ const UsersList = ({ users }) => {
                     <th scope="col">Username</th>
                     <th scope="col">Status</th>
                     <th scope="col">Accept User</th>
+                    <th scope="col">Block User</th>
                     <th scope="col">Delete User</th>
+                    <th scope="col">Info</th>
                   </tr>
                 </thead>
                 <tbody>

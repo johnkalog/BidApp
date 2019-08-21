@@ -9,6 +9,7 @@ import history from './history';
 import UsersList from './components/UsersList';
 import Shop from './components/Shop';
 import Message from './components/Message';
+import Contact from './components/Contact';
 
 import './components/general.css';
 import './components/fonts/icomoon/style.css';
@@ -41,7 +42,9 @@ class App extends Component {
           <Route exact path="/products" component={ItemsList} />
           <Route exact path="/users" component={UsersList} />
           <Route exact path="/shop" component={Shop} />
-          <Route exact path="/waiting" component={Message} />
+          <Route exact path="/waiting" component={Message} status={'Waiting'} />
+          <Route exact path="/blocked" component={Message} status={'Blocked'} />
+          <Route exact path="/contact" component={Contact} />
         </Router>
       </Provider>
     );
