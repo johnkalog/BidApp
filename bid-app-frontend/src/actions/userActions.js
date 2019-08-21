@@ -50,11 +50,9 @@ export const checkUser = dispatch => (forCheckUser, status) => {
           payload: result.data
         });
         if (status === 'Accepted') {
-          history.push('/products');
-        } else if (status === 'Waiting') {
+          history.push('products');
+        } else {
           history.push('waiting');
-        } else if (status === 'Blocked') {
-          history.push('blocked');
         }
       }
     });

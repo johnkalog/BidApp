@@ -6,6 +6,7 @@ const Message = ({ status }) => {
     status === 'Waiting'
       ? 'Waiting for Administrator to accept you...'
       : "You've been blocked from the Administrator...";
+  console.log(status);
   return (
     <div>
       <div className="intro-section" id="home-section">
@@ -26,8 +27,8 @@ const Message = ({ status }) => {
 };
 
 export default connect(
-  (state, ownProps) => ({
-    status: ownProps.status
+  state => ({
+    status: state.usersData.user.status
   }),
   null
 )(Message);

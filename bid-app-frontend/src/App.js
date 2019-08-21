@@ -42,8 +42,7 @@ class App extends Component {
           <Route exact path="/products" component={ItemsList} />
           <Route exact path="/users" component={UsersList} />
           <Route exact path="/shop" component={Shop} />
-          <Route exact path="/waiting" component={Message} status={'Waiting'} />
-          <Route exact path="/blocked" component={Message} status={'Blocked'} />
+          <Route exact path="/waiting" component={Message} />
           <Route exact path="/contact" component={Contact} />
         </Router>
       </Provider>
