@@ -59,7 +59,7 @@
   left: 37%;
   right: 37%;
   top: 25%;
-  bottom: 25%;
+  bottom: 10%;
   margin: auto;
   background: #ecfdff;
   border-radius: 20px;
@@ -72,6 +72,7 @@
   color: #222222;
   text-transform: capitalize;
   margin-top: 25px;
+  margin-bottom: 25px;
   text-align: center;
 }
 
@@ -82,7 +83,7 @@
 .popup_inner ul li {
   margin-left: 30%;
   margin-right: 30%;
-  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .popup_inner ul li p {
@@ -91,4 +92,10 @@
 
 .popup_inner ul li span {
   color: #777777;
+}
+
+.close {
+  font-size: 30px;
+  margin-right: 45%;
+  margin-top: 2%;
 }

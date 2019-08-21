@@ -57,7 +57,7 @@ const User = ({ user, popup, deleteUser, changeStatus, changePop }) => {
         </div>
       </td>
       <td />
-      {popup ? <Info /> : null}
+      {popup ? <Info user={user}/> : null}
     </tr>
   );
 };

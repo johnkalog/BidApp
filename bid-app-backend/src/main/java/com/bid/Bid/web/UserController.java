@@ -45,7 +45,7 @@ public class UserController {
     public ResponseEntity<?> getLogin(@RequestBody  LoginRequest loginRequest){
         User user = userService.findByUsername(loginRequest.getUsername());
         if(user==null) {
-            return new ResponseEntity<String>("error: user not found", HttpStatus.OK);
+            return new ResponseEntity<String>("User not found", HttpStatus.OK);
         }
         String Userpass = user.getPassword();
         if(Userpass.equals(loginRequest.getPassword())) {
@@ -53,7 +53,7 @@ public class UserController {
 
         }
         else {
-            return new ResponseEntity<String>("error: wrong password", HttpStatus.OK);
+            return new ResponseEntity<String>("Wrong password", HttpStatus.OK);
 
         }
 //        return new ResponseEntity<String>("User found?", HttpStatus.OK);

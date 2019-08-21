@@ -1,14 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { changePop } from '../actions/userActions';
 
-const Info = () => {
+const Info = ({ user, changePop }) => {
+  console.log('fewfewfew0', user.username);
   return (
     <div className="popup">
       <div className="popup_inner">
         <h4>{'User Info'}</h4>
         <ul class="poplist">
           <li>
-            <p>{'Username: oioi'}</p>
+            <p>{`Username: ${user.username}`}</p>
           </li>
           <li>
             <p>{'First Name: oioi'}</p>
@@ -32,12 +34,26 @@ const Info = () => {
             <p>{'Type: oioi'}</p>
           </li>
         </ul>
+        <button
+          type="button"
+          class="close"
+          aria-label="Close"
+          onClick={() => {
+            changePop();
+          }}
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
     </div>
   );
 };
 
 export default connect(
-  null,
-  null
+  (state, ownProps) => ({
+    user: ownProps.user
+  }),
+  dispatch => ({
+    changePop: changePop(dispatch)
+  })
 )(Info);
