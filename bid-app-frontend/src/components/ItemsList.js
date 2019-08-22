@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Item from './Item';
 
 const ItemsList = ({ products }) => {
-  console.log(products);
   return (
     <div>
       <section>

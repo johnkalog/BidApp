@@ -9,11 +9,11 @@ const logIn = (event, inputError, newUser, notSamePasswords) => {
   if (username.length === 0) {
     inputError('username');
   }
-  const password = event.target[1].value;
+  const password = event.target[2].value;
   if (password.length === 0) {
     inputError('password');
   }
-  const re_type = event.target[2].value;
+  const re_type = event.target[3].value;
   if (re_type.length === 0) {
     inputError('re_type');
     return;
@@ -22,9 +22,9 @@ const logIn = (event, inputError, newUser, notSamePasswords) => {
     notSamePasswords("Passwords don't match");
     return;
   }
-  const firstName = event.target[3].value;
-  const lastName = event.target[4].value;
-  const email = event.target[5].value;
+  const firstName = event.target[4].value;
+  const lastName = event.target[5].value;
+  const email = event.target[1].value;
   const phone = event.target[6].value;
   const location = event.target[7].value;
   const afm = event.target[8].value;
@@ -61,90 +61,103 @@ const SignUp = ({
         onSubmit={event => logIn(event, inputError, newUser, notSamePasswords)}
       >
         <h3 className="h4 text-black mb-4">Sign Up</h3>
-        <div className="form-group">
-          <input
-            type="text"
-            className={classnames('form-control', {
-              'is-invalid': username
-            })}
-            placeholder="Username *"
-          />
+        <div className="form-row form-group">
+          <div className="col">
+            <input
+              type="text"
+              className={classnames('form-control', {
+                'is-invalid': username
+              })}
+              placeholder="Username *"
+            />
+          </div>
+          <div className="col">
+            <input
+              type="email"
+              name="email"
+              className="form-control"
+              placeholder="Email"
+            />
+          </div>
         </div>
-        <div className="form-group">
-          <input
-            type="password"
-            name="username"
-            className={classnames('form-control', {
-              'is-invalid': password
-            })}
-            placeholder="Password *"
-          />
+
+        <div className="form-row form-group">
+          <div className="col">
+            <input
+              type="password"
+              name="username"
+              className={classnames('form-control', {
+                'is-invalid': password
+              })}
+              placeholder="Password *"
+            />
+          </div>
+
+          <div className="col">
+            <input
+              type="password"
+              name="username"
+              className={classnames('form-control', {
+                'is-invalid': re_type
+              })}
+              placeholder="Re-type Password *"
+            />
+          </div>
         </div>
-        <div className="form-group">
-          <input
-            type="password"
-            name="username"
-            className={classnames('form-control', {
-              'is-invalid': re_type
-            })}
-            placeholder="Re-type Password *"
-          />
+        <div className="form-row form-group">
+          <div className="col">
+            <input
+              type="text"
+              name="firstName"
+              className="form-control"
+              placeholder="First Name"
+            />
+          </div>
+          <div className="col">
+            <input
+              type="text"
+              name="lastName"
+              className="form-control"
+              placeholder="Last Name"
+            />
+          </div>
         </div>
-        <div className="form-group">
-          <input
-            type="text"
-            name="firstName"
-            className="form-control"
-            placeholder="First Name"
-          />
+
+        <div className="form-row form-group">
+          <div className="col">
+            <input
+              type="text"
+              name="phone"
+              className="form-control"
+              placeholder="Phone"
+            />
+          </div>
+          <div className="col">
+            <input
+              type="text"
+              name="location"
+              className="form-control"
+              placeholder="Location"
+            />
+          </div>
         </div>
-        <div className="form-group">
-          <input
-            type="text"
-            name="lastName"
-            className="form-control"
-            placeholder="Last Name"
-          />
-        </div>
-        <div className="form-group">
-          <input
-            type="email"
-            name="email"
-            className="form-control"
-            placeholder="Email"
-          />
-        </div>
-        <div className="form-group">
-          <input
-            type="text"
-            name="phone"
-            className="form-control"
-            placeholder="Phone"
-          />
-        </div>
-        <div className="form-group">
-          <input
-            type="text"
-            name="location"
-            className="form-control"
-            placeholder="Location"
-          />
-        </div>
-        <div className="form-group">
-          <input
-            type="text"
-            name="afm"
-            className="form-control"
-            placeholder="Afm"
-          />
-        </div>
-        <div className="form-group">
-          <input
-            type="text"
-            name="type"
-            className="form-control"
-            placeholder="Type"
-          />
+        <div className="form-row">
+          <div className="col">
+            <input
+              type="text"
+              name="afm"
+              className="form-control"
+              placeholder="Afm"
+            />
+          </div>
+          <div className="col">
+            <input
+              type="text"
+              name="type"
+              className="form-control"
+              placeholder="Type"
+            />
+          </div>
         </div>
         <h6>{signUpMessage}</h6>
         <div className="form-group">

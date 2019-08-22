@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { changePop } from '../actions/userActions';
 
 const Info = ({ user, popupStatus, changePop }) => {
-  console.log('infooooooo', user);
   return (
     <div>
       {popupStatus ? (

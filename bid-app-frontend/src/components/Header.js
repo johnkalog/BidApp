@@ -5,7 +5,6 @@ import { getProducts } from '../actions/productActions';
 import { logOutUser, getUsers, popInit } from '../actions/userActions';
 
 const Header = ({ user, getProducts, logOutUser, getUsers, popInit }) => {
-  console.log('qqqqqqqqqqqqqqqqq', getUsers);
   const userRightUp =
     Object.keys(user).length === 0 || user.status !== 'Accepted'
       ? ''
