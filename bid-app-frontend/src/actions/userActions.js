@@ -8,7 +8,7 @@ import {
   LOGIN_MESSAGE,
   SIGNUP_MESSAGE,
   CHANGE_STATUS,
-  POP_INFO
+  POP_INIT
 } from './types';
 import history from '../history';
 
@@ -36,7 +36,7 @@ export const inputError = dispatch => field => {
   });
 };
 
-export const checkUser = dispatch => (forCheckUser, status) => {
+export const checkUser = dispatch => forCheckUser => {
   const result = axios
     .post('http://localhost:8080/api/users/auth', forCheckUser)
     .then(result => {
@@ -50,7 +50,7 @@ export const checkUser = dispatch => (forCheckUser, status) => {
           type: GET_USER,
           payload: result.data
         });
-        if (status === 'Accepted') {
+        if (result.data.status === 'Accepted') {
           history.push('products');
         } else {
           history.push('waiting');
@@ -115,7 +115,13 @@ export const changeStatus = dispatch => (user, newStatus) => {
 };
 
 export const changePop = dispatch => () => {
+  // dispatch({
+  //   type: POP_INFO
+  // });
+};
+
+export const popInit = dispatch => () => {
   dispatch({
-    type: POP_INFO
+    type: POP_INIT
   });
 };

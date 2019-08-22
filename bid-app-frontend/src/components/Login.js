@@ -14,7 +14,7 @@ const logIn = (event, inputError, checkUser, status) => {
     inputError('password');
     return;
   }
-  checkUser({ username, password }, status);
+  checkUser({ username, password });
 };
 
 const Login = ({

@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getProducts } from '../actions/productActions';
-import { logOutUser, getUsers } from '../actions/userActions';
+import { logOutUser, getUsers, popInit } from '../actions/userActions';
 
-const Header = ({ user, getProducts, logOutUser, getUsers }) => {
+const Header = ({ user, getProducts, logOutUser, getUsers, popInit }) => {
+  console.log('qqqqqqqqqqqqqqqqq', getUsers);
   const userRightUp =
     Object.keys(user).length === 0 || user.status !== 'Accepted'
       ? ''
@@ -60,7 +61,10 @@ const Header = ({ user, getProducts, logOutUser, getUsers }) => {
                     <Link
                       to="./users"
                       className="nav-link"
-                      onClick={() => getUsers()}
+                      onClick={() => {
+                        getUsers();
+                        popInit();
+                      }}
                     >
                       Users
                     </Link>
@@ -102,6 +106,7 @@ export default connect(
   dispatch => ({
     getProducts: getProducts(dispatch),
     logOutUser: logOutUser(dispatch),
-    getUsers: getUsers(dispatch)
+    getUsers: getUsers(dispatch),
+    popInit: popInit(dispatch)
   })
 )(Header);

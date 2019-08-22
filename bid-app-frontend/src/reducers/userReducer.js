@@ -7,21 +7,22 @@ import {
   LOGIN_MESSAGE,
   SIGNUP_MESSAGE,
   CHANGE_STATUS,
-  POP_INFO
+  POP_INIT
 } from '../actions/types';
 
 const initialState = {
   users: [],
   user: {},
-  login: true,
+  login: true, //Log In or Sign Up
   errors: {
+    //red behind fields
     username: false,
     password: false,
     re_type: false
   },
   loginMessage: '',
   signUpMessage: '',
-  popup: false
+  popups: [] //for controlling Info at each user
 };
 
 const userReducer = (state = initialState, action) => {
@@ -68,7 +69,7 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         loginMessage: action.payload
-      };
+      };  
     case SIGNUP_MESSAGE:
       return {
         ...state,
@@ -81,10 +82,11 @@ const userReducer = (state = initialState, action) => {
           user.id !== action.payload.id ? user : { ...action.payload }
         )
       };
-    case POP_INFO:
+    case POP_INIT:
+      console.log('defwrbgerwerrty', state.users);
       return {
         ...state,
-        popup: !state.popup
+        popups: state.users.map(item => ({ id: item.id, popupStatus: false }))
       };
     default:
       return state;

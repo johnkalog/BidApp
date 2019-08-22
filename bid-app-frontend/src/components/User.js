@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { deleteUser, changeStatus, changePop } from '../actions/userActions';
 import Info from './Info';
 
-const User = ({ user, popup, deleteUser, changeStatus, changePop }) => {
+const User = ({ user, deleteUser, changeStatus, changePop }) => {
   return (
     <tr class="shipping_area">
       <td>
@@ -57,15 +57,14 @@ const User = ({ user, popup, deleteUser, changeStatus, changePop }) => {
         </div>
       </td>
       <td />
-      {popup ? <Info user={user}/> : null}
+      <Info user={user} />
     </tr>
   );
 };
 
 export default connect(
   (state, ownProps) => ({
-    user: ownProps.user,
-    popup: state.usersData.popup
+    user: ownProps.user
   }),
   dispatch => ({
     deleteUser: deleteUser(dispatch),
