@@ -99,3 +99,7 @@
   margin-right: 45%;
   margin-top: 2%;
 }
+
+.logo {
+  cursor: pointer;
+}

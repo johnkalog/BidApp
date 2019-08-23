@@ -10,6 +10,8 @@ import UsersList from './components/UsersList';
 import Shop from './components/Shop';
 import Message from './components/Message';
 import Contact from './components/Contact';
+import Home from './components/Home';
+import SingleItem from './components/SingleItem';
 
 import './components/general.css';
 import './components/fonts/icomoon/style.css';
@@ -39,11 +41,13 @@ class App extends Component {
         <Router history={history}>
           <Header />
           <Route exact path="/" component={Bid} />
+          <Route exact path="/home" component={Home} />
           <Route exact path="/products" component={ItemsList} />
           <Route exact path="/users" component={UsersList} />
           <Route exact path="/shop" component={Shop} />
           <Route exact path="/waiting" component={Message} />
           <Route exact path="/contact" component={Contact} />
+          <Route exact path="/single" component={SingleItem} />
         </Router>
       </Provider>
     );

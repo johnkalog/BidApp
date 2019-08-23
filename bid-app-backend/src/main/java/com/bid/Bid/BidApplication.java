@@ -18,7 +18,7 @@ public class BidApplication {
 	public CommandLineRunner demoData(UserRepository repo) {
 		return args -> {
 
-			repo.save(new User("admin","admin307","admin","admin","admin@root","0","No","0","Administrator","Accepted"));
+			repo.save(new User("admin","admin","admin","admin","admin@root","0","No","0","Administrator","Accepted"));
 		};
 	}
 

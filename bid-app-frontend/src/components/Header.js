@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getProducts } from '../actions/productActions';
 import { logOutUser, getUsers } from '../actions/userActions';
+import history from '../history';
 
 const Header = ({ user, getProducts, logOutUser, getUsers }) => {
+  const homeOrBid = Object.keys(user).length === 0 ? './' : './home';
   const userRightUp =
     Object.keys(user).length === 0 || user.status !== 'Accepted'
       ? ''
@@ -13,6 +15,34 @@ const Header = ({ user, getProducts, logOutUser, getUsers }) => {
     Object.keys(user).length === 0 || user.status !== 'Accepted'
       ? ''
       : 'Log Out';
+  let Contents;
+  if (Object.keys(user).length === 0) {
+    Contents = '';
+  } else if (user.type === 'User') {
+    Contents = '';
+  } else if (user.type === 'Bidder') {
+    Contents = (
+      <li>
+        <Link to="./shop" className="nav-link">
+          Shop
+        </Link>
+      </li>
+    );
+  } else if (user.type === 'Administrator') {
+    Contents = (
+      <li>
+        <Link
+          to="./users"
+          className="nav-link"
+          onClick={() => {
+            getUsers();
+          }}
+        >
+          Users
+        </Link>
+      </li>
+    );
+  }
   return (
     <div>
       <div className="site-wrap">
@@ -33,7 +63,12 @@ const Header = ({ user, getProducts, logOutUser, getUsers }) => {
         <div className="container-fluid">
           <div className="d-flex align-items-center">
             <div>
-              <img src={require('./images/logo.png')} alt="logo" />
+              <img
+                src={require('./images/logo.png')}
+                alt="logo"
+                class="logo"
+                onClick={() => history.push(homeOrBid)}
+              />
             </div>
 
             <div className=" text-center">
@@ -43,7 +78,7 @@ const Header = ({ user, getProducts, logOutUser, getUsers }) => {
               >
                 <ul className="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
                   <li>
-                    <Link to="./" className="nav-link">
+                    <Link to={homeOrBid} className="nav-link">
                       Home
                     </Link>
                   </li>
@@ -56,22 +91,7 @@ const Header = ({ user, getProducts, logOutUser, getUsers }) => {
                       Products
                     </Link>
                   </li>
-                  <li>
-                    <Link
-                      to="./users"
-                      className="nav-link"
-                      onClick={() => {
-                        getUsers();
-                      }}
-                    >
-                      Users
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="./shop" className="nav-link">
-                      Shop
-                    </Link>
-                  </li>
+                  {Contents}
                   <li>
                     <Link to="./contact" className="nav-link">
                       Contact

@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import history from '../history';
 
 const Item = ({ productName, bestBid }) => {
   return (
     <div class="col-lg-4 col-sm-6">
-      <div class="single_product_item">
+      <div class="single_product_item" onClick={() => history.push('single')}>
         <img src={require('./img/product/product_1.png')} alt="" />
         <div class="single_product_text">
           <h4>{productName}</h4>

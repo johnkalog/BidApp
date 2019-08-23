@@ -55,7 +55,7 @@ export const checkUser = dispatch => forCheckUser => {
           payload: result.data
         });
         if (result.data.status === 'Accepted') {
-          history.push('products');
+          history.push('home');
         } else {
           history.push('waiting');
         }
