@@ -63,7 +63,7 @@ public class UserController {
     public ResponseEntity<?> checkNew(@RequestBody  LoginRequest loginRequest){
         User user = userService.findByUsername(loginRequest.getUsername());
         if(user!=null) {
-            return new ResponseEntity<String>("error: user already exists", HttpStatus.OK);
+            return new ResponseEntity<String>("User already exists", HttpStatus.OK);
         }
         else {
             return new ResponseEntity<String>("", HttpStatus.OK);

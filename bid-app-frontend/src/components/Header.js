@@ -8,7 +8,7 @@ const Header = ({ user, getProducts, logOutUser, getUsers }) => {
   const userRightUp =
     Object.keys(user).length === 0 || user.status !== 'Accepted'
       ? ''
-      : user.username;
+      : user.type + ': ' + user.username;
   const logOut =
     Object.keys(user).length === 0 || user.status !== 'Accepted'
       ? ''
