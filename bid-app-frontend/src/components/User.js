@@ -17,6 +17,13 @@ const User = ({ user, deleteUser, changeStatus, changePop }) => {
         <h5>{user.status}</h5>
       </td>
       <td>
+        <div class="media">
+          <div class="media-body">
+            <p>{user.type}</p>
+          </div>
+        </div>
+      </td>
+      <td>
         <div class="product_count">
           <button
             class="genric-btn success-border circle"
@@ -57,6 +64,7 @@ const User = ({ user, deleteUser, changeStatus, changePop }) => {
         </div>
       </td>
       <td />
+
       <Info user={user} />
     </tr>
   );
