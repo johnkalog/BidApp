@@ -30,7 +30,7 @@ import './components/fonts/flaticon/font/flaticon.css';
 import './components/css/style.css';
 import './components/css/style3.css';
 
-import './components/style2.css';
+import './components/css/style2.css';
 
 class App extends Component {
   render() {
