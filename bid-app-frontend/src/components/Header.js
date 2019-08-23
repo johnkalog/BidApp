@@ -62,7 +62,7 @@ const Header = ({ user, getProducts, logOutUser, getUsers, popInit }) => {
                       className="nav-link"
                       onClick={() => {
                         getUsers();
-                        popInit();
+                        // popInit();
                       }}
                     >
                       Users

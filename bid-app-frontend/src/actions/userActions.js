@@ -8,6 +8,7 @@ import {
   LOGIN_MESSAGE,
   SIGNUP_MESSAGE,
   CHANGE_STATUS,
+  CHANGE_POP,
   POP_INIT
 } from './types';
 import history from '../history';
@@ -19,6 +20,9 @@ export const getUsers = dispatch => () => {
       dispatch({
         type: GET_USERS,
         payload: result.data
+      });
+      dispatch({
+        type: POP_INIT
       });
     });
 };
@@ -114,10 +118,11 @@ export const changeStatus = dispatch => (user, newStatus) => {
   });
 };
 
-export const changePop = dispatch => () => {
-  // dispatch({
-  //   type: POP_INFO
-  // });
+export const changePop = dispatch => id => {
+  dispatch({
+    type: CHANGE_POP,
+    payload: id
+  });
 };
 
 export const popInit = dispatch => () => {

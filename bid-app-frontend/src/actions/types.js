@@ -6,6 +6,7 @@ export const INPUT_ERROR = 'INPUT_ERROR';
 export const LOGIN_MESSAGE = 'LOGIN_MESSAGE';
 export const SIGNUP_MESSAGE = 'SIGNUP_MESSAGE';
 export const CHANGE_STATUS = 'CHANGE_STATUS';
+export const CHANGE_POP = 'CHANGE_POP';
 export const POP_INIT = 'POP_INIT';
 
 export const GET_PRODUCTS = 'GET_PRODUCTS';

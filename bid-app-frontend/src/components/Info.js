@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { changePop } from '../actions/userActions';
 
-const Info = ({ user, popupStatus, changePop }) => {
+const Info = ({ user, popUser, changePop }) => {
+  const popupStatus = popUser === undefined ? false : popUser.popupStatus;
   return (
     <div>
       {popupStatus ? (
@@ -14,25 +15,25 @@ const Info = ({ user, popupStatus, changePop }) => {
                 <p>{`Username: ${user.username}`}</p>
               </li>
               <li>
-                <p>{'First Name: oioi'}</p>
+                <p>{`First Name: ${user.firstName}`}</p>
               </li>
               <li>
-                <p>{'Last Name: oioi'}</p>
+                <p>{`Last Name: ${user.lastName}`}</p>
               </li>
               <li>
-                <p>{'Email: oioi'}</p>
+                <p>{`Email: ${user.email}`}</p>
               </li>
               <li>
-                <p>{'Phone: oioi'}</p>
+                <p>{`Phone: ${user.phone}`}</p>
               </li>
               <li>
-                <p>{'Location: oioi'}</p>
+                <p>{`Location: ${user.location}`}</p>
               </li>
               <li>
-                <p>{'Afm: oioi'}</p>
+                <p>{`Afm: ${user.afm}`}</p>
               </li>
               <li>
-                <p>{'Type: oioi'}</p>
+                <p>{`Type: ${user.type}`}</p>
               </li>
             </ul>
             <button
@@ -40,7 +41,7 @@ const Info = ({ user, popupStatus, changePop }) => {
               class="close"
               aria-label="Close"
               onClick={() => {
-                changePop();
+                changePop(user.id);
               }}
             >
               <span aria-hidden="true">&times;</span>
@@ -55,7 +56,7 @@ const Info = ({ user, popupStatus, changePop }) => {
 export default connect(
   (state, ownProps) => ({
     user: ownProps.user,
-    popupStatus: false
+    popUser: state.usersData.popups.find(item => item.id === ownProps.user.id)
   }),
   dispatch => ({
     changePop: changePop(dispatch)

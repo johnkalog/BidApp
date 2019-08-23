@@ -50,7 +50,7 @@ const User = ({ user, deleteUser, changeStatus, changePop }) => {
         <div class="product_count">
           <button
             class="genric-btn info-border circle"
-            onClick={() => changePop()}
+            onClick={() => changePop(user.id)}
           >
             Show
           </button>

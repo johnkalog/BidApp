@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import User from './User';
 
 const UsersList = ({ users }) => {
-  console.log(users);
   return (
     <div>
       <section class="cart_area padding_top">
