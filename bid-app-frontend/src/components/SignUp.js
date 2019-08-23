@@ -151,12 +151,10 @@ const SignUp = ({
             />
           </div>
           <div className="col">
-            <input
-              type="text"
-              name="type"
-              className="form-control"
-              placeholder="Type"
-            />
+            <select class="form-control">
+              <option>User</option>
+              <option>Bidder</option>
+            </select>
           </div>
         </div>
         <h6>{signUpMessage}</h6>

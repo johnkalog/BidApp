@@ -124,9 +124,3 @@ export const changePop = dispatch => id => {
     payload: id
   });
 };
-
-export const popInit = dispatch => () => {
-  dispatch({
-    type: POP_INIT
-  });
-};
