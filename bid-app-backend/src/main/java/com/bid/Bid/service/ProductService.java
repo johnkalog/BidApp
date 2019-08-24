@@ -23,6 +23,19 @@ public class ProductService {
         return productRepository.getById(id);
     }
 
+    public boolean changeProductValue(Long id,Long value,Long bidderId) {
+        Product product = productRepository.getById(id);
+        if(product.getBestBid() >= value) {
+            return false;
+        }
+        //System.err.println(value);
+        product.setBestBid(value);
+        product.setBestBidOwnerId(bidderId);
+        saveOrUpdateProduct(product);
+        return true;
+    }
+
+
     public void delete(Long id){
         Product product = findById(id);
         productRepository.delete(product);
