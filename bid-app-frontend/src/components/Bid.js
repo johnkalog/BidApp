@@ -27,7 +27,7 @@ const Bid = ({ login, changeLogin }) => {
                       >
                         Welcome to this Bid Application. Here you can explore
                         products to bid or make your own auctions. Log in as
-                        User or Bidder to learn more.
+                        Seller or Bidder to learn more.
                       </p>
                       <p data-aos="fade-up" data-aos-delay="300">
                         <Link

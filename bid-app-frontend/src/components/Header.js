@@ -6,7 +6,10 @@ import { logOutUser, getUsers } from '../actions/userActions';
 import history from '../history';
 
 const Header = ({ user, getProducts, logOutUser, getUsers }) => {
-  const homeOrBid = Object.keys(user).length === 0 ? './' : './home';
+  const homeOrBid =
+    Object.keys(user).length === 0 || user.status !== 'Accepted'
+      ? './'
+      : './home';
   const userRightUp =
     Object.keys(user).length === 0 || user.status !== 'Accepted'
       ? ''
@@ -18,7 +21,7 @@ const Header = ({ user, getProducts, logOutUser, getUsers }) => {
   let Contents;
   if (Object.keys(user).length === 0) {
     Contents = '';
-  } else if (user.type === 'User') {
+  } else if (user.type === 'Seller') {
     Contents = '';
   } else if (user.type === 'Bidder') {
     Contents = (
