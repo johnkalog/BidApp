@@ -103,3 +103,17 @@
 .logo {
   cursor: pointer;
 }
+
+.bid {
+  width: 76px;
+  border-radius: 51px;
+  padding: 11px 10px;
+  margin-left: 12%;
+  color: black;
+  font-size: 19px;
+}
+
+.bid_purple {
+  margin-right: 19%;
+  cursor: pointer;
+}
