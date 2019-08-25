@@ -151,7 +151,7 @@ const SignUp = ({
             />
           </div>
           <div className="col">
-            <select class="form-control">
+            <select className="form-control">
               <option>Bidder</option>
               <option>Seller</option>
             </select>

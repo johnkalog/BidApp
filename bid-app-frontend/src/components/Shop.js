@@ -5,11 +5,11 @@ const Shop = ({ products }) => {
   console.log(products);
   return (
     <div>
-      <section class="cart_area padding_top">
-        <div class="container container2">
-          <div class="cart_inner">
-            <div class="table-responsive">
-              <table class="table">
+      <section className="cart_area padding_top">
+        <div className="container container2">
+          <div className="cart_inner">
+            <div className="table-responsive">
+              <table className="table">
                 <thead>
                   <tr>
                     <th scope="col">Product</th>
@@ -20,8 +20,8 @@ const Shop = ({ products }) => {
                 <tbody>
                   <tr>
                     <td>
-                      <div class="media">
-                        <div class="d-flex">
+                      <div className="media">
+                        <div className="d-flex">
                           <img
                             src={require('./img/product/product_1.png')}
                             width="150"
@@ -29,7 +29,7 @@ const Shop = ({ products }) => {
                             alt=""
                           />
                         </div>
-                        <div class="media-body">
+                        <div className="media-body">
                           <p>Minimalistic shop for multipurpose use</p>
                         </div>
                       </div>
@@ -43,8 +43,8 @@ const Shop = ({ products }) => {
                   </tr>
                   <tr>
                     <td>
-                      <div class="media">
-                        <div class="d-flex">
+                      <div className="media">
+                        <div className="d-flex">
                           <img
                             src={require('./img/product/product_1.png')}
                             width="150"
@@ -52,7 +52,7 @@ const Shop = ({ products }) => {
                             alt=""
                           />
                         </div>
-                        <div class="media-body">
+                        <div className="media-body">
                           <p>Minimalistic shop for multipurpose use</p>
                         </div>
                       </div>
@@ -67,8 +67,8 @@ const Shop = ({ products }) => {
                   </tr>
                   <tr>
                     <td>
-                      <div class="media">
-                        <div class="d-flex">
+                      <div className="media">
+                        <div className="d-flex">
                           <img
                             src={require('./img/product/product_1.png')}
                             width="150"
@@ -76,7 +76,7 @@ const Shop = ({ products }) => {
                             alt=""
                           />
                         </div>
-                        <div class="media-body">
+                        <div className="media-body">
                           <p>Minimalistic shop for multipurpose use</p>
                         </div>
                       </div>
@@ -89,17 +89,17 @@ const Shop = ({ products }) => {
                       <h5>$720.00</h5>
                     </td>
                   </tr>
-                  <tr class="bottom_button">
+                  <tr className="bottom_button">
                     <td>
-                      <a class="btn_1" href="#">
+                      <a className="btn_1" href="#">
                         Update Cart
                       </a>
                     </td>
                     <td />
                     <td />
                     <td>
-                      <div class="cupon_text float-right">
-                        <a class="btn_1" href="#">
+                      <div className="cupon_text float-right">
+                        <a className="btn_1" href="#">
                           Close Coupon
                         </a>
                       </div>
@@ -117,11 +117,11 @@ const Shop = ({ products }) => {
                   </tr>
                 </tbody>
               </table>
-              <div class="checkout_btn_inner float-right">
-                <a class="btn_1" href="#">
+              <div className="checkout_btn_inner float-right">
+                <a className="btn_1" href="#">
                   Continue Shopping
                 </a>
-                <a class="btn_1 checkout_btn_1" href="#">
+                <a className="btn_1 checkout_btn_1" href="#">
                   Proceed to checkout
                 </a>
               </div>

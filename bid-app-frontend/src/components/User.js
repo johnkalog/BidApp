@@ -5,10 +5,10 @@ import Info from './Info';
 
 const User = ({ user, deleteUser, changeStatus, changePop }) => {
   return (
-    <tr class="shipping_area">
+    <tr className="shipping_area">
       <td>
-        <div class="media">
-          <div class="media-body">
+        <div className="media">
+          <div className="media-body">
             <p>{user.username}</p>
           </div>
         </div>
@@ -17,16 +17,16 @@ const User = ({ user, deleteUser, changeStatus, changePop }) => {
         <h5>{user.status}</h5>
       </td>
       <td>
-        <div class="media">
-          <div class="media-body">
+        <div className="media">
+          <div className="media-body">
             <p>{user.type}</p>
           </div>
         </div>
       </td>
       <td>
-        <div class="product_count">
+        <div className="product_count">
           <button
-            class="genric-btn success-border circle"
+            className="genric-btn success-border circle"
             onClick={() => changeStatus(user, 'Accepted')}
           >
             Accept
@@ -34,9 +34,9 @@ const User = ({ user, deleteUser, changeStatus, changePop }) => {
         </div>
       </td>
       <td>
-        <div class="product_count">
+        <div className="product_count">
           <button
-            class="genric-btn warning-border circle"
+            className="genric-btn warning-border circle"
             onClick={() => changeStatus(user, 'Blocked')}
           >
             Block
@@ -44,9 +44,9 @@ const User = ({ user, deleteUser, changeStatus, changePop }) => {
         </div>
       </td>
       <td>
-        <div class="product_count">
+        <div className="product_count">
           <button
-            class="genric-btn danger-border circle"
+            className="genric-btn danger-border circle"
             onClick={() => deleteUser(user.id)}
           >
             Delete
@@ -54,9 +54,9 @@ const User = ({ user, deleteUser, changeStatus, changePop }) => {
         </div>
       </td>
       <td>
-        <div class="product_count">
+        <div className="product_count">
           <button
-            class="genric-btn info-border circle"
+            className="genric-btn info-border circle"
             onClick={() => changePop(user.id)}
           >
             Show

@@ -4,29 +4,29 @@ import { connect } from 'react-redux';
 const Contact = () => {
   return (
     <div>
-      <section class="contact-section padding_top">
-        <div class="container">
-          <div class="d-none d-sm-block mb-5 pb-4">
+      <section className="contact-section padding_top">
+        <div className="container">
+          <div className="d-none d-sm-block mb-5 pb-4">
             <div id="map" />
           </div>
 
-          <div class="row">
-            <div class="col-12">
-              <h2 class="contact-title">Get in Touch</h2>
+          <div className="row">
+            <div className="col-12">
+              <h2 className="contact-title">Get in Touch</h2>
             </div>
-            <div class="col-lg-8">
+            <div className="col-lg-8">
               <form
-                class="form-contact contact_form"
+                className="form-contact contact_form"
                 action="contact_process.php"
                 method="post"
                 id="contactForm"
                 novalidate="novalidate"
               >
-                <div class="row">
-                  <div class="col-12">
-                    <div class="form-group">
+                <div className="row">
+                  <div className="col-12">
+                    <div className="form-group">
                       <textarea
-                        class="form-control w-100"
+                        className="form-control w-100"
                         name="message"
                         id="message"
                         cols="30"
@@ -37,10 +37,10 @@ const Contact = () => {
                       />
                     </div>
                   </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
+                  <div className="col-sm-6">
+                    <div className="form-group">
                       <input
-                        class="form-control"
+                        className="form-control"
                         name="name"
                         id="name"
                         type="text"
@@ -50,10 +50,10 @@ const Contact = () => {
                       />
                     </div>
                   </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
+                  <div className="col-sm-6">
+                    <div className="form-group">
                       <input
-                        class="form-control"
+                        className="form-control"
                         name="email"
                         id="email"
                         type="email"
@@ -63,10 +63,10 @@ const Contact = () => {
                       />
                     </div>
                   </div>
-                  <div class="col-12">
-                    <div class="form-group">
+                  <div className="col-12">
+                    <div className="form-group">
                       <input
-                        class="form-control"
+                        className="form-control"
                         name="subject"
                         id="subject"
                         type="text"
@@ -77,37 +77,37 @@ const Contact = () => {
                     </div>
                   </div>
                 </div>
-                <div class="form-group mt-3">
-                  <a href="#" class="btn_3 button-contactForm">
+                <div className="form-group mt-3">
+                  <a href="#" className="btn_3 button-contactForm">
                     Send Message
                   </a>
                 </div>
               </form>
             </div>
-            <div class="col-lg-4">
-              <div class="media contact-info">
-                <span class="contact-info__icon">
-                  <i class="ti-home" />
+            <div className="col-lg-4">
+              <div className="media contact-info">
+                <span className="contact-info__icon">
+                  <i className="ti-home" />
                 </span>
-                <div class="media-body">
+                <div className="media-body">
                   <h3>Buttonwood, California.</h3>
                   <p>Rosemead, CA 91770</p>
                 </div>
               </div>
-              <div class="media contact-info">
-                <span class="contact-info__icon">
-                  <i class="ti-tablet" />
+              <div className="media contact-info">
+                <span className="contact-info__icon">
+                  <i className="ti-tablet" />
                 </span>
-                <div class="media-body">
+                <div className="media-body">
                   <h3>00 (440) 9865 562</h3>
                   <p>Mon to Fri 9am to 6pm</p>
                 </div>
               </div>
-              <div class="media contact-info">
-                <span class="contact-info__icon">
-                  <i class="ti-email" />
+              <div className="media contact-info">
+                <span className="contact-info__icon">
+                  <i className="ti-email" />
                 </span>
-                <div class="media-body">
+                <div className="media-body">
                   <h3>support@colorlib.com</h3>
                   <p>Send us your query anytime!</p>
                 </div>

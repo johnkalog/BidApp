@@ -10,7 +10,7 @@ const Info = ({ user, popUser, changePop }) => {
         <div className="popup">
           <div className="popup_inner">
             <h4>{'User Info'}</h4>
-            <ul class="poplist">
+            <ul className="poplist">
               <li>
                 <p>{`Username: ${user.username}`}</p>
               </li>
@@ -38,7 +38,7 @@ const Info = ({ user, popUser, changePop }) => {
             </ul>
             <button
               type="button"
-              class="close"
+              className="close"
               aria-label="Close"
               onClick={() => {
                 changePop(user.id);

@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 const SingleItem = () => {
   return (
     <div>
-      <div class="product_image_area section_padding">
-        <div class="container container2">
-          <div class="row s_product_inner justify-content-between">
-            <div class="col-lg-7 col-xl-7">
-              <div class="product_slider_img">
+      <div className="product_image_area section_padding">
+        <div className="container container2">
+          <div className="row s_product_inner justify-content-between">
+            <div className="col-lg-7 col-xl-7">
+              <div className="product_slider_img">
                 <div id="vertical">
                   <div data-thumb="img/product/single-product/product_1.png">
                     <img
@@ -19,12 +19,12 @@ const SingleItem = () => {
                 </div>
               </div>
             </div>
-            <div class="col-lg-5 col-xl-4">
-              <div class="s_product_text">
+            <div className="col-lg-5 col-xl-4">
+              <div className="s_product_text">
                 <h3>Faded SkyBlu Denim Jeans</h3>
-                <ul class="list">
+                <ul className="list">
                   <li>
-                    <a class="active" href="#">
+                    <a className="active" href="#">
                       <span>Current Bid</span> :{' '}
                       <span>
                         <h2>$123</h2>{' '}
@@ -32,7 +32,7 @@ const SingleItem = () => {
                     </a>
                   </li>
                   <li>
-                    <a class="active" href="#">
+                    <a className="active" href="#">
                       <span>Category</span> : Household
                     </a>
                   </li>
@@ -48,30 +48,16 @@ const SingleItem = () => {
                   won't called. Two fruitful let days signs sea together all
                   land fly subdue
                 </p>
-                <div class="card_area d-flex justify-content-between align-items-center">
-                  <div class="product_count">
-                    <span class="inumber-decrement">
-                      {' '}
-                      <i class="ti-minus" />
-                    </span>
-                    <input
-                      class="input-number"
-                      type="text"
-                      value="1"
-                      min="0"
-                      max="10"
-                    />
-                    <span class="number-increment">
-                      {' '}
-                      <i class="ti-plus" />
-                    </span>
+                <div className="card_area d-flex justify-content-between align-items-center">
+                  <div className="product_count">
+                    <input className="input-number" type="text" value="1" />
                   </div>
-                  <a href="#" class="btn_3">
-                    add to cart
+                  <a href="#" className="btn_3">
+                    Bid It
                   </a>
-                  <a href="#" class="like_us">
+                  <a href="#" className="like_us">
                     {' '}
-                    <i class="ti-heart" />{' '}
+                    <i className="ti-heart" />{' '}
                   </a>
                 </div>
               </div>
@@ -80,12 +66,12 @@ const SingleItem = () => {
         </div>
       </div>
 
-      <section class="product_description_area">
-        <div class="container">
-          <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item">
+      <section className="product_description_area">
+        <div className="container">
+          <ul className="nav nav-tabs" id="myTab" role="tablist">
+            <li className="nav-item">
               <a
-                class="nav-link"
+                className="nav-link"
                 id="home-tab"
                 data-toggle="tab"
                 href="#home"
@@ -96,9 +82,9 @@ const SingleItem = () => {
                 Description
               </a>
             </li>
-            <li class="nav-item">
+            <li className="nav-item">
               <a
-                class="nav-link"
+                className="nav-link"
                 id="profile-tab"
                 data-toggle="tab"
                 href="#profile"
@@ -109,9 +95,9 @@ const SingleItem = () => {
                 Specification
               </a>
             </li>
-            <li class="nav-item">
+            <li className="nav-item">
               <a
-                class="nav-link"
+                className="nav-link"
                 id="contact-tab"
                 data-toggle="tab"
                 href="#contact"
@@ -122,9 +108,9 @@ const SingleItem = () => {
                 Comments
               </a>
             </li>
-            <li class="nav-item">
+            <li className="nav-item">
               <a
-                class="nav-link active"
+                className="nav-link active"
                 id="review-tab"
                 data-toggle="tab"
                 href="#review"
@@ -136,9 +122,9 @@ const SingleItem = () => {
               </a>
             </li>
           </ul>
-          <div class="tab-content" id="myTabContent">
+          <div className="tab-content" id="myTabContent">
             <div
-              class="tab-pane fade"
+              className="tab-pane fade"
               id="home"
               role="tabpanel"
               aria-labelledby="home-tab"
@@ -175,13 +161,13 @@ const SingleItem = () => {
               </p>
             </div>
             <div
-              class="tab-pane fade"
+              className="tab-pane fade"
               id="profile"
               role="tabpanel"
               aria-labelledby="profile-tab"
             >
-              <div class="table-responsive">
-                <table class="table">
+              <div className="table-responsive">
+                <table className="table">
                   <tbody>
                     <tr>
                       <td>
@@ -252,26 +238,26 @@ const SingleItem = () => {
               </div>
             </div>
             <div
-              class="tab-pane fade"
+              className="tab-pane fade"
               id="contact"
               role="tabpanel"
               aria-labelledby="contact-tab"
             >
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="comment_list">
-                    <div class="review_item">
-                      <div class="media">
-                        <div class="d-flex">
+              <div className="row">
+                <div className="col-lg-6">
+                  <div className="comment_list">
+                    <div className="review_item">
+                      <div className="media">
+                        <div className="d-flex">
                           <img
                             src="img/product/single-product/review-1.png"
                             alt=""
                           />
                         </div>
-                        <div class="media-body">
+                        <div className="media-body">
                           <h4>Blake Ruiz</h4>
                           <h5>12th Feb, 2017 at 05:56 pm</h5>
-                          <a class="reply_btn" href="#">
+                          <a className="reply_btn" href="#">
                             Reply
                           </a>
                         </div>
@@ -284,18 +270,18 @@ const SingleItem = () => {
                         ea commodo
                       </p>
                     </div>
-                    <div class="review_item reply">
-                      <div class="media">
-                        <div class="d-flex">
+                    <div className="review_item reply">
+                      <div className="media">
+                        <div className="d-flex">
                           <img
                             src="img/product/single-product/review-2.png"
                             alt=""
                           />
                         </div>
-                        <div class="media-body">
+                        <div className="media-body">
                           <h4>Blake Ruiz</h4>
                           <h5>12th Feb, 2017 at 05:56 pm</h5>
-                          <a class="reply_btn" href="#">
+                          <a className="reply_btn" href="#">
                             Reply
                           </a>
                         </div>
@@ -308,18 +294,18 @@ const SingleItem = () => {
                         ea commodo
                       </p>
                     </div>
-                    <div class="review_item">
-                      <div class="media">
-                        <div class="d-flex">
+                    <div className="review_item">
+                      <div className="media">
+                        <div className="d-flex">
                           <img
                             src="img/product/single-product/review-3.png"
                             alt=""
                           />
                         </div>
-                        <div class="media-body">
+                        <div className="media-body">
                           <h4>Blake Ruiz</h4>
                           <h5>12th Feb, 2017 at 05:56 pm</h5>
-                          <a class="reply_btn" href="#">
+                          <a className="reply_btn" href="#">
                             Reply
                           </a>
                         </div>
@@ -334,53 +320,53 @@ const SingleItem = () => {
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-6">
-                  <div class="review_box">
+                <div className="col-lg-6">
+                  <div className="review_box">
                     <h4>Post a comment</h4>
                     <form
-                      class="row contact_form"
+                      className="row contact_form"
                       action="contact_process.php"
                       method="post"
                       id="contactForm"
                       novalidate="novalidate"
                     >
-                      <div class="col-md-12">
-                        <div class="form-group">
+                      <div className="col-md-12">
+                        <div className="form-group">
                           <input
                             type="text"
-                            class="form-control"
+                            className="form-control"
                             id="name"
                             name="name"
                             placeholder="Your Full name"
                           />
                         </div>
                       </div>
-                      <div class="col-md-12">
-                        <div class="form-group">
+                      <div className="col-md-12">
+                        <div className="form-group">
                           <input
                             type="email"
-                            class="form-control"
+                            className="form-control"
                             id="email"
                             name="email"
                             placeholder="Email Address"
                           />
                         </div>
                       </div>
-                      <div class="col-md-12">
-                        <div class="form-group">
+                      <div className="col-md-12">
+                        <div className="form-group">
                           <input
                             type="text"
-                            class="form-control"
+                            className="form-control"
                             id="number"
                             name="number"
                             placeholder="Phone Number"
                           />
                         </div>
                       </div>
-                      <div class="col-md-12">
-                        <div class="form-group">
+                      <div className="col-md-12">
+                        <div className="form-group">
                           <textarea
-                            class="form-control"
+                            className="form-control"
                             name="message"
                             id="message"
                             rows="1"
@@ -388,8 +374,8 @@ const SingleItem = () => {
                           />
                         </div>
                       </div>
-                      <div class="col-md-12 text-right">
-                        <button type="submit" value="submit" class="btn_3">
+                      <div className="col-md-12 text-right">
+                        <button type="submit" value="submit" className="btn_3">
                           Submit Now
                         </button>
                       </div>
@@ -399,95 +385,95 @@ const SingleItem = () => {
               </div>
             </div>
             <div
-              class="tab-pane fade show active"
+              className="tab-pane fade show active"
               id="review"
               role="tabpanel"
               aria-labelledby="review-tab"
             >
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="row total_rate">
-                    <div class="col-6">
-                      <div class="box_total">
+              <div className="row">
+                <div className="col-lg-6">
+                  <div className="row total_rate">
+                    <div className="col-6">
+                      <div className="box_total">
                         <h5>Overall</h5>
                         <h4>4.0</h4>
                         <h6>(03 Reviews)</h6>
                       </div>
                     </div>
-                    <div class="col-6">
-                      <div class="rating_list">
+                    <div className="col-6">
+                      <div className="rating_list">
                         <h3>Based on 3 Reviews</h3>
-                        <ul class="list">
+                        <ul className="list">
                           <li>
                             <a href="#">
                               5 Star
-                              <i class="fa fa-star" />
-                              <i class="fa fa-star" />
-                              <i class="fa fa-star" />
-                              <i class="fa fa-star" />
-                              <i class="fa fa-star" /> 01
+                              <i className="fa fa-star" />
+                              <i className="fa fa-star" />
+                              <i className="fa fa-star" />
+                              <i className="fa fa-star" />
+                              <i className="fa fa-star" /> 01
                             </a>
                           </li>
                           <li>
                             <a href="#">
                               4 Star
-                              <i class="fa fa-star" />
-                              <i class="fa fa-star" />
-                              <i class="fa fa-star" />
-                              <i class="fa fa-star" />
-                              <i class="fa fa-star" /> 01
+                              <i className="fa fa-star" />
+                              <i className="fa fa-star" />
+                              <i className="fa fa-star" />
+                              <i className="fa fa-star" />
+                              <i className="fa fa-star" /> 01
                             </a>
                           </li>
                           <li>
                             <a href="#">
                               3 Star
-                              <i class="fa fa-star" />
-                              <i class="fa fa-star" />
-                              <i class="fa fa-star" />
-                              <i class="fa fa-star" />
-                              <i class="fa fa-star" /> 01
+                              <i className="fa fa-star" />
+                              <i className="fa fa-star" />
+                              <i className="fa fa-star" />
+                              <i className="fa fa-star" />
+                              <i className="fa fa-star" /> 01
                             </a>
                           </li>
                           <li>
                             <a href="#">
                               2 Star
-                              <i class="fa fa-star" />
-                              <i class="fa fa-star" />
-                              <i class="fa fa-star" />
-                              <i class="fa fa-star" />
-                              <i class="fa fa-star" /> 01
+                              <i className="fa fa-star" />
+                              <i className="fa fa-star" />
+                              <i className="fa fa-star" />
+                              <i className="fa fa-star" />
+                              <i className="fa fa-star" /> 01
                             </a>
                           </li>
                           <li>
                             <a href="#">
                               1 Star
-                              <i class="fa fa-star" />
-                              <i class="fa fa-star" />
-                              <i class="fa fa-star" />
-                              <i class="fa fa-star" />
-                              <i class="fa fa-star" /> 01
+                              <i className="fa fa-star" />
+                              <i className="fa fa-star" />
+                              <i className="fa fa-star" />
+                              <i className="fa fa-star" />
+                              <i className="fa fa-star" /> 01
                             </a>
                           </li>
                         </ul>
                       </div>
                     </div>
                   </div>
-                  <div class="review_list">
-                    <div class="review_item">
-                      <div class="media">
-                        <div class="d-flex">
+                  <div className="review_list">
+                    <div className="review_item">
+                      <div className="media">
+                        <div className="d-flex">
                           <img
                             src="img/product/single-product/review-1.png"
                             alt=""
                           />
                         </div>
-                        <div class="media-body">
+                        <div className="media-body">
                           <h4>Blake Ruiz</h4>
-                          <i class="fa fa-star" />
-                          <i class="fa fa-star" />
-                          <i class="fa fa-star" />
-                          <i class="fa fa-star" />
-                          <i class="fa fa-star" />
+                          <i className="fa fa-star" />
+                          <i className="fa fa-star" />
+                          <i className="fa fa-star" />
+                          <i className="fa fa-star" />
+                          <i className="fa fa-star" />
                         </div>
                       </div>
                       <p>
@@ -498,21 +484,21 @@ const SingleItem = () => {
                         ea commodo
                       </p>
                     </div>
-                    <div class="review_item">
-                      <div class="media">
-                        <div class="d-flex">
+                    <div className="review_item">
+                      <div className="media">
+                        <div className="d-flex">
                           <img
                             src="img/product/single-product/review-2.png"
                             alt=""
                           />
                         </div>
-                        <div class="media-body">
+                        <div className="media-body">
                           <h4>Blake Ruiz</h4>
-                          <i class="fa fa-star" />
-                          <i class="fa fa-star" />
-                          <i class="fa fa-star" />
-                          <i class="fa fa-star" />
-                          <i class="fa fa-star" />
+                          <i className="fa fa-star" />
+                          <i className="fa fa-star" />
+                          <i className="fa fa-star" />
+                          <i className="fa fa-star" />
+                          <i className="fa fa-star" />
                         </div>
                       </div>
                       <p>
@@ -523,21 +509,21 @@ const SingleItem = () => {
                         ea commodo
                       </p>
                     </div>
-                    <div class="review_item">
-                      <div class="media">
-                        <div class="d-flex">
+                    <div className="review_item">
+                      <div className="media">
+                        <div className="d-flex">
                           <img
                             src="img/product/single-product/review-3.png"
                             alt=""
                           />
                         </div>
-                        <div class="media-body">
+                        <div className="media-body">
                           <h4>Blake Ruiz</h4>
-                          <i class="fa fa-star" />
-                          <i class="fa fa-star" />
-                          <i class="fa fa-star" />
-                          <i class="fa fa-star" />
-                          <i class="fa fa-star" />
+                          <i className="fa fa-star" />
+                          <i className="fa fa-star" />
+                          <i className="fa fa-star" />
+                          <i className="fa fa-star" />
+                          <i className="fa fa-star" />
                         </div>
                       </div>
                       <p>
@@ -550,86 +536,86 @@ const SingleItem = () => {
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-6">
-                  <div class="review_box">
+                <div className="col-lg-6">
+                  <div className="review_box">
                     <h4>Add a Review</h4>
                     <p>Your Rating:</p>
-                    <ul class="list">
+                    <ul className="list">
                       <li>
                         <a href="#">
-                          <i class="fa fa-star" />
+                          <i className="fa fa-star" />
                         </a>
                       </li>
                       <li>
                         <a href="#">
-                          <i class="fa fa-star" />
+                          <i className="fa fa-star" />
                         </a>
                       </li>
                       <li>
                         <a href="#">
-                          <i class="fa fa-star" />
+                          <i className="fa fa-star" />
                         </a>
                       </li>
                       <li>
                         <a href="#">
-                          <i class="fa fa-star" />
+                          <i className="fa fa-star" />
                         </a>
                       </li>
                       <li>
                         <a href="#">
-                          <i class="fa fa-star" />
+                          <i className="fa fa-star" />
                         </a>
                       </li>
                     </ul>
                     <p>Outstanding</p>
                     <form
-                      class="row contact_form"
+                      className="row contact_form"
                       action="contact_process.php"
                       method="post"
                       novalidate="novalidate"
                     >
-                      <div class="col-md-12">
-                        <div class="form-group">
+                      <div className="col-md-12">
+                        <div className="form-group">
                           <input
                             type="text"
-                            class="form-control"
+                            className="form-control"
                             name="name"
                             placeholder="Your Full name"
                           />
                         </div>
                       </div>
-                      <div class="col-md-12">
-                        <div class="form-group">
+                      <div className="col-md-12">
+                        <div className="form-group">
                           <input
                             type="email"
-                            class="form-control"
+                            className="form-control"
                             name="email"
                             placeholder="Email Address"
                           />
                         </div>
                       </div>
-                      <div class="col-md-12">
-                        <div class="form-group">
+                      <div className="col-md-12">
+                        <div className="form-group">
                           <input
                             type="text"
-                            class="form-control"
+                            className="form-control"
                             name="number"
                             placeholder="Phone Number"
                           />
                         </div>
                       </div>
-                      <div class="col-md-12">
-                        <div class="form-group">
+                      <div className="col-md-12">
+                        <div className="form-group">
                           <textarea
-                            class="form-control"
+                            className="form-control"
                             name="message"
                             rows="1"
                             placeholder="Review"
                           />
                         </div>
                       </div>
-                      <div class="col-md-12 text-right">
-                        <button type="submit" value="submit" class="btn_3">
+                      <div className="col-md-12 text-right">
+                        <button type="submit" value="submit" className="btn_3">
                           Submit Now
                         </button>
                       </div>

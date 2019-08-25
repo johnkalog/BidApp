@@ -5,11 +5,11 @@ import User from './User';
 const UsersList = ({ users }) => {
   return (
     <div>
-      <section class="cart_area padding_top">
-        <div class="container container2">
-          <div class="cart_inner">
-            <div class="table-responsive">
-              <table class="table">
+      <section className="cart_area padding_top">
+        <div className="container container2">
+          <div className="cart_inner">
+            <div className="table-responsive">
+              <table className="table">
                 <thead>
                   <tr>
                     <th scope="col">Username</th>

@@ -4,15 +4,15 @@ import history from '../history';
 
 const Item = ({ productName, bestBid }) => {
   return (
-    <div class="col-lg-4 col-sm-6">
-      <div class="single_product_item" onClick={() => history.push('single')}>
+    <div className="col-lg-4 col-sm-6">
+      <div className="single_product_item" onClick={() => history.push('single')}>
         <img src={require('./img/product/product_1.png')} alt="" />
-        <div class="single_product_text">
+        <div className="single_product_text">
           <h4>{productName}</h4>
           <h3>{bestBid}</h3>
-          <a href="#" class="add_cart">
-            + add to cart
-            <i class="ti-heart" />
+          <a href="#" className="add_cart">
+            Bid It
+            <i className="ti-heart" />
           </a>
         </div>
       </div>

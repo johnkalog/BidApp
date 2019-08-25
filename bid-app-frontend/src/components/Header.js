@@ -69,7 +69,7 @@ const Header = ({ user, getProducts, logOutUser, getUsers }) => {
               <img
                 src={require('./images/logo.png')}
                 alt="logo"
-                class="logo"
+                className="logo"
                 onClick={() => history.push(homeOrBid)}
               />
             </div>
@@ -103,12 +103,12 @@ const Header = ({ user, getProducts, logOutUser, getUsers }) => {
                 </ul>
               </nav>
             </div>
-            <div class="ml-auto w-25">
+            <div className="ml-auto w-25">
               <ul id="user">
                 <li>
                   <span>{userRightUp + ' '}</span>
                 </li>
-                <li class="logOut" onClick={() => logOutUser()}>
+                <li className="logOut" onClick={() => logOutUser()}>
                   <span>{logOut}</span>
                 </li>
               </ul>
