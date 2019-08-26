@@ -37,12 +37,19 @@ public class BidController {
         return bidService.findByBidderId(bider_id);
     }
 
-    @GetMapping("/product/{product_id}")
-    public Iterable<Product> getBidByProductId(@PathVariable Long product_id){
+    @GetMapping("/bids/{product_id}")
+    public Iterable<Bid> getBidByProductId(@PathVariable Long product_id){
         Iterable<Bid> bids = bidService.findByProductId(product_id);
-        Iterable<Product> products = bidService.findProduct(product_id);
+        return bids;
+    }
+
+    @GetMapping("/products/{bidder_id}")
+    public Iterable<Product> getProductsByBidderId(@PathVariable Long bidder_id) {
+        Iterable<Product> products = bidService.findProduct(bidder_id);
         return products;
     }
+
+
 
     @DeleteMapping("/{bid_id}")
     public ResponseEntity<?> deleteBid(@PathVariable Long bid_id){

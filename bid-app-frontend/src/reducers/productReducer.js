@@ -2,12 +2,22 @@ import {
   GET_PRODUCTS,
   DELETE_PRODUCT,
   GET_PRODUCT,
-  NEW_AUCTION
+  NEW_AUCTION,
+  INPUT_ERROR
 } from '../actions/types';
 
 const initialState = {
   products: [],
-  product: {}
+  product: {},
+  errors: {
+    productName: false,
+    category: false,
+    firstBid: false,
+    location: false,
+    description: false,
+    productImage: false,
+    expirtationDate: false
+  }
 };
 
 const productReducer = (state = initialState, action) => {
@@ -15,7 +25,8 @@ const productReducer = (state = initialState, action) => {
     case GET_PRODUCTS:
       return {
         ...state,
-        products: action.payload
+        products: action.payload,
+        product: {}
       };
 
     case GET_PRODUCT:
@@ -32,7 +43,15 @@ const productReducer = (state = initialState, action) => {
         )
       };
     case NEW_AUCTION:
-      return state;
+      return { ...state };
+    case INPUT_ERROR:
+      return {
+        ...state,
+        errors: {
+          ...state.errors,
+          [`${action.payload}`]: true
+        }
+      };
     default:
       return state;
   }
