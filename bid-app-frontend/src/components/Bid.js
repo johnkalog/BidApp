@@ -32,7 +32,6 @@ const Bid = ({ login, changeLogin }) => {
                       <p data-aos="fade-up" data-aos-delay="300">
                         <Link
                           to="./products"
-                          href="#"
                           className="btn btn-primary py-3 px-5 btn-pill"
                         >
                           Continue as guest

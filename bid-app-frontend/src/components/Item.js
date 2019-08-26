@@ -12,6 +12,7 @@ const Item = ({ product, getProduct }) => {
           <h4>{product.productName}</h4>
           <h3>{product.bestBid}</h3>
           <a
+            href="#"
             className="add_cart"
             onClick={() => {
               getProduct(product.id);

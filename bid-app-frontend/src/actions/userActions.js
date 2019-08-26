@@ -14,17 +14,15 @@ import {
 import history from '../history';
 
 export const getUsers = dispatch => () => {
-  const result = axios
-    .get('http://localhost:8080/api/users/all')
-    .then(result => {
-      dispatch({
-        type: GET_USERS,
-        payload: result.data
-      });
-      dispatch({
-        type: POP_INIT
-      });
+  axios.get('http://localhost:8080/api/users/all').then(result => {
+    dispatch({
+      type: GET_USERS,
+      payload: result.data
     });
+    dispatch({
+      type: POP_INIT
+    });
+  });
 };
 
 export const changeLogin = dispatch => () => {
@@ -41,7 +39,7 @@ export const inputError = dispatch => field => {
 };
 
 export const checkUser = dispatch => forCheckUser => {
-  const result = axios
+  axios
     .post('http://localhost:8080/api/users/auth', forCheckUser)
     .then(result => {
       if (typeof result.data === 'string') {
@@ -55,7 +53,7 @@ export const checkUser = dispatch => forCheckUser => {
           payload: result.data
         });
         if (result.data.status === 'Accepted') {
-          if (result.data.type == 'Administrator') {
+          if (result.data.type === 'Administrator') {
             history.push('users');
           } else {
             history.push('home');
@@ -68,26 +66,22 @@ export const checkUser = dispatch => forCheckUser => {
 };
 
 export const newUser = dispatch => theNewUser => {
-  const result = axios
-    .post('http://localhost:8080/api/users/new', theNewUser)
-    .then(result => {
-      if (result.data === '') {
-        const res = axios
-          .post('http://localhost:8080/api/users/', theNewUser)
-          .then(res => {
-            dispatch({
-              type: GET_USER,
-              payload: res.data
-            });
-            history.push('waiting');
-          });
-      } else {
+  axios.post('http://localhost:8080/api/users/new', theNewUser).then(result => {
+    if (result.data === '') {
+      axios.post('http://localhost:8080/api/users/', theNewUser).then(res => {
         dispatch({
-          type: SIGNUP_MESSAGE,
-          payload: result.data
+          type: GET_USER,
+          payload: res.data
         });
-      }
-    });
+        history.push('waiting');
+      });
+    } else {
+      dispatch({
+        type: SIGNUP_MESSAGE,
+        payload: result.data
+      });
+    }
+  });
 };
 
 export const notSamePasswords = dispatch => message => {
