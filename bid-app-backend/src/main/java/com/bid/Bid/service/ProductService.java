@@ -40,4 +40,8 @@ public class ProductService {
         Product product = findById(id);
         productRepository.delete(product);
     }
+
+    public Iterable<Product> findByCategory(String category){
+        return productRepository.findByCategory(category);
+    }
 }

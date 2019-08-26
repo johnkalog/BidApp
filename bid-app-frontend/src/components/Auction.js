@@ -2,16 +2,27 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { newAuction } from '../actions/productActions';
 
-const createAuction = (event, newAuction) => {
+const createAuction = (event, id, newAuction) => {
   event.preventDefault();
-  console.log('deewfewrfewfewr');
+  const newProduct = {
+    productName: event.target[0].value,
+    category: event.target[1].value,
+    firstBid: event.target[2].value,
+    buyPrice: event.target[3].value,
+    location: event.target[4].value,
+    description: event.target[5].value,
+    productImage: event.target[6].value,
+    expirationDate: event.target[7].value,
+    ownerId: id
+  };
+  newAuction(newProduct);
 };
 
-const Auction = ({ newAuction }) => {
+const Auction = ({ id, newAuction }) => {
   return (
     <div className="product_image_area section_padding">
       <div className="container container2">
-        <form onSubmit={event => createAuction(event, newAuction)}>
+        <form onSubmit={event => createAuction(event, id, newAuction)}>
           <div className="form-row">
             <div className="form-group col-md-6">
               <h5>Product Name</h5>
@@ -35,7 +46,7 @@ const Auction = ({ newAuction }) => {
             <div className="form-group col-md-6">
               <h6>First Bid</h6>
               <input
-                type="text"
+                type="number"
                 className="form-control"
                 placeholder="minimum price"
               />
@@ -58,7 +69,6 @@ const Auction = ({ newAuction }) => {
               placeholder="Location"
             />
           </div>
-
           <div className="form-row">
             <div className="form-group  col-md-6">
               <h6>Description</h6>
@@ -66,7 +76,7 @@ const Auction = ({ newAuction }) => {
             </div>
             <div className="form-group col-md-6">
               <h6 for="inputCity">Image</h6>
-              <input type="image" className="form-control" />
+              <input type="text" className="form-control" />
             </div>
             <div className="form-group ">
               <h6 for="inputCity">End Date</h6>
@@ -74,15 +84,6 @@ const Auction = ({ newAuction }) => {
                 type="date"
                 className="form-control"
                 placeholder="yyyy-mm-dd"
-              />
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                id="gridCheck"
               />
             </div>
           </div>
@@ -96,7 +97,9 @@ const Auction = ({ newAuction }) => {
 };
 
 export default connect(
-  null,
+  state => ({
+    id: state.usersData.user.id
+  }),
   dispatch => ({
     newAuction: newAuction(dispatch)
   })

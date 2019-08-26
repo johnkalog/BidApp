@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const SingleItem = () => {
+const SingleItem = ({ product }) => {
   let bid;
   return (
     <div>
@@ -22,19 +22,19 @@ const SingleItem = () => {
             </div>
             <div className="col-lg-5 col-xl-4">
               <div className="s_product_text">
-                <h3>Faded SkyBlu Denim Jeans</h3>
+                <h3>{product.productName}</h3>
                 <ul className="list">
                   <li>
                     <a className="active" href="#">
                       <span>Current Bid</span> :{' '}
                       <span>
-                        <h2>$123</h2>{' '}
+                        <h2>{`$${product.bestBid}`}</h2>{' '}
                       </span>
                     </a>
                   </li>
                   <li>
                     <a className="active" href="#">
-                      <span>Category</span> : Household
+                      <span>Category</span> : {product.category}
                     </a>
                   </li>
                   <li>
@@ -44,16 +44,12 @@ const SingleItem = () => {
                     </a>
                   </li>
                 </ul>
-                <p>
-                  First replenish living. Creepeth image image. Creeping can't,
-                  won't called. Two fruitful let days signs sea together all
-                  land fly subdue
-                </p>
+                <p>{product.description}</p>
                 <div className="card_area d-flex justify-content-between align-items-center">
                   <input
                     className="bid"
                     type="number"
-                    placeholder="$"
+                    placeholder={`$${product.bestBid + 1}`}
                     onChange={event => {
                       bid = event.currentTarget.value;
                     }}
@@ -78,6 +74,8 @@ const SingleItem = () => {
 };
 
 export default connect(
-  null,
+  state => ({
+    product: state.productsData.product
+  }),
   null
 )(SingleItem);

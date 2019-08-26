@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface ProductRepository extends CrudRepository<Product, Long> {
 
     Product getById(Long id);
+    Iterable<Product> findByCategory(String category);
 }

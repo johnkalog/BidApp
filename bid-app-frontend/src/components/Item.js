@@ -1,18 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import history from '../history';
+import { getProduct } from '../actions/productActions';
 
-const Item = ({ productName, bestBid }) => {
+const Item = ({ product, getProduct }) => {
   return (
     <div className="col-lg-4 col-sm-6">
-      <div className="single_product_item" onClick={() => history.push('single')}>
+      <div className="single_product_item">
         <img src={require('./img/product/product_1.png')} alt="" />
         <div className="single_product_text">
-          <h4>{productName}</h4>
-          <h3>{bestBid}</h3>
-          <a href="#" className="add_cart">
+          <h4>{product.productName}</h4>
+          <h3>{product.bestBid}</h3>
+          <a
+            className="add_cart"
+            onClick={() => {
+              getProduct(product.id);
+              history.push('single');
+            }}
+          >
             Bid It
-            <i className="ti-heart" />
           </a>
         </div>
       </div>
@@ -22,8 +28,9 @@ const Item = ({ productName, bestBid }) => {
 
 export default connect(
   (state, ownProps) => ({
-    productName: ownProps.productName,
-    bestBid: ownProps.bestBid
+    product: ownProps.product
   }),
-  null
+  dispatch => ({
+    getProduct: getProduct(dispatch)
+  })
 )(Item);

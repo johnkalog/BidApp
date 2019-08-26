@@ -4,7 +4,7 @@ import User from './User';
 import { getUsers } from '../actions/userActions';
 
 const UsersList = ({ users, getUsers }) => {
-  getUsers();
+  // getUsers();
   return (
     <div>
       <section className="cart_area padding_top">

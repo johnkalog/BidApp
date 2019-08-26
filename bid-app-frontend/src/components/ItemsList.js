@@ -180,11 +180,7 @@ const ItemsList = ({ products }) => {
 
               <div className="row align-items-center latest_product_inner">
                 {products.map(item => (
-                  <Item
-                    key={item.id}
-                    productName={item.productName}
-                    bestBid={item.bestBid}
-                  />
+                  <Item key={item.id} product={item} />
                 ))}
               </div>
             </div>

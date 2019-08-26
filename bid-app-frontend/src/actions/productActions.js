@@ -17,4 +17,20 @@ export const getProducts = dispatch => () => {
     });
 };
 
-export const newAuction = dispatch => theNewAuction => {};
+export const newAuction = dispatch => theNewAuction => {
+  axios
+    .post('http://localhost:8080/api/products', theNewAuction)
+    .then(result => console.log(result.data));
+};
+
+export const getProduct = dispatch => id => {
+  console.log('ddddddddddddfqwfweew', id);
+  const result = axios
+    .get(`http://localhost:8080/api/products/${id}`)
+    .then(result => {
+      dispatch({
+        type: GET_PRODUCT,
+        payload: result.data
+      });
+    });
+};

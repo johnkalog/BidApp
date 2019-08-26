@@ -71,14 +71,6 @@ public class Product {
         this.BestBidOwnerId = BestBidOwnerId;
     }
 
-    public Long getownerId() {
-        return ownerId;
-    }
-
-    public void setownerId(Long ownerid) {
-        this.ownerId = ownerid;
-    }
-
     public Long getBestBid() {
         return BestBid;
     }

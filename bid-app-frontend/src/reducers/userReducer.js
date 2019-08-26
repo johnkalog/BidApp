@@ -51,7 +51,6 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         users: state.users.filter(user => user.id !== action.payload),
-        user: {},
         popups: state.popups.filter(item => item.id !== action.payload)
       };
     case CHANGE_LOGIN:
