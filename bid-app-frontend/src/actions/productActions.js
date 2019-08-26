@@ -1,5 +1,10 @@
 import axios from 'axios';
-import { GET_PRODUCTS, DELETE_PRODUCT, GET_PRODUCT } from './types';
+import {
+  GET_PRODUCTS,
+  DELETE_PRODUCT,
+  GET_PRODUCT,
+  NEW_AUCTION
+} from './types';
 
 export const getProducts = dispatch => () => {
   const result = axios
@@ -11,3 +16,5 @@ export const getProducts = dispatch => () => {
       });
     });
 };
+
+export const newAuction = dispatch => theNewAuction => {};

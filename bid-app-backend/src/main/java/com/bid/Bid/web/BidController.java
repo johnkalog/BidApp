@@ -1,6 +1,7 @@
 package com.bid.Bid.web;
 
 import com.bid.Bid.domain.Bid;
+import com.bid.Bid.domain.Product;
 import com.bid.Bid.service.BidService;
 import com.bid.Bid.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +38,10 @@ public class BidController {
     }
 
     @GetMapping("/product/{product_id}")
-    public Iterable<Bid> getBidByProductId(@PathVariable Long product_id){
+    public Iterable<Product> getBidByProductId(@PathVariable Long product_id){
         Iterable<Bid> bids = bidService.findByProductId(product_id);
-        return bids;
+        Iterable<Product> products = bidService.findProduct(product_id);
+        return products;
     }
 
     @DeleteMapping("/{bid_id}")

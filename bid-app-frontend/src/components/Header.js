@@ -22,7 +22,13 @@ const Header = ({ user, getProducts, logOutUser, getUsers }) => {
   if (Object.keys(user).length === 0) {
     Contents = '';
   } else if (user.type === 'Seller') {
-    Contents = '';
+    Contents = (
+      <li>
+        <Link to="./auction" className="nav-link">
+          Create Auction
+        </Link>
+      </li>
+    );
   } else if (user.type === 'Bidder') {
     Contents = (
       <li>

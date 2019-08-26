@@ -12,6 +12,7 @@ import Message from './components/Message';
 import Contact from './components/Contact';
 import Home from './components/Home';
 import SingleItem from './components/SingleItem';
+import Auction from './components/Auction';
 
 import './components/general.css';
 import './components/fonts/icomoon/style.css';
@@ -48,6 +49,7 @@ class App extends Component {
           <Route exact path="/waiting" component={Message} />
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/single" component={SingleItem} />
+          <Route exact path="/auction" component={Auction} />
         </Router>
       </Provider>
     );

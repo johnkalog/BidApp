@@ -55,7 +55,11 @@ export const checkUser = dispatch => forCheckUser => {
           payload: result.data
         });
         if (result.data.status === 'Accepted') {
-          history.push('home');
+          if (result.data.type == 'Administrator') {
+            history.push('users');
+          } else {
+            history.push('home');
+          }
         } else {
           history.push('waiting');
         }

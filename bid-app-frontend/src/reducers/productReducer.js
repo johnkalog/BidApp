@@ -1,4 +1,9 @@
-import { GET_PRODUCTS, DELETE_PRODUCT, GET_PRODUCT } from '../actions/types';
+import {
+  GET_PRODUCTS,
+  DELETE_PRODUCT,
+  GET_PRODUCT,
+  NEW_AUCTION
+} from '../actions/types';
 
 const initialState = {
   products: [],
@@ -26,6 +31,8 @@ const productReducer = (state = initialState, action) => {
           product => product.id !== action.payload
         )
       };
+    case NEW_AUCTION:
+      return state;
     default:
       return state;
   }
