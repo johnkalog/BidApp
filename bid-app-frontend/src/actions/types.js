@@ -8,8 +8,9 @@ export const SIGNUP_MESSAGE = 'SIGNUP_MESSAGE';
 export const CHANGE_STATUS = 'CHANGE_STATUS';
 export const CHANGE_POP = 'CHANGE_POP';
 export const POP_INIT = 'POP_INIT';
+export const CHANGE_RELOAD = 'CHANGE_RELOAD';
 
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const GET_PRODUCT = 'GET_PRODUCT';
 export const DELETE_PRODUCT = 'DELETE_PRODUCT';
-export const NEW_AUCTION = "NEW_AUCTION";
+export const NEW_AUCTION = 'NEW_AUCTION';

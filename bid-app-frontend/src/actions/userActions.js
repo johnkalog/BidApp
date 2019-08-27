@@ -9,7 +9,8 @@ import {
   SIGNUP_MESSAGE,
   CHANGE_STATUS,
   CHANGE_POP,
-  POP_INIT
+  POP_INIT,
+  CHANGE_RELOAD
 } from './types';
 import history from '../history';
 
@@ -21,6 +22,9 @@ export const getUsers = dispatch => () => {
     });
     dispatch({
       type: POP_INIT
+    });
+    dispatch({
+      type: CHANGE_RELOAD
     });
   });
 };
@@ -95,6 +99,9 @@ export const logOutUser = dispatch => () => {
   dispatch({
     type: GET_USER,
     payload: {}
+  });
+  dispatch({
+    type: CHANGE_RELOAD
   });
   history.push('/');
 };

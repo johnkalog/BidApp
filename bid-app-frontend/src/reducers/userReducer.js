@@ -8,7 +8,8 @@ import {
   SIGNUP_MESSAGE,
   CHANGE_STATUS,
   CHANGE_POP,
-  POP_INIT
+  POP_INIT,
+  CHANGE_RELOAD
 } from '../actions/types';
 
 const initialState = {
@@ -23,7 +24,8 @@ const initialState = {
   },
   loginMessage: '',
   signUpMessage: '',
-  popups: [] //for controlling Info at each user
+  popups: [], //for controlling Info at each user
+  forUserAppear: false
 };
 
 const userReducer = (state = initialState, action) => {
@@ -35,6 +37,10 @@ const userReducer = (state = initialState, action) => {
       };
 
     case GET_USER:
+      let appear = false;
+      if (action.payload.type === 'Administrator') {
+        appear = true;
+      }
       return {
         ...state,
         user: action.payload,
@@ -44,7 +50,8 @@ const userReducer = (state = initialState, action) => {
           re_type: false
         },
         loginMessage: '',
-        signUpMessage: ''
+        signUpMessage: '',
+        forUserAppear: appear
       };
 
     case DELETE_USER:
@@ -96,6 +103,11 @@ const userReducer = (state = initialState, action) => {
             ? { ...item, popupStatus: !item.popupStatus }
             : item
         )
+      };
+    case CHANGE_RELOAD:
+      return {
+        ...state,
+        forUserAppear: false
       };
     default:
       return state;

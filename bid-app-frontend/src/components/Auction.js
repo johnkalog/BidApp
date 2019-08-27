@@ -125,7 +125,7 @@ const Auction = ({ id, errors, newAuction, inputError }) => {
             <div className="form-group ">
               <h6 htmlFor="inputCity">End Date</h6>
               <input
-                type="date"
+                type="datetime-local"
                 className={classnames('form-control', {
                   'is-invalid': errors.expirationDate
                 })}

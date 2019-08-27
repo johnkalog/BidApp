@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 import User from './User';
 import { getUsers } from '../actions/userActions';
 
-const UsersList = ({ users, getUsers }) => {
-  // getUsers();
+const UsersList = ({ users, forUserAppear, getUsers }) => {
+  if (forUserAppear) {
+    getUsers();
+  }
   return (
     <div>
       <section className="cart_area padding_top">
@@ -39,7 +41,8 @@ const UsersList = ({ users, getUsers }) => {
 
 export default connect(
   state => ({
-    users: state.usersData.users
+    users: state.usersData.users,
+    forUserAppear: state.usersData.forUserAppear
   }),
   dispatch => ({
     getUsers: getUsers(dispatch)
