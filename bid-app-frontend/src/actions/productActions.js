@@ -55,6 +55,13 @@ export const bidIt = dispatch => (product, user, amount) => {
       {
         label: 'Yes',
         onClick: () => {
+          if (amount === undefined) {
+            dispatch({
+              type: ERROR_BID,
+              payload: 'Please choose amount'
+            });
+            return;
+          }
           axios.post('http://localhost:8080/api/bids', bid).then(result => {
             if (typeof result.data === 'string') {
               dispatch({
@@ -71,5 +78,14 @@ export const bidIt = dispatch => (product, user, amount) => {
         }
       }
     ]
+  });
+};
+
+export const getProductsBidder = dispatch => id => {
+  axios.get(`http://localhost:8080/api/bids/products/${id}`).then(result => {
+    dispatch({
+      type: GET_PRODUCTS,
+      payload: result.data
+    });
   });
 };

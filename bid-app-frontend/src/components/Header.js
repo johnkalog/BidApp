@@ -1,11 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getProducts } from '../actions/productActions';
+import { getProducts, getProductsBidder } from '../actions/productActions';
 import { logOutUser, getUsers } from '../actions/userActions';
 import history from '../history';
 
-const Header = ({ user, getProducts, logOutUser, getUsers }) => {
+const Header = ({
+  user,
+  getProducts,
+  logOutUser,
+  getUsers,
+  getProductsBidder
+}) => {
   const homeOrBid =
     Object.keys(user).length === 0 || user.status !== 'Accepted'
       ? './'
@@ -32,7 +38,11 @@ const Header = ({ user, getProducts, logOutUser, getUsers }) => {
   } else if (user.type === 'Bidder') {
     Contents = (
       <li>
-        <Link to="./shop" className="nav-link">
+        <Link
+          to="./shop"
+          className="nav-link"
+          onClick={() => getProductsBidder(user.id)}
+        >
           Shop
         </Link>
       </li>
@@ -133,6 +143,7 @@ export default connect(
   dispatch => ({
     getProducts: getProducts(dispatch),
     logOutUser: logOutUser(dispatch),
-    getUsers: getUsers(dispatch)
+    getUsers: getUsers(dispatch),
+    getProductsBidder: getProductsBidder(dispatch)
   })
 )(Header);

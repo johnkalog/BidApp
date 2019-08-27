@@ -15,7 +15,8 @@ const createAuction = (event, id, newAuction, inputError) => {
     description: event.target[5].value,
     productImage: event.target[6].value,
     expirationDate: event.target[7].value,
-    ownerId: id
+    ownerId: id,
+    //status: true
   };
   if (newProduct.productName.length === 0) {
     inputError('productName');
