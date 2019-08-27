@@ -34,6 +34,7 @@ import './components/css/style.css';
 import './components/css/style3.css';
 
 import './components/css/style2.css';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 class App extends Component {
   render() {

@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { confirmAlert } from 'react-confirm-alert';
+
 import {
   GET_PRODUCTS,
   DELETE_PRODUCT,
@@ -42,17 +44,32 @@ export const bidIt = dispatch => (product, user, amount) => {
     productId: product.id,
     bidderId: userId
   };
-  axios.post('http://localhost:8080/api/bids', bid).then(result => {
-    if (typeof result.data === 'string') {
-      dispatch({
-        type: ERROR_BID,
-        payload: result.data
-      });
-    } else if (typeof result.data === 'object') {
-      dispatch({
-        type: GET_PRODUCT,
-        payload: result.data
-      });
-    }
+  confirmAlert({
+    title: 'You are going bid',
+    message: 'Are you sure?',
+    buttons: [
+      {
+        label: 'No',
+        onClick: () => {}
+      },
+      {
+        label: 'Yes',
+        onClick: () => {
+          axios.post('http://localhost:8080/api/bids', bid).then(result => {
+            if (typeof result.data === 'string') {
+              dispatch({
+                type: ERROR_BID,
+                payload: result.data
+              });
+            } else if (typeof result.data === 'object') {
+              dispatch({
+                type: GET_PRODUCT,
+                payload: result.data
+              });
+            }
+          });
+        }
+      }
+    ]
   });
 };
