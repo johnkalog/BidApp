@@ -3,7 +3,8 @@ import {
   GET_PRODUCTS,
   DELETE_PRODUCT,
   GET_PRODUCT,
-  NEW_AUCTION
+  NEW_AUCTION,
+  INPUT_CLEAR
 } from './types';
 
 export const getProducts = dispatch => () => {
@@ -19,6 +20,9 @@ export const newAuction = dispatch => theNewAuction => {
   axios
     .post('http://localhost:8080/api/products', theNewAuction)
     .then(result => console.log(result.data));
+  dispatch({
+    type: INPUT_CLEAR
+  });
 };
 
 export const getProduct = dispatch => id => {
