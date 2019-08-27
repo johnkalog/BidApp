@@ -23,16 +23,32 @@ public class ProductService {
         return productRepository.getById(id);
     }
 
-    public boolean changeProductValue(Long id,Long value,Long bidderId) {
+    public String changeProductValue(Long id,Long value,Long bidderId) {
         Product product = productRepository.getById(id);
-        if(product.getBestBid() >= value) {
-            return false;
+        if(product == null ) {
+            return "Product doesn't exist";
+        }
+        else if(!product.isActive()) {
+            return "Product has expired";
+        }
+        else if(bidderId == null){
+            return "You are not allowed to bid as guest";
+        }
+        else if(bidderId == 1){
+            return "You are not allowed to bid as Administrator";
+        }
+        else if(bidderId == product.getOwnerId()) {
+            return "Owner can't bid to his product";
+        }
+        else if(product.getBestBid()!= null && product.getBestBid() >= value) {
+            return "A better offer already exists";
         }
         //System.err.println(value);
+        product.setNumberOfBids(product.getNumberOfBids()+1);
         product.setBestBid(value);
         product.setBestBidOwnerId(bidderId);
         saveOrUpdateProduct(product);
-        return true;
+        return null;
     }
 
 

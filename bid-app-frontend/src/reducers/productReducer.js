@@ -4,7 +4,8 @@ import {
   GET_PRODUCT,
   NEW_AUCTION,
   INPUT_ERROR,
-  INPUT_CLEAR
+  INPUT_CLEAR,
+  ERROR_BID
 } from '../actions/types';
 
 const initialState = {
@@ -18,7 +19,8 @@ const initialState = {
     description: false,
     productImage: false,
     expirationDate: false
-  }
+  },
+  message: ''
 };
 
 const productReducer = (state = initialState, action) => {
@@ -33,7 +35,8 @@ const productReducer = (state = initialState, action) => {
     case GET_PRODUCT:
       return {
         ...state,
-        product: action.payload
+        product: action.payload,
+        message: ''
       };
 
     case DELETE_PRODUCT:
@@ -66,6 +69,8 @@ const productReducer = (state = initialState, action) => {
           expirationDate: false
         }
       };
+    case ERROR_BID:
+      return { ...state, message: action.payload };
     default:
       return state;
   }

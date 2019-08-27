@@ -30,7 +30,7 @@ public class Product {
 
     private LocalDate expirationDate;
     private LocalDate startedDate;
-    private String status;
+    private boolean isActive;
 
 
     public Product() {
@@ -152,11 +152,8 @@ public class Product {
         this.startedDate = startedDate;
     }
 
-    public String getStatus() {
-        return status;
-    }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+    public boolean isActive() { return isActive; }
+
+    public void setActive(boolean active) {isActive = active; }
 }

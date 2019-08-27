@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bidIt } from '../actions/productActions';
 
-const SingleItem = ({ product }) => {
+const SingleItem = ({ product, user, message, bidIt }) => {
   let bid;
   return (
     <div>
@@ -40,7 +41,7 @@ const SingleItem = ({ product }) => {
                   <li>
                     <a href="#">
                       {' '}
-                      <span>Availibility</span> : In Stock
+                      <span>Status</span> : In Stock
                     </a>
                   </li>
                 </ul>
@@ -58,12 +59,13 @@ const SingleItem = ({ product }) => {
                     className="btn_3 bid_purple"
                     onClick={event => {
                       event.preventDefault();
-                      console.log(bid);
+                      bidIt(product, user, bid);
                     }}
                   >
                     Bid It
                   </button>
                 </div>
+                <div className="message_bid_it">{message}</div>
               </div>
             </div>
           </div>
@@ -75,7 +77,11 @@ const SingleItem = ({ product }) => {
 
 export default connect(
   state => ({
-    product: state.productsData.product
+    product: state.productsData.product,
+    user: state.usersData.user,
+    message: state.productsData.message
   }),
-  null
+  dispatch => ({
+    bidIt: bidIt(dispatch)
+  })
 )(SingleItem);

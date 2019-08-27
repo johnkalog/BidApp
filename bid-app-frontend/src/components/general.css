@@ -117,3 +117,10 @@
   margin-right: 19%;
   cursor: pointer;
 }
+
+.message_bid_it {
+  text-align: center;
+  color: #ff3368;
+  font-size: 19px;
+  margin-top: 5%;
+}

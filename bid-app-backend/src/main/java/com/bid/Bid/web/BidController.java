@@ -22,9 +22,13 @@ public class BidController {
 
     @PostMapping("")
     public ResponseEntity<?> addBid(@RequestBody Bid bid){
-        productService.changeProductValue(bid.getProductId(),bid.getOffer(),bid.getBidderId());
+        String isNotValid = productService.changeProductValue(bid.getProductId(),bid.getOffer(),bid.getBidderId());
+        if(isNotValid !=null) {
+            return new ResponseEntity<String>(isNotValid, HttpStatus.OK);
+        }
         Bid newBid = bidService.saveOrUpdateBid(bid);
-        return new ResponseEntity<Bid>(newBid, HttpStatus.CREATED);
+        Product product = productService.findById(newBid.getProductId());
+        return new ResponseEntity<Product>(product, HttpStatus.CREATED);
     }
 
     @GetMapping("/all")
