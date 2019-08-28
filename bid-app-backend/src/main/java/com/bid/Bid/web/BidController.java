@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+
 @RestController
 @RequestMapping("/api/bids")
 @CrossOrigin
@@ -26,6 +28,7 @@ public class BidController {
         if(isNotValid !=null) {
             return new ResponseEntity<String>(isNotValid, HttpStatus.OK);
         }
+        bid.setBiddingDate(LocalDate.now());
         Bid newBid = bidService.saveOrUpdateBid(bid);
         Product product = productService.findById(newBid.getProductId());
         return new ResponseEntity<Product>(product, HttpStatus.CREATED);
@@ -52,7 +55,6 @@ public class BidController {
         Iterable<Product> products = bidService.findProduct(bidder_id);
         return products;
     }
-
 
 
     @DeleteMapping("/{bid_id}")

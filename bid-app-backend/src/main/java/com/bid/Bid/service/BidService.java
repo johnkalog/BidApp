@@ -53,7 +53,6 @@ public class BidService {
 //    }
 
     public Iterable<Product> findProduct(Long bidderId) {
-//        System.err.println(BidRepository.findProduct());
         Iterable<Bid> bids = BidRepository.findByBidderId(bidderId);
         ArrayList<Product> products = new ArrayList<Product>();
         for(Bid value : bids) {
@@ -62,10 +61,6 @@ public class BidService {
                 products.add(product);
             }
         }
-//        for(Product value : products) {
-//            System.err.println(value);
-//        }
-//        System.err.println(products);
         return products;
     }
 

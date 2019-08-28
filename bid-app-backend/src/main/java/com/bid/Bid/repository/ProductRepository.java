@@ -9,4 +9,5 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
 
     Product getById(Long id);
     Iterable<Product> findByCategory(String category);
+    Iterable<Product> findByOwnerId(Long owner_id);
 }

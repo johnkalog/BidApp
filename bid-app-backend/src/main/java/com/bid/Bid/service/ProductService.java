@@ -23,6 +23,11 @@ public class ProductService {
         return productRepository.getById(id);
     }
 
+    public Iterable<Product> findByOwnerId(Long owner_id){
+        return productRepository.findByOwnerId(owner_id);
+    }
+
+
     public String changeProductValue(Long id,Long value,Long bidderId) {
         Product product = productRepository.getById(id);
         if(product == null ) {

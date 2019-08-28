@@ -55,10 +55,29 @@ public class ProductController {
         return products;
     }
 
+
+    @GetMapping("/uploaded/{seller_id}")
+    public Iterable<Product> getProductsByOwnerId(@PathVariable Long seller_id){
+        Iterable<Product> products = productService.findByOwnerId(seller_id);
+        return products;
+    }
+
+
     @GetMapping("/dtd/{product_id}")
     public ResponseEntity<?> getXMLById(@PathVariable Long product_id){
         Product product = productService.findById(product_id);
         Iterable<Bid> bids = bidService.findByProductId(product.getId());
+        String strbid = "";
+        for(Bid bid : bids) {
+            strbid += "\t<Bid>"
+                    +"\t\t<Bidder Rating=\"229\" UserID=\""+bid.getBidderId()+"\""+">\n"
+                    +"<Location>Sydney</Location>\n"
+                    +"<Country>Australia</Country>\n"
+                    +"\t\t</Bidder>\n"
+                    +"<Time>"+bid.getBiddingDate() +"</Time>\n"
+                    +"<Amount>"+bid.getOffer()+"</Amount>\n"
+                    +"\t</Bid>\n";
+        }
         String response = "<?xml version=\"1.0\"?>\n"
                         + "<!DOCTYPE note [\n"
                         + "<!ELEMENT Items (Item*)>\n"
@@ -88,26 +107,19 @@ public class ProductController {
                         +" Rating CDATA #REQUIRED>\n"
                         +"<!ELEMENT Description (#PCDATA)>\n"
                         +"]>\n";
-        String body = "<Item ItemID="+product.getId()+">\n"
+        String body = "<Item ItemID=\""+product.getId()+"\">\n"
                     +"<Name>"+product.getProductName()+"</Name>\n"
                     +"<Category>"+product.getCategory()+"</Category>\n"
                     +"<First_Bid>"+product.getFirstBid()+"</First_Bid>\n"
                     +"<Number_of_Bids>"+product.getNumberOfBids()+"</Number_of_Bids>\n"
                     +"<Bids>\n"
-                     +"/t<Bid>"
-                             +"/t/t<Bidder Rating=\"229\" UserID="+">\n"
-                            +"<Location>Sydney</Location>\n"
-                            +"<Country>Australia</Country>\n"
-                            +"\t\t</Bidder>\n"
-                        +"<Time>Dec-10-01 08:21:26</Time>\n"
-                        +"<Amount>$7.25</Amount>\n"
-                     +"\t</Bid>\n"
+                     +strbid
                     +"\t</Bids>\n"
                     +"<Location>"+product.getLocation()+"</Location>\n"
                     +"<Country>USA</Country>\n"
                     +"<Started>"+ product.getStartedDate()+"</Started>\n"
                     +"<Ends>"+product.getExpirationDate()+"</Ends>\n"
-                    +"<Seller Rating=\"117\" UserID="+product.getOwnerId()+" />\n"
+                    +"<Seller Rating=\"117\" UserID=\""+product.getOwnerId()+"\" />\n"
                     +"<Description>"+product.getDescription()+"</Description>\n"
                     +"</Item>\n";
         return new ResponseEntity<String>(response+body, HttpStatus.OK);
