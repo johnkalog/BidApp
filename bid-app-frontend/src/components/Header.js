@@ -24,11 +24,37 @@ const Header = ({
     Object.keys(user).length === 0 || user.status !== 'Accepted'
       ? ''
       : 'Log Out';
-  let Contents;
+  let FirstContent = '';
+  let SecondContent = '';
+  let ThirdContent = '';
   if (Object.keys(user).length === 0) {
-    Contents = '';
+    FirstContent = '';
+    SecondContent = '';
+    ThirdContent = '';
   } else if (user.type === 'Seller') {
-    Contents = (
+    FirstContent = (
+      <li>
+        <Link
+          to="./uploaded"
+          className="nav-link"
+          onClick={() => getProductsBidder(user.id)}
+        >
+          Uploaded
+        </Link>
+      </li>
+    );
+    SecondContent = (
+      <li>
+        <Link
+          to="./shop"
+          className="nav-link"
+          onClick={() => getProductsBidder(user.id)}
+        >
+          Shop
+        </Link>
+      </li>
+    );
+    ThirdContent = (
       <li>
         <Link to="./auction" className="nav-link">
           Create Auction
@@ -36,7 +62,7 @@ const Header = ({
       </li>
     );
   } else if (user.type === 'Bidder') {
-    Contents = (
+    FirstContent = (
       <li>
         <Link
           to="./shop"
@@ -48,7 +74,7 @@ const Header = ({
       </li>
     );
   } else if (user.type === 'Administrator') {
-    Contents = (
+    FirstContent = (
       <li>
         <Link
           to="./users"
@@ -110,7 +136,9 @@ const Header = ({
                       Products
                     </Link>
                   </li>
-                  {Contents}
+                  {FirstContent}
+                  {SecondContent}
+                  {ThirdContent}
                   <li>
                     <Link to="./contact" className="nav-link">
                       Contact
