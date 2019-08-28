@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.time.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class Bid {
@@ -15,8 +15,7 @@ public class Bid {
     private Long offer;
     private Long productId;
     private Long bidderId;
-    private LocalDate expirationDate;
-    private LocalDate biddingDate;
+    private LocalDateTime biddingDate;
 
     public Bid() {
     }
@@ -53,19 +52,11 @@ public class Bid {
         this.bidderId = bidderId;
     }
 
-    public LocalDate getExpirationDate() {
-        return expirationDate;
-    }
-
-    public void setExpirationDate(LocalDate expirationDate) {
-        this.expirationDate = expirationDate;
-    }
-
-    public LocalDate getBiddingDate() {
+    public LocalDateTime getBiddingDate() {
         return biddingDate;
     }
 
-    public void setBiddingDate(LocalDate biddingDate) {
+    public void setBiddingDate(LocalDateTime biddingDate) {
         this.biddingDate = biddingDate;
     }
 }

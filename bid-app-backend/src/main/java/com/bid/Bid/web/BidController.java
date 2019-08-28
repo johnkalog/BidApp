@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/api/bids")
@@ -28,9 +29,10 @@ public class BidController {
         if(isNotValid !=null) {
             return new ResponseEntity<String>(isNotValid, HttpStatus.OK);
         }
-        bid.setBiddingDate(LocalDate.now());
+        bid.setBiddingDate(LocalDateTime.now());
         Bid newBid = bidService.saveOrUpdateBid(bid);
         Product product = productService.findById(newBid.getProductId());
+        productService.productUpdateByDate(product);
         return new ResponseEntity<Product>(product, HttpStatus.CREATED);
     }
 
@@ -53,6 +55,7 @@ public class BidController {
     @GetMapping("/products/{bidder_id}")
     public Iterable<Product> getProductsByBidderId(@PathVariable Long bidder_id) {
         Iterable<Product> products = bidService.findProduct(bidder_id);
+        productService.allProductsUpdateByDate(products);
         return products;
     }
 

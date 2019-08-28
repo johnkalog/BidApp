@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/api/products")
@@ -24,7 +25,10 @@ public class ProductController {
 
     @PostMapping("")
     public ResponseEntity<?> addProduct(@RequestBody Product product){
-        product.setStartedDate(LocalDate.now());
+        if(product.getExpirationDate().isBefore(LocalDateTime.now()) || product.getExpirationDate().isEqual(LocalDateTime.now())) {
+            return new ResponseEntity<String>("Wrong expiration date", HttpStatus.OK);
+        }
+        product.setStartedDate(LocalDateTime.now());
         product.setNumberOfBids(Long.valueOf(0));
         product.setBestBid(product.getFirstBid());
         product.setActive(true);
@@ -33,14 +37,25 @@ public class ProductController {
         return new ResponseEntity<Product>(newProduct, HttpStatus.CREATED);
     }
 
+    @PostMapping("/delete/{product_id}")
+    public ResponseEntity<?> delete(@PathVariable Long product_id){
+        Product product = productService.findById(product_id);
+        product.setDeleted(true);
+        Product newProduct = productService.saveOrUpdateProduct(product);
+        return new ResponseEntity<String>("Deleted", HttpStatus.OK);
+    }
+
     @GetMapping("/all")
     public Iterable<Product> getAllproducts(){
-        return productService.findAll();
+        Iterable<Product> products = productService.findAll();
+        productService.allProductsUpdateByDate(products);
+        return products;
     }
 
     @GetMapping("/{product_id}")
     public ResponseEntity<?> getProductById(@PathVariable Long product_id){
         Product product = productService.findById(product_id);
+        productService.productUpdateByDate(product);
         return new ResponseEntity<Product>(product, HttpStatus.OK);
     }
 
@@ -53,6 +68,7 @@ public class ProductController {
     @GetMapping("/category/{product_category}")
     public Iterable<Product> getProductByCategory(@PathVariable String product_category){
         Iterable<Product> products = productService.findByCategory(product_category);
+        productService.allProductsUpdateByDate(products);
         return products;
     }
 
@@ -60,6 +76,7 @@ public class ProductController {
     @GetMapping("/uploaded/{seller_id}")
     public Iterable<Product> getProductsByOwnerId(@PathVariable Long seller_id){
         Iterable<Product> products = productService.findByOwnerId(seller_id);
+        productService.allProductsUpdateByDate(products);
         return products;
     }
 

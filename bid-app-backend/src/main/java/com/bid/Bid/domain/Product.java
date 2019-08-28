@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class Product {
@@ -28,8 +28,8 @@ public class Product {
 
 
 
-    private LocalDate expirationDate;
-    private LocalDate startedDate;
+    private LocalDateTime expirationDate;
+    private LocalDateTime startedDate;
     private boolean isActive;
     private boolean deleted;
 
@@ -129,11 +129,11 @@ public class Product {
         this.buyPrice = buyPrice;
     }
 
-    public LocalDate getExpirationDate() {
+    public LocalDateTime getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(LocalDate expirationDate) {
+    public void setExpirationDate(LocalDateTime expirationDate) {
         this.expirationDate = expirationDate;
     }
 
@@ -145,11 +145,11 @@ public class Product {
         this.numberOfBids = numberOfBids;
     }
 
-    public LocalDate getStartedDate() {
+    public LocalDateTime getStartedDate() {
         return startedDate;
     }
 
-    public void setStartedDate(LocalDate startedDate) {
+    public void setStartedDate(LocalDateTime startedDate) {
         this.startedDate = startedDate;
     }
 

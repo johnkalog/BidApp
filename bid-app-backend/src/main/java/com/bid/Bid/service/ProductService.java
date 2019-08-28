@@ -5,6 +5,8 @@ import com.bid.Bid.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class ProductService {
 
@@ -54,6 +56,22 @@ public class ProductService {
         product.setBestBidOwnerId(bidderId);
         saveOrUpdateProduct(product);
         return null;
+    }
+
+
+
+    public void allProductsUpdateByDate(Iterable<Product> products) {
+        for(Product product: products) {
+            productUpdateByDate(product);
+        }
+    }
+
+
+    public void productUpdateByDate(Product product) {
+        if(product.isActive() && (product.getExpirationDate().isBefore(LocalDateTime.now()) || product.getExpirationDate().isEqual(LocalDateTime.now()))) {
+            product.setActive(false);
+            saveOrUpdateProduct(product);
+        }
     }
 
 

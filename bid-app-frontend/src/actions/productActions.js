@@ -102,4 +102,7 @@ export const getUploadedSeller = dispatch => id => {
     });
 };
 
-export const deleteProduct = dispatch => product => {};
+export const deleteProduct = dispatch => product => {
+  // axios.post(`http://localhost:8080/api/products/delete/${product.id}`, bid).then(result => {
+  // }
+};
