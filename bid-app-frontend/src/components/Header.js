@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getProducts, getProductsBidder } from '../actions/productActions';
+import {
+  getProducts,
+  getProductsBidder,
+  getUploadedSeller
+} from '../actions/productActions';
 import { logOutUser, getUsers } from '../actions/userActions';
 import history from '../history';
 
@@ -10,7 +14,8 @@ const Header = ({
   getProducts,
   logOutUser,
   getUsers,
-  getProductsBidder
+  getProductsBidder,
+  getUploadedSeller
 }) => {
   const homeOrBid =
     Object.keys(user).length === 0 || user.status !== 'Accepted'
@@ -38,7 +43,7 @@ const Header = ({
           <Link
             to="./uploaded"
             className="nav-link"
-            onClick={() => getProductsBidder(user.id)}
+            onClick={() => getUploadedSeller(user.id)}
           >
             Uploaded
           </Link>
@@ -174,6 +179,7 @@ export default connect(
     getProducts: getProducts(dispatch),
     logOutUser: logOutUser(dispatch),
     getUsers: getUsers(dispatch),
-    getProductsBidder: getProductsBidder(dispatch)
+    getProductsBidder: getProductsBidder(dispatch),
+    getUploadedSeller: getUploadedSeller(dispatch)
   })
 )(Header);

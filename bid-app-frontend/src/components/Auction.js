@@ -15,7 +15,7 @@ const createAuction = (event, id, newAuction, inputError) => {
     description: event.target[5].value,
     productImage: event.target[6].value,
     expirationDate: event.target[7].value,
-    ownerId: id,
+    ownerId: id
     //status: true
   };
   if (newProduct.productName.length === 0) {
@@ -126,7 +126,7 @@ const Auction = ({ id, errors, newAuction, inputError }) => {
             <div className="form-group ">
               <h6 htmlFor="inputCity">End Date</h6>
               <input
-                type="date"
+                type="datetime-local"
                 className={classnames('form-control', {
                   'is-invalid': errors.expirationDate
                 })}

@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { deleteProduct } from '../actions/productActions';
 
-const UploadedItem = ({ product }) => {
+const UploadedItem = ({ product, deleteProduct }) => {
   const status = product.active ? 'Active' : 'Ended';
   const classForStatus = status === 'Active' ? 'green' : 'red';
   return (
@@ -34,8 +35,8 @@ const UploadedItem = ({ product }) => {
         <div className="product_count">
           <button
             className="genric-btn danger-border circle"
-            // onClick={() => deleteUser(user.id)}
-            title="You can delete it only if status"
+            onClick={() => deleteProduct(product)}
+            title="You can delete it only if status is not Active"
           >
             Delete
           </button>
@@ -49,5 +50,5 @@ export default connect(
   (state, ownProps) => ({
     product: ownProps.product
   }),
-  null
+  dispatch => ({ deleteProduct: deleteProduct(dispatch) })
 )(UploadedItem);

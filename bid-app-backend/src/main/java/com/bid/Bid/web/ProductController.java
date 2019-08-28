@@ -28,6 +28,7 @@ public class ProductController {
         product.setNumberOfBids(Long.valueOf(0));
         product.setBestBid(product.getFirstBid());
         product.setActive(true);
+        product.setDeleted(false);
         Product newProduct = productService.saveOrUpdateProduct(product);
         return new ResponseEntity<Product>(newProduct, HttpStatus.CREATED);
     }

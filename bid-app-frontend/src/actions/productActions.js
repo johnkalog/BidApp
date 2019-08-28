@@ -89,3 +89,17 @@ export const getProductsBidder = dispatch => id => {
     });
   });
 };
+
+export const getUploadedSeller = dispatch => id => {
+  console.log('fewewfewffew');
+  axios
+    .get(`http://localhost:8080/api/products/uploaded/${id}`)
+    .then(result => {
+      dispatch({
+        type: GET_PRODUCTS,
+        payload: result.data
+      });
+    });
+};
+
+export const deleteProduct = dispatch => product => {};
