@@ -31,62 +31,64 @@ const Header = ({
     FirstContent = '';
     SecondContent = '';
     ThirdContent = '';
-  } else if (user.type === 'Seller') {
-    FirstContent = (
-      <li>
-        <Link
-          to="./uploaded"
-          className="nav-link"
-          onClick={() => getProductsBidder(user.id)}
-        >
-          Uploaded
-        </Link>
-      </li>
-    );
-    SecondContent = (
-      <li>
-        <Link
-          to="./shop"
-          className="nav-link"
-          onClick={() => getProductsBidder(user.id)}
-        >
-          Shop
-        </Link>
-      </li>
-    );
-    ThirdContent = (
-      <li>
-        <Link to="./auction" className="nav-link">
-          Create Auction
-        </Link>
-      </li>
-    );
-  } else if (user.type === 'Bidder') {
-    FirstContent = (
-      <li>
-        <Link
-          to="./shop"
-          className="nav-link"
-          onClick={() => getProductsBidder(user.id)}
-        >
-          Shop
-        </Link>
-      </li>
-    );
-  } else if (user.type === 'Administrator') {
-    FirstContent = (
-      <li>
-        <Link
-          to="./users"
-          className="nav-link"
-          onClick={() => {
-            getUsers();
-          }}
-        >
-          Users
-        </Link>
-      </li>
-    );
+  } else if (user.status === 'Accepted') {
+    if (user.type === 'Seller') {
+      FirstContent = (
+        <li>
+          <Link
+            to="./uploaded"
+            className="nav-link"
+            onClick={() => getProductsBidder(user.id)}
+          >
+            Uploaded
+          </Link>
+        </li>
+      );
+      SecondContent = (
+        <li>
+          <Link
+            to="./shop"
+            className="nav-link"
+            onClick={() => getProductsBidder(user.id)}
+          >
+            Shop
+          </Link>
+        </li>
+      );
+      ThirdContent = (
+        <li>
+          <Link to="./auction" className="nav-link">
+            Create Auction
+          </Link>
+        </li>
+      );
+    } else if (user.type === 'Bidder') {
+      FirstContent = (
+        <li>
+          <Link
+            to="./shop"
+            className="nav-link"
+            onClick={() => getProductsBidder(user.id)}
+          >
+            Shop
+          </Link>
+        </li>
+      );
+    } else if (user.type === 'Administrator') {
+      FirstContent = (
+        <li>
+          <Link
+            to="./users"
+            className="nav-link"
+            onClick={() => {
+              getUsers();
+            }}
+          >
+            Users
+          </Link>
+        </li>
+      );
+    }
   }
   return (
     <div>

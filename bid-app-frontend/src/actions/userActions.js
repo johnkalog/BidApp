@@ -73,10 +73,10 @@ export const newUser = dispatch => theNewUser => {
   axios.post('http://localhost:8080/api/users/new', theNewUser).then(result => {
     if (result.data === '') {
       axios.post('http://localhost:8080/api/users/', theNewUser).then(res => {
-        // dispatch({
-        //   type: GET_USER,
-        //   payload: res.data
-        // });
+        dispatch({
+          type: GET_USER,
+          payload: res.data
+        });
         history.push('waiting');
       });
     } else {

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const UploadedItem = ({ product }) => {
-  const status = product.status ? 'Active' : 'Ended';
+  const status = product.active ? 'Active' : 'Ended';
   const classForStatus = status === 'Active' ? 'green' : 'red';
   return (
     <tr>
@@ -29,6 +29,17 @@ const UploadedItem = ({ product }) => {
       </td>
       <td>
         <h5 className={classForStatus}>{status}</h5>
+      </td>
+      <td>
+        <div className="product_count">
+          <button
+            className="genric-btn danger-border circle"
+            // onClick={() => deleteUser(user.id)}
+            title="You can delete it only if status"
+          >
+            Delete
+          </button>
+        </div>
       </td>
     </tr>
   );

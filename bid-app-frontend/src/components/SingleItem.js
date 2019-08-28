@@ -41,7 +41,8 @@ const SingleItem = ({ product, user, message, bidIt }) => {
                   <li>
                     <a href="#">
                       {' '}
-                      <span>Status</span> : {product.status}
+                      <span>Status</span> :{' '}
+                      {product.active ? 'Active' : 'Ended'}
                     </a>
                   </li>
                 </ul>

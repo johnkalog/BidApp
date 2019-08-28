@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const ShopItem = ({ product }) => {
-  const status = product.status ? 'Active' : 'Ended';
+  const status = product.active ? 'Active' : 'Ended';
   const classForStatus = status === 'Active' ? 'green' : 'red';
   console.log(classForStatus);
   return (
