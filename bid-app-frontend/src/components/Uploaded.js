@@ -1,8 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import UploadedItem from './UploadedItem';
+import { getUploadedSeller } from '../actions/productActions';
 
-const Uploaded = ({ products }) => {
+const Uploaded = ({ products, forSellerAppear, id, getUploadedSeller }) => {
+  if (forSellerAppear) {
+    getUploadedSeller(id);
+  }
   return (
     <div>
       <section className="cart_area padding_top">
@@ -35,7 +39,11 @@ const Uploaded = ({ products }) => {
 
 export default connect(
   state => ({
-    products: state.productsData.products
+    products: state.productsData.products,
+    forSellerAppear: state.usersData.forSellerAppear,
+    id: state.usersData.user.id
   }),
-  null
+  dispatch => ({
+    getUploadedSeller: getUploadedSeller(dispatch)
+  })
 )(Uploaded);

@@ -9,8 +9,10 @@ import {
   INPUT_CLEAR,
   ERROR_BID,
   AUCTION_ERROR,
-  DELETE_UPLOADED
+  DELETE_UPLOADED,
+  CHANGE_UPLOAD
 } from './types';
+import history from '../history';
 
 export const getProducts = dispatch => () => {
   axios.get('http://localhost:8080/api/products/allActive').then(result => {
@@ -34,6 +36,11 @@ export const newAuction = dispatch => theNewAuction => {
       dispatch({
         type: INPUT_CLEAR
       });
+      dispatch({
+        type: CHANGE_UPLOAD,
+        payload: true
+      });
+      history.push('uploaded');
     });
 };
 
@@ -106,6 +113,10 @@ export const getUploadedSeller = dispatch => id => {
       dispatch({
         type: GET_PRODUCTS,
         payload: result.data
+      });
+      dispatch({
+        type: CHANGE_UPLOAD,
+        payload: false
       });
     });
 };

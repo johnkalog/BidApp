@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faCog, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { deleteProduct } from '../actions/productActions';
 
 const UploadedItem = ({ product, deleteProduct }) => {
@@ -42,7 +42,8 @@ const UploadedItem = ({ product, deleteProduct }) => {
           >
             Delete
           </button> */}
-          <FontAwesomeIcon icon={faCoffee} />
+          <FontAwesomeIcon icon={faCog} title="refwe" size="2x" />
+          <FontAwesomeIcon icon={faEnvelope} />
         </div>
       </td>
     </tr>

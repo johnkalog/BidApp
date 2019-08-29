@@ -9,6 +9,7 @@ export const CHANGE_STATUS = 'CHANGE_STATUS';
 export const CHANGE_POP = 'CHANGE_POP';
 export const POP_INIT = 'POP_INIT';
 export const CHANGE_RELOAD = 'CHANGE_RELOAD';
+export const CHANGE_UPLOAD = ' CHANGE_UPLOAD';
 
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const GET_PRODUCT = 'GET_PRODUCT';

@@ -9,7 +9,8 @@ import {
   CHANGE_STATUS,
   CHANGE_POP,
   POP_INIT,
-  CHANGE_RELOAD
+  CHANGE_RELOAD,
+  CHANGE_UPLOAD
 } from '../actions/types';
 
 const initialState = {
@@ -25,7 +26,8 @@ const initialState = {
   loginMessage: '',
   signUpMessage: '',
   popups: [], //for controlling Info at each user
-  forUserAppear: false
+  forUserAppear: false,
+  forSellerAppear: false
 };
 
 const userReducer = (state = initialState, action) => {
@@ -41,6 +43,10 @@ const userReducer = (state = initialState, action) => {
       if (action.payload.type === 'Administrator') {
         appear = true;
       }
+      let upload = false;
+      if (action.payload.type === 'Seller') {
+        upload = true;
+      }
       return {
         ...state,
         user: action.payload,
@@ -51,7 +57,8 @@ const userReducer = (state = initialState, action) => {
         },
         loginMessage: '',
         signUpMessage: '',
-        forUserAppear: appear
+        forUserAppear: appear,
+        forSellerAppear: upload
       };
 
     case DELETE_USER:
@@ -109,6 +116,8 @@ const userReducer = (state = initialState, action) => {
         ...state,
         forUserAppear: false
       };
+    case CHANGE_UPLOAD:
+      return { ...state, forSellerAppear: action.payload };
     default:
       return state;
   }
