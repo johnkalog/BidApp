@@ -25,6 +25,8 @@ public class Product {
     private Long buyPrice;
     private Long BestBidOwnerId;
     private Long numberOfBids;
+    private Long value; //temp for bidder
+    private String bestBidderName; //temp for seller
 
 
 
@@ -164,5 +166,21 @@ public class Product {
 
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public Long getValue() {
+        return value;
+    }
+
+    public void setValue(Long value) {
+        this.value = value;
+    }
+
+    public String getBestBidderName() {
+        return bestBidderName;
+    }
+
+    public void setBestBidderName(String bestBidderName) {
+        this.bestBidderName = bestBidderName;
     }
 }

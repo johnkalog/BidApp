@@ -52,6 +52,13 @@ public class ProductController {
         return products;
     }
 
+    @GetMapping("/allActive")
+    public Iterable<Product> getAllActiveproducts(){
+        Iterable<Product> products = productService.findByActive();
+        productService.allProductsUpdateByDate(products);
+        return products;
+    }
+
     @GetMapping("/{product_id}")
     public ResponseEntity<?> getProductById(@PathVariable Long product_id){
         Product product = productService.findById(product_id);

@@ -23,7 +23,7 @@ const ShopItem = ({ product }) => {
         </div>
       </td>
       <td>
-        <h5>$360.00</h5>
+        <h5>{'$' + product.value}</h5>
       </td>
       <td>
         <h5>{'$' + product.bestBid}</h5>

@@ -7,11 +7,13 @@ import {
   GET_PRODUCT,
   NEW_AUCTION,
   INPUT_CLEAR,
-  ERROR_BID
+  ERROR_BID,
+  AUCTION_ERROR,
+  DELETE_UPLOADED
 } from './types';
 
 export const getProducts = dispatch => () => {
-  axios.get('http://localhost:8080/api/products/all').then(result => {
+  axios.get('http://localhost:8080/api/products/allActive').then(result => {
     dispatch({
       type: GET_PRODUCTS,
       payload: result.data
@@ -22,10 +24,17 @@ export const getProducts = dispatch => () => {
 export const newAuction = dispatch => theNewAuction => {
   axios
     .post('http://localhost:8080/api/products', theNewAuction)
-    .then(result => console.log(result.data));
-  dispatch({
-    type: INPUT_CLEAR
-  });
+    .then(result => {
+      if (typeof result.data === 'string') {
+        dispatch({
+          type: AUCTION_ERROR,
+          payload: result.data
+        });
+      }
+      dispatch({
+        type: INPUT_CLEAR
+      });
+    });
 };
 
 export const getProduct = dispatch => id => {
@@ -45,7 +54,7 @@ export const bidIt = dispatch => (product, user, amount) => {
     bidderId: userId
   };
   confirmAlert({
-    title: 'You are going bid',
+    title: 'You are going to bid',
     message: 'Are you sure?',
     buttons: [
       {
@@ -102,7 +111,11 @@ export const getUploadedSeller = dispatch => id => {
     });
 };
 
-export const deleteProduct = dispatch => product => {
-  // axios.post(`http://localhost:8080/api/products/delete/${product.id}`, bid).then(result => {
-  // }
+export const deleteProduct = dispatch => id => {
+  axios.post(`http://localhost:8080/api/products/delete/${id}`).then(result => {
+    dispatch({
+      type: DELETE_UPLOADED,
+      payload: id
+    });
+  });
 };

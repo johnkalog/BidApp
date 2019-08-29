@@ -55,7 +55,7 @@ public class BidController {
     @GetMapping("/products/{bidder_id}")
     public Iterable<Product> getProductsByBidderId(@PathVariable Long bidder_id) {
         Iterable<Product> products = bidService.findProduct(bidder_id);
-        productService.allProductsUpdateByDate(products);
+        //productService.allProductsUpdateByDate(products);
         return products;
     }
 

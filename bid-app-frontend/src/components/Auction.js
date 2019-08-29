@@ -43,7 +43,7 @@ const createAuction = (event, id, newAuction, inputError) => {
   newAuction(newProduct);
 };
 
-const Auction = ({ id, errors, newAuction, inputError }) => {
+const Auction = ({ id, errors, auctionError, newAuction, inputError }) => {
   return (
     <div className="product_image_area section_padding">
       <div className="container container2">
@@ -134,6 +134,7 @@ const Auction = ({ id, errors, newAuction, inputError }) => {
               />
             </div>
           </div>
+          <div className="message-auction-red">{auctionError}</div>
           <div className="form-group">
             <input type="submit" className="btn btn-primary" value="Submit" />
           </div>
@@ -146,7 +147,8 @@ const Auction = ({ id, errors, newAuction, inputError }) => {
 export default connect(
   state => ({
     id: state.usersData.user.id,
-    errors: state.productsData.errors
+    errors: state.productsData.errors,
+    auctionError: state.productsData.auctionError
   }),
   dispatch => ({
     newAuction: newAuction(dispatch),

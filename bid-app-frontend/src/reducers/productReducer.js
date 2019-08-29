@@ -5,7 +5,9 @@ import {
   NEW_AUCTION,
   INPUT_ERROR,
   INPUT_CLEAR,
-  ERROR_BID
+  ERROR_BID,
+  AUCTION_ERROR,
+  DELETE_UPLOADED
 } from '../actions/types';
 
 const initialState = {
@@ -20,7 +22,8 @@ const initialState = {
     productImage: false,
     expirationDate: false
   },
-  message: ''
+  message: '',
+  auctionError: ''
 };
 
 const productReducer = (state = initialState, action) => {
@@ -71,6 +74,13 @@ const productReducer = (state = initialState, action) => {
       };
     case ERROR_BID:
       return { ...state, message: action.payload };
+    case AUCTION_ERROR:
+      return { ...state, auctionError: action.payload };
+    case DELETE_UPLOADED:
+      return {
+        ...state,
+        products: state.products.filter(item => item.id !== action.payload)
+      };
     default:
       return state;
   }

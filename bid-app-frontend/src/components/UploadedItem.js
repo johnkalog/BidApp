@@ -23,7 +23,7 @@ const UploadedItem = ({ product, deleteProduct }) => {
         </div>
       </td>
       <td>
-        <h5>$360.00</h5>
+        <h5>{product.bestBidderName}</h5>
       </td>
       <td>
         <h5>{'$' + product.bestBid}</h5>
@@ -35,7 +35,7 @@ const UploadedItem = ({ product, deleteProduct }) => {
         <div className="product_count">
           <button
             className="genric-btn danger-border circle"
-            onClick={() => deleteProduct(product)}
+            onClick={() => deleteProduct(product.id)}
             title="You can delete it only if status is not Active"
           >
             Delete

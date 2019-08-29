@@ -1,7 +1,9 @@
 package com.bid.Bid.service;
 
 import com.bid.Bid.domain.Product;
+import com.bid.Bid.domain.User;
 import com.bid.Bid.repository.ProductRepository;
+import com.bid.Bid.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,9 @@ public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     public Product saveOrUpdateProduct(Product product){
         return productRepository.save(product);
@@ -26,7 +31,7 @@ public class ProductService {
     }
 
     public Iterable<Product> findByOwnerId(Long owner_id){
-        return productRepository.findByOwnerId(owner_id);
+        return productRepository.findByOwnerIdAndDeleted(owner_id,false);
     }
 
 
@@ -51,9 +56,14 @@ public class ProductService {
             return "A better offer already exists";
         }
         //System.err.println(value);
+        User user = userRepository.getById(bidderId);
         product.setNumberOfBids(product.getNumberOfBids()+1);
         product.setBestBid(value);
         product.setBestBidOwnerId(bidderId);
+        product.setBestBidderName(user.getUsername());
+        if(product.getBuyPrice()!= null && product.getBuyPrice() <=  value) {
+            product.setActive(false);
+        }
         saveOrUpdateProduct(product);
         return null;
     }
@@ -82,5 +92,9 @@ public class ProductService {
 
     public Iterable<Product> findByCategory(String category){
         return productRepository.findByCategory(category);
+    }
+
+    public Iterable<Product> findByActive() {
+        return productRepository.findByIsActiveAndDeleted(true,false);
     }
 }

@@ -16,3 +16,5 @@ export const DELETE_PRODUCT = 'DELETE_PRODUCT';
 export const NEW_AUCTION = 'NEW_AUCTION';
 export const INPUT_CLEAR = 'INPUT_CLEAR';
 export const ERROR_BID = 'ERROR_BID';
+export const AUCTION_ERROR = 'AUCTION_ERROR';
+export const DELETE_UPLOADED = 'DELETE_UPLOADED';

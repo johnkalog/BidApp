@@ -57,8 +57,13 @@ public class BidService {
         ArrayList<Product> products = new ArrayList<Product>();
         for(Bid value : bids) {
             Product product = productService.findById(value.getProductId());
-            if (!products.contains(product)) {
+            if (!product.isDeleted() && !products.contains(product)) {
+                productService.productUpdateByDate(product);
+                product.setValue(value.getOffer());
                 products.add(product);
+            }
+            else if (product.getValue() < value.getOffer()) {
+                    product.setValue(value.getOffer());
             }
         }
         return products;

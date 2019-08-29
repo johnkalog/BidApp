@@ -9,5 +9,7 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
 
     Product getById(Long id);
     Iterable<Product> findByCategory(String category);
-    Iterable<Product> findByOwnerId(Long owner_id);
+    Iterable<Product> findByOwnerIdAndDeleted(Long owner_id,boolean deleted);
+
+    Iterable<Product> findByIsActiveAndDeleted(boolean active,boolean deleted);
 }
