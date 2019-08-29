@@ -16,7 +16,7 @@ const Uploaded = ({ products }) => {
                     <th scope="col">User with best bid</th>
                     <th scope="col">Best Bid</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Delete</th>
+                    <th scope="col">Actions</th>
                   </tr>
                 </thead>
                 <tbody>

@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { deleteProduct } from '../actions/productActions';
 
 const UploadedItem = ({ product, deleteProduct }) => {
@@ -33,13 +35,14 @@ const UploadedItem = ({ product, deleteProduct }) => {
       </td>
       <td>
         <div className="product_count">
-          <button
+          {/* <button
             className="genric-btn danger-border circle"
             onClick={() => deleteProduct(product.id)}
             title="You can delete it only if status is not Active"
           >
             Delete
-          </button>
+          </button> */}
+          <FontAwesomeIcon icon={faCoffee} />
         </div>
       </td>
     </tr>

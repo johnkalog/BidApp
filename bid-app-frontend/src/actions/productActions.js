@@ -100,7 +100,6 @@ export const getProductsBidder = dispatch => id => {
 };
 
 export const getUploadedSeller = dispatch => id => {
-  console.log('fewewfewffew');
   axios
     .get(`http://localhost:8080/api/products/uploaded/${id}`)
     .then(result => {
@@ -118,4 +117,15 @@ export const deleteProduct = dispatch => id => {
       payload: id
     });
   });
+};
+
+export const showCategory = dispatch => category => {
+  axios
+    .get(`http://localhost:8080/api/products/category/${category}`)
+    .then(result => {
+      dispatch({
+        type: GET_PRODUCTS,
+        payload: result.data
+      });
+    });
 };

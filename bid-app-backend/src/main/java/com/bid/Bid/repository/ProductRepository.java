@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface ProductRepository extends CrudRepository<Product, Long> {
 
     Product getById(Long id);
-    Iterable<Product> findByCategory(String category);
+    Iterable<Product> findByCategoryAndIsActiveAndDeleted(String category,boolean active,boolean deleted);
     Iterable<Product> findByOwnerIdAndDeleted(Long owner_id,boolean deleted);
 
     Iterable<Product> findByIsActiveAndDeleted(boolean active,boolean deleted);

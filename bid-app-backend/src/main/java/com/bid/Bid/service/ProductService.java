@@ -91,7 +91,7 @@ public class ProductService {
     }
 
     public Iterable<Product> findByCategory(String category){
-        return productRepository.findByCategory(category);
+        return productRepository.findByCategoryAndIsActiveAndDeleted(category,true,false);
     }
 
     public Iterable<Product> findByActive() {
