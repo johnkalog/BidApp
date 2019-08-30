@@ -1,10 +1,46 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCog, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCog,
+  faEnvelope,
+  faTrashAlt
+} from '@fortawesome/free-solid-svg-icons';
 import { deleteProduct } from '../actions/productActions';
 
 const UploadedItem = ({ product, deleteProduct }) => {
+  const actions =
+    product.bestBidOwnerId === null ? (
+      <div>
+        <FontAwesomeIcon
+          icon={faCog}
+          title="Update"
+          size="2x"
+          pull="left"
+          className="actions update"
+        />
+        <FontAwesomeIcon
+          icon={faTrashAlt}
+          title="Delete"
+          size="2x"
+          pull="right"
+          className="actions delete"
+          onClick={() => deleteProduct(product.id)}
+        />
+      </div>
+    ) : !product.active ? (
+      <div>
+        <FontAwesomeIcon
+          icon={faEnvelope}
+          title="Messages"
+          size="2x"
+          pull="left"
+          className="actions messages"
+        />
+      </div>
+    ) : (
+      ''
+    );
   const status = product.active ? 'Active' : 'Ended';
   const classForStatus = status === 'Active' ? 'green' : 'red';
   return (
@@ -35,15 +71,28 @@ const UploadedItem = ({ product, deleteProduct }) => {
       </td>
       <td>
         <div className="product_count">
-          {/* <button
-            className="genric-btn danger-border circle"
-            onClick={() => deleteProduct(product.id)}
-            title="You can delete it only if status is not Active"
-          >
-            Delete
-          </button> */}
-          <FontAwesomeIcon icon={faCog} title="refwe" size="2x" />
-          <FontAwesomeIcon icon={faEnvelope} />
+          {actions}
+          {/* <FontAwesomeIcon
+            icon={faCog}
+            title="Update"
+            size="2x"
+            pull="left"
+            className="actions update"
+          />
+          <FontAwesomeIcon
+            icon={faEnvelope}
+            title="Messages"
+            size="2x"
+            pull="right"
+            className="actions messages"
+          />
+          <FontAwesomeIcon
+            icon={faTrashAlt}
+            title="Delete"
+            size="2x"
+            pull="right"
+            className="actions delete"
+          /> */}
         </div>
       </td>
     </tr>

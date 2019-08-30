@@ -131,3 +131,19 @@
   font-size: 16px;
   font-weight: bold;
 }
+
+.actions {
+  cursor: pointer;
+}
+
+.update {
+  color: rgb(207, 207, 23);
+}
+
+.messages {
+  color: rgb(14, 14, 167);
+}
+
+.delete {
+  color: rgb(219, 22, 22);
+}
