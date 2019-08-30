@@ -58,7 +58,7 @@ const Auction = ({ id, errors, auctionError, newAuction, inputError }) => {
                 className={classnames('form-control', {
                   'is-invalid': errors.productName
                 })}
-                placeholder="Product Name"
+                placeholder="Product Name *"
               />
             </div>
             <div className="form-group col-md-6">
@@ -69,7 +69,7 @@ const Auction = ({ id, errors, auctionError, newAuction, inputError }) => {
                   'is-invalid': errors.category
                 })}
                 id="inputPassword4"
-                placeholder="Category"
+                placeholder="Category *"
               />
             </div>
           </div>
@@ -81,7 +81,7 @@ const Auction = ({ id, errors, auctionError, newAuction, inputError }) => {
                 className={classnames('form-control', {
                   'is-invalid': errors.firstBid
                 })}
-                placeholder="minimum price"
+                placeholder="minimum price *"
               />
             </div>
             <div className="form-group col-md-6">
@@ -101,7 +101,7 @@ const Auction = ({ id, errors, auctionError, newAuction, inputError }) => {
               className={classnames('form-control', {
                 'is-invalid': errors.location
               })}
-              placeholder="Location"
+              placeholder="Location *"
             />
           </div>
           <div className="form-row">
@@ -112,6 +112,7 @@ const Auction = ({ id, errors, auctionError, newAuction, inputError }) => {
                   'is-invalid': errors.description
                 })}
                 rows="4"
+                placeholder="Write here..."
               ></textarea>
             </div>
             <div className="form-group col-md-6">

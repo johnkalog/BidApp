@@ -23,6 +23,16 @@ export const getProducts = dispatch => () => {
   });
 };
 
+export const atActionStart = dispatch => () => {
+  dispatch({
+    type: INPUT_CLEAR
+  });
+  dispatch({
+    type: AUCTION_ERROR,
+    payload: ''
+  });
+};
+
 export const newAuction = dispatch => theNewAuction => {
   axios
     .post('http://localhost:8080/api/products', theNewAuction)
@@ -32,15 +42,13 @@ export const newAuction = dispatch => theNewAuction => {
           type: AUCTION_ERROR,
           payload: result.data
         });
+      } else if (typeof result.data === 'object') {
+        dispatch({
+          type: CHANGE_UPLOAD,
+          payload: true
+        });
+        history.push('uploaded');
       }
-      dispatch({
-        type: INPUT_CLEAR
-      });
-      dispatch({
-        type: CHANGE_UPLOAD,
-        payload: true
-      });
-      history.push('uploaded');
     });
 };
 
@@ -71,7 +79,7 @@ export const bidIt = dispatch => (product, user, amount) => {
       {
         label: 'Yes',
         onClick: () => {
-          if (amount === undefined) {
+          if (amount === undefined || amount === '') {
             dispatch({
               type: ERROR_BID,
               payload: 'Please choose amount'

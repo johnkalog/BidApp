@@ -52,7 +52,7 @@ const Login = ({
             placeholder="Password *"
           />
         </div>
-        <h6>{loginMessage}</h6>
+        <div className="message-auction-red">{loginMessage}</div>
         <div className="form-group">
           <input
             type="submit"

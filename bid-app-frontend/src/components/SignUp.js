@@ -157,7 +157,7 @@ const SignUp = ({
             </select>
           </div>
         </div>
-        <h6>{signUpMessage}</h6>
+        <div className="message-auction-red">{signUpMessage}</div>
         <div className="form-group">
           <input
             type="submit"

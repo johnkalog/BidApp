@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import {
   getProducts,
   getProductsBidder,
-  getUploadedSeller
+  getUploadedSeller,
+  atActionStart
 } from '../actions/productActions';
 import { logOutUser, getUsers } from '../actions/userActions';
 import history from '../history';
@@ -15,7 +16,8 @@ const Header = ({
   logOutUser,
   getUsers,
   getProductsBidder,
-  getUploadedSeller
+  getUploadedSeller,
+  atActionStart
 }) => {
   const homeOrBid =
     Object.keys(user).length === 0 || user.status !== 'Accepted'
@@ -29,6 +31,16 @@ const Header = ({
     Object.keys(user).length === 0 || user.status !== 'Accepted'
       ? ''
       : 'Log Out';
+  const GoToMessages =
+    Object.keys(user).length === 0 ? (
+      ''
+    ) : (
+      <li>
+        <Link to="./contact" className="nav-link">
+          Messages
+        </Link>
+      </li>
+    );
   let FirstContent = '';
   let SecondContent = '';
   let ThirdContent = '';
@@ -62,7 +74,11 @@ const Header = ({
       );
       ThirdContent = (
         <li>
-          <Link to="./auction" className="nav-link">
+          <Link
+            to="./auction"
+            className="nav-link"
+            onClick={() => atActionStart()}
+          >
             Create Auction
           </Link>
         </li>
@@ -146,11 +162,7 @@ const Header = ({
                   {FirstContent}
                   {SecondContent}
                   {ThirdContent}
-                  <li>
-                    <Link to="./contact" className="nav-link">
-                      Contact
-                    </Link>
-                  </li>
+                  {GoToMessages}
                 </ul>
               </nav>
             </div>
@@ -180,6 +192,7 @@ export default connect(
     logOutUser: logOutUser(dispatch),
     getUsers: getUsers(dispatch),
     getProductsBidder: getProductsBidder(dispatch),
-    getUploadedSeller: getUploadedSeller(dispatch)
+    getUploadedSeller: getUploadedSeller(dispatch),
+    atActionStart: atActionStart(dispatch)
   })
 )(Header);
