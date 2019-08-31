@@ -1,15 +1,63 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { changeTheError, createNewMessage } from '../actions/messageActions';
 
-const submitMessage = event => {
+const submitMessage = (
+  event,
+  to,
+  user,
+  productsForCheck,
+  changeTheError,
+  createNewMessage
+) => {
   event.preventDefault();
-  const message = event.target[0].value;
-  const subject = event.target[1].value;
-  if (message.length === 0) {
+  const subject = event.target[0].value;
+  const message = event.target[1].value;
+  if (subject === `${to}-Product`) {
+    changeTheError("You can't send message to anyone");
+    return;
   }
+  if (message.length === 0) {
+    changeTheError('Please fill the message');
+    return;
+  }
+  const senderId = user.id;
+  let productForSearch;
+  let receiverId;
+  if (user.type === 'Bidder') {
+    productForSearch = productsForCheck.find(
+      item =>
+        item.ownerName === subject.split('-')[0] &&
+        item.productName === subject.split('-')[1]
+    );
+    receiverId = productForSearch.ownerId;
+  } else if (user.type === 'Seller') {
+    productForSearch = productsForCheck.find(
+      item =>
+        item.bestBidderName === subject.split('-')[0] &&
+        item.productName === subject.split('-')[1]
+    );
+    receiverId = productForSearch.bestBidOwnerId;
+  }
+  const productId = productForSearch.id;
+  const messageForSubmit = {
+    senderId,
+    receiverId,
+    productId,
+    message,
+    subject
+  };
+  createNewMessage(user.id, messageForSubmit);
 };
 
-const Contact = ({ user }) => {
+const Contact = ({
+  user,
+  errorOnSubmit,
+  subjects,
+  productsForCheck,
+  changeTheError,
+  createNewMessage
+}) => {
   const info =
     user.type === 'Bidder'
       ? "You can send message only to sellers that you've bought their product"
@@ -22,7 +70,6 @@ const Contact = ({ user }) => {
           <div className="d-none d-sm-block mb-5 pb-4">
             <div id="map" />
           </div>
-
           <div className="row">
             <div className="col-12">
               <h2 className="contact-title">Fill the fields</h2>
@@ -30,14 +77,25 @@ const Contact = ({ user }) => {
             <div className="col-lg-8">
               <form
                 className="form-contact contact_form"
-                onSubmit={event => submitMessage(event)}
+                onSubmit={event =>
+                  submitMessage(
+                    event,
+                    to,
+                    user,
+                    productsForCheck,
+                    changeTheError,
+                    createNewMessage
+                  )
+                }
               >
                 <div className="row">
                   <div className="col-12">
                     <div className="form-group">
                       <select className="form-control">
-                        <option>Bidder</option>
-                        <option>Seller</option>
+                        <option>{`${to}-Product`}</option>
+                        {subjects.map(item => (
+                          <option key={item.id}>{item}</option>
+                        ))}
                       </select>
                     </div>
                   </div>
@@ -62,6 +120,7 @@ const Contact = ({ user }) => {
                   />
                 </div>
               </form>
+              <div className="message-auction-red">{errorOnSubmit}</div>
             </div>
             <div className="col-lg-4">
               <div className="media contact-info">
@@ -98,7 +157,13 @@ const Contact = ({ user }) => {
 
 export default connect(
   state => ({
-    user: state.usersData.user
+    user: state.usersData.user,
+    errorOnSubmit: state.messagesData.errorOnSubmit,
+    subjects: state.messagesData.subjects,
+    productsForCheck: state.messagesData.productsForCheck
   }),
-  null
+  dispatch => ({
+    changeTheError: changeTheError(dispatch),
+    createNewMessage: createNewMessage(dispatch)
+  })
 )(Contact);

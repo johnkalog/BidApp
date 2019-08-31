@@ -132,7 +132,7 @@ const Auction = ({ id, errors, auctionError, newAuction, inputError }) => {
             <div className="form-group col-md-6">
               <h6>Image</h6>
               <input
-                type="file"
+                type="text"
                 className={classnames('form-control', {
                   'is-invalid': errors.productImage
                 })}

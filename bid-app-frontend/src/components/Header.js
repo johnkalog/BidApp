@@ -8,6 +8,7 @@ import {
   atActionStart
 } from '../actions/productActions';
 import { logOutUser, getUsers } from '../actions/userActions';
+import { getInbox } from '../actions/messageActions';
 import history from '../history';
 
 const Header = ({
@@ -17,7 +18,8 @@ const Header = ({
   getUsers,
   getProductsBidder,
   getUploadedSeller,
-  atActionStart
+  atActionStart,
+  getInbox
 }) => {
   const homeOrBid =
     Object.keys(user).length === 0 || user.status !== 'Accepted'
@@ -36,7 +38,11 @@ const Header = ({
       ''
     ) : (
       <li>
-        <Link to="./messages" className="nav-link">
+        <Link
+          to="./messages"
+          className="nav-link"
+          onClick={() => getInbox(user.id)}
+        >
           Messages
         </Link>
       </li>
@@ -193,6 +199,7 @@ export default connect(
     getUsers: getUsers(dispatch),
     getProductsBidder: getProductsBidder(dispatch),
     getUploadedSeller: getUploadedSeller(dispatch),
-    atActionStart: atActionStart(dispatch)
+    atActionStart: atActionStart(dispatch),
+    getInbox: getInbox(dispatch)
   })
 )(Header);

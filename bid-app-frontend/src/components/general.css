@@ -239,3 +239,8 @@
   color: red;
   cursor: pointer;
 }
+
+.close-message {
+  font-size: 30px;
+  color: red;
+}

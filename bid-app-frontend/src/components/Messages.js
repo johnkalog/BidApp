@@ -8,9 +8,23 @@ import {
   faTrashAlt
 } from '@fortawesome/free-solid-svg-icons';
 import SpecificMessagePop from './SpecificMessagePop';
-import history from '../history';
+import {
+  redirectToContact,
+  getInbox,
+  getSent,
+  showMessage
+} from '../actions/messageActions';
 
-const Messages = () => {
+const Messages = ({
+  user,
+  messages,
+  inboxOrNot,
+  showTheMessage,
+  redirectToContact,
+  getInbox,
+  getSent,
+  showMessage
+}) => {
   return (
     <div>
       <section>
@@ -24,11 +38,17 @@ const Messages = () => {
                   </div>
                   <div className="widgets_inner">
                     <ul className="list to_options_message">
-                      <li className="li-of-message">
+                      <li
+                        className="li-of-message"
+                        onClick={() => getInbox(user.id)}
+                      >
                         <FontAwesomeIcon icon={faInbox} size="2x" pull="left" />
                         <h5 className="actions email-with-icons">Inbox</h5>
                       </li>
-                      <li className="li-of-message">
+                      <li
+                        className="li-of-message"
+                        onClick={() => getSent(user.id)}
+                      >
                         <FontAwesomeIcon
                           icon={faPaperPlane}
                           size="2x"
@@ -38,7 +58,7 @@ const Messages = () => {
                       </li>
                       <li
                         className="li-of-message"
-                        onClick={() => history.push('contact')}
+                        onClick={() => redirectToContact(user.id, user.type)}
                       >
                         <FontAwesomeIcon
                           icon={faPlusCircle}
@@ -57,7 +77,7 @@ const Messages = () => {
                 <div className="col-lg-12">
                   <div className="product_top_bar d-flex justify-content-between align-items-center border-down-messages">
                     <div className="single_product_menu at-the-left">
-                      <p>From</p>
+                      <p>{inboxOrNot ? 'From' : 'To'}</p>
                     </div>
                     <div className="single_product_menu d-flex at-the-center">
                       <p>Subject</p>
@@ -67,56 +87,59 @@ const Messages = () => {
                     </div>
                     <div className="delete-the-message"></div>
                   </div>
-                  <div className="product_top_bar d-flex justify-content-between align-items-center border-down-email">
-                    <div className="single_product_menu at-the-left">
-                      <p>admin</p>
+                  {messages.map(item => (
+                    <div
+                      className="product_top_bar d-flex justify-content-between align-items-center border-down-email"
+                      key={item.id}
+                      onClick={() => {
+                        // alert('fewwewefwef');
+                        showMessage(item);
+                      }}
+                    >
+                      <div className="single_product_menu at-the-left">
+                        <p>{item.subject.split('-')[0]}</p>
+                      </div>
+                      <div className="single_product_menu d-flex at-the-center">
+                        <p>{item.subject}</p>
+                      </div>
+                      <div className="single_product_menu d-flex at-the-right-smaller">
+                        <p>{item.messageDate}</p>
+                      </div>
+                      <div className="delete-the-message">
+                        <FontAwesomeIcon
+                          icon={faTrashAlt}
+                          size="1x"
+                          pull="right"
+                          className="actions"
+                          onClick={() => {
+                            alert('dedwrb');
+                          }}
+                        />
+                      </div>
                     </div>
-                    <div className="single_product_menu d-flex at-the-center">
-                      <p>All fine</p>
-                    </div>
-                    <div className="single_product_menu d-flex at-the-right-smaller">
-                      <p>30-8-2019</p>
-                    </div>
-                    <div className="delete-the-message">
-                      <FontAwesomeIcon
-                        icon={faTrashAlt}
-                        size="1x"
-                        pull="right"
-                        className="actions"
-                      />
-                    </div>
-                  </div>
-                  <div className="product_top_bar d-flex justify-content-between align-items-center border-down-email">
-                    <div className="single_product_menu at-the-left">
-                      <p>admin</p>
-                    </div>
-                    <div className="single_product_menu d-flex at-the-center">
-                      <p>All fine</p>
-                    </div>
-                    <div className="single_product_menu d-flex at-the-right-smaller">
-                      <p>30-8-2019</p>
-                    </div>
-                    <div className="delete-the-message">
-                      <FontAwesomeIcon
-                        icon={faTrashAlt}
-                        size="1x"
-                        pull="right"
-                        className="actions"
-                      />
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-      {/* <SpecificMessagePop /> */}
+      {showTheMessage ? <SpecificMessagePop /> : ''}
     </div>
   );
 };
 
 export default connect(
-  null,
-  null
+  state => ({
+    user: state.usersData.user,
+    messages: state.messagesData.messages,
+    inboxOrNot: state.messagesData.inboxOrNot,
+    showTheMessage: state.messagesData.showTheMessage
+  }),
+  dispatch => ({
+    redirectToContact: redirectToContact(dispatch),
+    getInbox: getInbox(dispatch),
+    getSent: getSent(dispatch),
+    showMessage: showMessage(dispatch)
+  })
 )(Messages);

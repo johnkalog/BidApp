@@ -1,8 +1,22 @@
-import { GET_MESSAGES, DELETE_MESSAGE, GET_MESSAGE } from '../actions/types';
+import {
+  GET_MESSAGES,
+  DELETE_MESSAGE,
+  GET_MESSAGE,
+  CHANGE_MESSAGE,
+  GET_SUBJECTS,
+  GET_CURRENT_PRODUCTS,
+  CHANGE_INBOX,
+  SHOW_MESSAGE
+} from '../actions/types';
 
 const initialState = {
-  users: [],
-  user: {}
+  messages: [],
+  message: {},
+  subjects: [],
+  productsForCheck: [],
+  errorOnSubmit: '',
+  inboxOrNot: true,
+  showTheMessage: false
 };
 
 const messageReducer = (state = initialState, action) => {
@@ -10,20 +24,30 @@ const messageReducer = (state = initialState, action) => {
     case GET_MESSAGES:
       return {
         ...state,
-        users: action.payload
+        messages: action.payload
       };
 
     case GET_MESSAGE:
       return {
         ...state,
-        user: action.payload
+        message: action.payload
       };
 
     case DELETE_MESSAGE:
       return {
         ...state,
-        users: state.users.filter(user => user.id !== action.payload)
+        message: state.users.filter(user => user.id !== action.payload)
       };
+    case CHANGE_MESSAGE:
+      return { ...state, errorOnSubmit: action.payload };
+    case GET_SUBJECTS:
+      return { ...state, subjects: action.payload };
+    case GET_CURRENT_PRODUCTS:
+      return { ...state, productsForCheck: action.payload };
+    case CHANGE_INBOX:
+      return { ...state, inboxOrNot: action.payload };
+    case SHOW_MESSAGE:
+      return { ...state, showTheMessage: action.payload };
     default:
       return state;
   }
