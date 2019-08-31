@@ -16,7 +16,6 @@ const Item = ({ product, getProduct }) => {
             className="add_cart"
             onClick={() => {
               getProduct(product.id);
-              history.push('single');
             }}
           >
             Bid It

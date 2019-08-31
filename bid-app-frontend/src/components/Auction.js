@@ -58,19 +58,33 @@ const Auction = ({ id, errors, auctionError, newAuction, inputError }) => {
                 className={classnames('form-control', {
                   'is-invalid': errors.productName
                 })}
-                placeholder="Product Name *"
+                placeholder="Product Name"
               />
             </div>
             <div className="form-group col-md-6">
               <h6>Category</h6>
-              <input
-                type="text"
-                className={classnames('form-control', {
-                  'is-invalid': errors.category
-                })}
-                id="inputPassword4"
-                placeholder="Category *"
-              />
+              <select class="form-control">
+                <option>Electronics</option>
+                <option>&nbsp;&nbsp;&nbsp;&nbsp;Phone</option>
+                <option>&nbsp;&nbsp;&nbsp;&nbsp;Computers & Tablets </option>
+
+                <option>Fashion</option>
+                <option>&nbsp;&nbsp;&nbsp;&nbsp;Women's Clothing</option>
+                <option>&nbsp;&nbsp;&nbsp;&nbsp;Men's Clothing</option>
+
+                <option>Toys & Hobbies</option>
+                <option>&nbsp;&nbsp;&nbsp;&nbsp;Action Figures</option>
+                <option>&nbsp;&nbsp;&nbsp;&nbsp;Toy Models</option>
+
+                <option>Sporting Goods</option>
+                <option>&nbsp;&nbsp;&nbsp;&nbsp;Water Sports</option>
+                <option>&nbsp;&nbsp;&nbsp;&nbsp;Winter Sports</option>
+
+                <option>Others Categories</option>
+                <option>&nbsp;&nbsp;&nbsp;&nbsp;Musical Instruments</option>
+                <option>&nbsp;&nbsp;&nbsp;&nbsp;Art</option>
+                <option>&nbsp;&nbsp;&nbsp;&nbsp;Toys & Hobbies</option>
+              </select>
             </div>
           </div>
           <div className="form-row">
@@ -116,9 +130,9 @@ const Auction = ({ id, errors, auctionError, newAuction, inputError }) => {
               ></textarea>
             </div>
             <div className="form-group col-md-6">
-              <h6 htmlFor="inputCity">Image</h6>
+              <h6>Image</h6>
               <input
-                type="text"
+                type="file"
                 className={classnames('form-control', {
                   'is-invalid': errors.productImage
                 })}

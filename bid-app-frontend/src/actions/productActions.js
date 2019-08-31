@@ -58,6 +58,7 @@ export const getProduct = dispatch => id => {
       type: GET_PRODUCT,
       payload: result.data
     });
+    history.push('single');
   });
 };
 
