@@ -44,17 +44,17 @@ class App extends Component {
       <Provider store={store}>
         <Router history={history}>
           <Header />
-          <Messages />
-          {/* <Route exact path="/" component={Bid} /> */}
+          <Route exact path="/" component={Bid} />
           <Route exact path="/home" component={Home} />
           <Route exact path="/products" component={ItemsList} />
           <Route exact path="/users" component={UsersList} />
           <Route exact path="/shop" component={Shop} />
           <Route exact path="/waiting" component={Message} />
-          <Route exact path="/contact" component={Contact} />
+          <Route exact path="/messages" component={Messages} />
           <Route exact path="/single" component={SingleItem} />
           <Route exact path="/auction" component={Auction} />
           <Route exact path="/uploaded" component={Uploaded} />
+          <Route exact path="/contact" component={Contact} />
         </Router>
       </Provider>
     );

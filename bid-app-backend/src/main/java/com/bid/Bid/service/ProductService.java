@@ -34,6 +34,9 @@ public class ProductService {
         return productRepository.findByOwnerIdAndDeleted(owner_id,false);
     }
 
+    public String findUserNameById(Long Id) {
+        return  userRepository.getById(Id).getUsername();
+    }
 
     public String changeProductValue(Long id,Long value,Long bidderId) {
         Product product = productRepository.getById(id);

@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+
 @RestController
 @RequestMapping("/api/messages")
 @CrossOrigin
@@ -17,6 +19,7 @@ public class MessageController {
 
     @PostMapping("")
     public ResponseEntity<?> addMessage(@RequestBody Message message){
+        message.setMessageDate(LocalDateTime.now());
         Message newMessage = messageService.saveOrUpdateMessage(message);
         return new ResponseEntity<Message>(newMessage, HttpStatus.CREATED);
     }

@@ -8,6 +8,7 @@ import {
   faTrashAlt
 } from '@fortawesome/free-solid-svg-icons';
 import SpecificMessagePop from './SpecificMessagePop';
+import history from '../history';
 
 const Messages = () => {
   return (
@@ -35,7 +36,10 @@ const Messages = () => {
                         />
                         <h5 className="actions email-with-icons">Sent</h5>
                       </li>
-                      <li className="li-of-message">
+                      <li
+                        className="li-of-message"
+                        onClick={() => history.push('contact')}
+                      >
                         <FontAwesomeIcon
                           icon={faPlusCircle}
                           size="2x"

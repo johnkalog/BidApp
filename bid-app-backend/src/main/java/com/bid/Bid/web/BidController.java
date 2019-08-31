@@ -32,6 +32,7 @@ public class BidController {
         bid.setBiddingDate(LocalDateTime.now());
         Bid newBid = bidService.saveOrUpdateBid(bid);
         Product product = productService.findById(newBid.getProductId());
+        product.setBestBidderName(productService.findUserNameById(bid.getBidderId()));
         productService.productUpdateByDate(product);
         return new ResponseEntity<Product>(product, HttpStatus.CREATED);
     }

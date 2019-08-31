@@ -1,7 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const Contact = () => {
+const Contact = ({ user }) => {
+  const info =
+    user.type === 'Bidder'
+      ? "You can send message only to sellers that you've bought their product"
+      : "You can send message only to bidders that you've bought your product";
+  const to = user.type === 'Bidder' ? 'Seller' : 'Bidder';
   return (
     <div>
       <section className="contact-section padding_top">
@@ -12,7 +17,7 @@ const Contact = () => {
 
           <div className="row">
             <div className="col-12">
-              <h2 className="contact-title">Get in Touch</h2>
+              <h2 className="contact-title">Fill the fields</h2>
             </div>
             <div className="col-lg-8">
               <form
@@ -34,32 +39,6 @@ const Contact = () => {
                         onfocus="this.placeholder = ''"
                         onblur="this.placeholder = 'Enter Message'"
                         placeholder="Enter Message"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-sm-6">
-                    <div className="form-group">
-                      <input
-                        className="form-control"
-                        name="name"
-                        id="name"
-                        type="text"
-                        onfocus="this.placeholder = ''"
-                        onblur="this.placeholder = 'Enter your name'"
-                        placeholder="Enter your name"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-sm-6">
-                    <div className="form-group">
-                      <input
-                        className="form-control"
-                        name="email"
-                        id="email"
-                        type="email"
-                        onfocus="this.placeholder = ''"
-                        onblur="this.placeholder = 'Enter email address'"
-                        placeholder="Enter email address"
                       />
                     </div>
                   </div>
@@ -90,8 +69,7 @@ const Contact = () => {
                   <i className="ti-home" />
                 </span>
                 <div className="media-body">
-                  <h3>Buttonwood, California.</h3>
-                  <p>Rosemead, CA 91770</p>
+                  <h3>{info}</h3>
                 </div>
               </div>
               <div className="media contact-info">
@@ -99,8 +77,7 @@ const Contact = () => {
                   <i className="ti-tablet" />
                 </span>
                 <div className="media-body">
-                  <h3>00 (440) 9865 562</h3>
-                  <p>Mon to Fri 9am to 6pm</p>
+                  <h3>{`Subject will be the ${to}-Product you choosed`}</h3>
                 </div>
               </div>
               <div className="media contact-info">
@@ -108,8 +85,7 @@ const Contact = () => {
                   <i className="ti-email" />
                 </span>
                 <div className="media-body">
-                  <h3>support@colorlib.com</h3>
-                  <p>Send us your query anytime!</p>
+                  <p>Thank you for trusting us!</p>
                 </div>
               </div>
             </div>
@@ -121,6 +97,8 @@ const Contact = () => {
 };
 
 export default connect(
-  null,
+  state => ({
+    user: state.usersData.user
+  }),
   null
 )(Contact);

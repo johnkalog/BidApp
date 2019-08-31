@@ -32,11 +32,11 @@ const Header = ({
       ? ''
       : 'Log Out';
   const GoToMessages =
-    Object.keys(user).length === 0 ? (
+    Object.keys(user).length === 0 || user.type === 'Administrator' ? (
       ''
     ) : (
       <li>
-        <Link to="./contact" className="nav-link">
+        <Link to="./messages" className="nav-link">
           Messages
         </Link>
       </li>

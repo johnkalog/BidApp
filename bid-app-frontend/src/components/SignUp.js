@@ -158,7 +158,7 @@ const SignUp = ({
           </div>
         </div>
         <div className="message-auction-red">{signUpMessage}</div>
-        <div className="form-group">
+        <div className="form-group for-sign-up">
           <input
             type="submit"
             className="btn btn-primary btn-pill"
