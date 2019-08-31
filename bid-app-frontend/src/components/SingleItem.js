@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { bidIt } from '../actions/productActions';
 
 const SingleItem = ({ product, user, message, bidIt }) => {
+  const image = product.productImage;
+  console.log('ewfewf' + image);
   let bid;
   return (
     <div>
@@ -12,11 +14,8 @@ const SingleItem = ({ product, user, message, bidIt }) => {
             <div className="col-lg-7 col-xl-7">
               <div className="product_slider_img">
                 <div id="vertical">
-                  <div data-thumb="img/product/single-product/product_1.png">
-                    <img
-                      src={require('./img/product/single-product/product_1.png')}
-                      alt=""
-                    />
+                  <div data-thumb={image}>
+                    <img src={require(`${image}`)} alt="" />
                   </div>
                 </div>
               </div>

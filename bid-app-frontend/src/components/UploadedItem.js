@@ -49,7 +49,7 @@ const UploadedItem = ({ product, deleteProduct }) => {
         <div className="media">
           <div className="d-flex">
             <img
-              src={require('./img/product/product_1.png')}
+              src={require(`${product.productImage}`)}
               width="150"
               height="100"
               alt=""

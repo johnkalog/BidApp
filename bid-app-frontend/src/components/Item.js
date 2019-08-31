@@ -4,7 +4,6 @@ import history from '../history';
 import { getProduct } from '../actions/productActions';
 
 const Item = ({ product, getProduct }) => {
-  console.log(product.productImage);
   return (
     <div className="col-lg-4 col-sm-6">
       <div className="single_product_item">
