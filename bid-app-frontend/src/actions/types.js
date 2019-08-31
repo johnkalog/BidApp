@@ -19,3 +19,7 @@ export const INPUT_CLEAR = 'INPUT_CLEAR';
 export const ERROR_BID = 'ERROR_BID';
 export const AUCTION_ERROR = 'AUCTION_ERROR';
 export const DELETE_UPLOADED = 'DELETE_UPLOADED';
+
+export const GET_MESSAGES = 'GET_MESSAGES';
+export const DELETE_MESSAGE = 'DELETE_MESSAGE';
+export const GET_MESSAGE = 'GET_MESSAGE';

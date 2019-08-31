@@ -146,3 +146,83 @@
 .delete {
   color: rgb(219, 22, 22);
 }
+
+.email-with-icons {
+  margin-right: 46%;
+  margin-top: 3%;
+}
+
+.li-of-message {
+  margin-top: 23%;
+}
+
+.li-of-message:hover {
+  background-color: rgba(148, 137, 137, 0.5);
+  cursor: pointer;
+}
+
+.messages-area-list {
+  margin-top: 2%;
+}
+
+.left-border-message {
+  border-right: 1px solid #777777;
+}
+
+.border-down-messages {
+  border-bottom: 1px solid #777777;
+}
+
+.border-down-email {
+  border-bottom: 1px dashed #777777;
+}
+
+.border-down-email:hover {
+  background-color: rgba(148, 137, 137, 0.5);
+  cursor: pointer;
+}
+
+.at-the-left {
+  margin-left: 0%;
+}
+
+.at-the-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.at-the-right {
+  margin-right: 5%;
+}
+
+.at-the-right-smaller {
+  margin-right: 3%;
+}
+
+.popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+.popup_inner {
+  position: absolute;
+  left: 37%;
+  right: 37%;
+  top: 25%;
+  bottom: 27%;
+  margin: auto;
+  background: #ecfdff;
+  border-radius: 20px;
+  z-index: 99;
+}
+
+.to-options-message {
+  padding-right: 6%;
+}

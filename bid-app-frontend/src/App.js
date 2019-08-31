@@ -14,6 +14,7 @@ import Home from './components/Home';
 import SingleItem from './components/SingleItem';
 import Auction from './components/Auction';
 import Uploaded from './components/Uploaded';
+import Messages from './components/Messages';
 
 import './components/general.css';
 import './components/fonts/icomoon/style.css';
@@ -43,7 +44,8 @@ class App extends Component {
       <Provider store={store}>
         <Router history={history}>
           <Header />
-          <Route exact path="/" component={Bid} />
+          <Messages />
+          {/* <Route exact path="/" component={Bid} /> */}
           <Route exact path="/home" component={Home} />
           <Route exact path="/products" component={ItemsList} />
           <Route exact path="/users" component={UsersList} />
