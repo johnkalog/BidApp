@@ -97,4 +97,12 @@ public class ProductService {
     public Iterable<Product> findByActive() {
         return productRepository.findByIsActiveAndDeleted(true,false);
     }
+
+    public Iterable<Product> findByOwnerIdAndIsNotActive(Long seller_id) {
+        return productRepository.findByOwnerIdAndIsActiveAndDeleted(seller_id,false,false);
+    }
+
+    public Iterable<Product> findByBestBidderIdAndIsNotActive(Long bidder_id) {
+        return productRepository.findByBestBidOwnerIdAndIsActiveAndDeleted(bidder_id,false,false);
+    }
 }

@@ -88,6 +88,21 @@ public class ProductController {
     }
 
 
+    @GetMapping("/message/seller/{seller_id}")
+    public Iterable<Product> getProductsInfoByOwnerId(@PathVariable Long seller_id){
+        Iterable<Product> products = productService.findByOwnerIdAndIsNotActive(seller_id);
+        productService.allProductsUpdateByDate(products);
+        return products;
+    }
+
+    @GetMapping("/message/bidder/{bidder_id}")
+    public Iterable<Product> getProductsInfoByBestBidderId(@PathVariable Long bidder_id){
+        Iterable<Product> products = productService.findByBestBidderIdAndIsNotActive(bidder_id);
+        productService.allProductsUpdateByDate(products);
+        return products;
+    }
+
+
     @GetMapping("/dtd/{product_id}")
     public ResponseEntity<?> getXMLById(@PathVariable Long product_id){
         Product product = productService.findById(product_id);

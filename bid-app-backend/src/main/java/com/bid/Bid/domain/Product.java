@@ -23,11 +23,11 @@ public class Product {
     private Long BestBid;
     private Long firstBid;
     private Long buyPrice;
-    private Long BestBidOwnerId;
+    private Long bestBidOwnerId;
     private Long numberOfBids;
     private Long value; //temp for bidder
     private String bestBidderName; //temp for seller
-
+    private String ownerName;
 
 
     private LocalDateTime expirationDate;
@@ -68,11 +68,11 @@ public class Product {
     }
 
     public Long getBestBidOwnerId() {
-        return BestBidOwnerId;
+        return bestBidOwnerId;
     }
 
-    public void setBestBidOwnerId(Long BestBidOwnerId) {
-        this.BestBidOwnerId = BestBidOwnerId;
+    public void setBestBidOwnerId(Long bestBidOwnerId) {
+        this.bestBidOwnerId = bestBidOwnerId;
     }
 
     public Long getBestBid() {
@@ -182,5 +182,13 @@ public class Product {
 
     public void setBestBidderName(String bestBidderName) {
         this.bestBidderName = bestBidderName;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
     }
 }

@@ -12,4 +12,9 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     Iterable<Product> findByOwnerIdAndDeleted(Long owner_id,boolean deleted);
 
     Iterable<Product> findByIsActiveAndDeleted(boolean active,boolean deleted);
+
+    Iterable<Product> findByOwnerIdAndIsActiveAndDeleted(Long owner_id, boolean active, boolean deleted);
+
+    Iterable<Product> findByBestBidOwnerIdAndIsActiveAndDeleted(Long owner_id, boolean active, boolean deleted);
+
 }
