@@ -1,6 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+const submitMessage = event => {
+  event.preventDefault();
+  const message = event.target[0].value;
+  const subject = event.target[1].value;
+  if (message.length === 0) {
+  }
+};
+
 const Contact = ({ user }) => {
   const info =
     user.type === 'Bidder'
@@ -22,12 +30,17 @@ const Contact = ({ user }) => {
             <div className="col-lg-8">
               <form
                 className="form-contact contact_form"
-                action="contact_process.php"
-                method="post"
-                id="contactForm"
-                novalidate="novalidate"
+                onSubmit={event => submitMessage(event)}
               >
                 <div className="row">
+                  <div className="col-12">
+                    <div className="form-group">
+                      <select className="form-control">
+                        <option>Bidder</option>
+                        <option>Seller</option>
+                      </select>
+                    </div>
+                  </div>
                   <div className="col-12">
                     <div className="form-group">
                       <textarea
@@ -36,30 +49,17 @@ const Contact = ({ user }) => {
                         id="message"
                         cols="30"
                         rows="9"
-                        onfocus="this.placeholder = ''"
-                        onblur="this.placeholder = 'Enter Message'"
                         placeholder="Enter Message"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-12">
-                    <div className="form-group">
-                      <input
-                        className="form-control"
-                        name="subject"
-                        id="subject"
-                        type="text"
-                        onfocus="this.placeholder = ''"
-                        onblur="this.placeholder = 'Enter Subject'"
-                        placeholder="Enter Subject"
                       />
                     </div>
                   </div>
                 </div>
                 <div className="form-group mt-3">
-                  <a href="#" className="btn_3 button-contactForm">
-                    Send Message
-                  </a>
+                  <input
+                    type="submit"
+                    value="Send Message"
+                    className="btn_3 button-contactForm message-at-submit"
+                  />
                 </div>
               </form>
             </div>

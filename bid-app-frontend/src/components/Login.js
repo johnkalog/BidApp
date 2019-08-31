@@ -25,7 +25,6 @@ const Login = ({
   inputError,
   checkUser
 }) => {
-  console.log(user, loginMessage);
   return (
     <div id="login">
       <form

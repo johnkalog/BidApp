@@ -21,7 +21,7 @@ import './components/fonts/icomoon/style.css';
 
 import './components/css/bootstrap.min.css';
 import './components/css/jquery-ui.css';
-//import './components/css/owl.carousel.min.css';
+// import './components/css/owl.carousel.min.css';
 import './components/css/owl.theme.default.min.css';
 
 import './components/css/jquery.fancybox.min.css';

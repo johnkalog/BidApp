@@ -230,3 +230,12 @@
 .for-sign-up {
   margin-top: 5%;
 }
+
+.message-at-submit {
+  padding: 12px 25px;
+}
+
+.message-at-submit:hover {
+  color: red;
+  cursor: pointer;
+}

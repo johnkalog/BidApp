@@ -53,7 +53,6 @@ const SignUp = ({
   newUser,
   notSamePasswords
 }) => {
-  console.log(user, signUpMessage);
   return (
     <div id="sign-up">
       <form

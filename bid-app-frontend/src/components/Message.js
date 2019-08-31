@@ -6,7 +6,6 @@ const Message = ({ status }) => {
     status === 'Waiting'
       ? 'Waiting for Administrator to accept you...'
       : "You've been blocked from the Administrator...";
-  console.log(status);
   return (
     <div>
       <div className="intro-section" id="home-section">
