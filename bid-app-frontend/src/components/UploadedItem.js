@@ -7,8 +7,9 @@ import {
   faTrashAlt
 } from '@fortawesome/free-solid-svg-icons';
 import { deleteProduct } from '../actions/productActions';
+import { getInbox } from '../actions/messageActions';
 
-const UploadedItem = ({ product, deleteProduct }) => {
+const UploadedItem = ({ product, id, deleteProduct, getInbox }) => {
   const actions =
     product.bestBidOwnerId === null ? (
       <div>
@@ -36,6 +37,7 @@ const UploadedItem = ({ product, deleteProduct }) => {
           size="2x"
           pull="left"
           className="actions messages"
+          onClick={() => getInbox(id)}
         />
       </div>
     ) : (
@@ -70,30 +72,7 @@ const UploadedItem = ({ product, deleteProduct }) => {
         <h5 className={classForStatus}>{status}</h5>
       </td>
       <td>
-        <div className="product_count">
-          {actions}
-          {/* <FontAwesomeIcon
-            icon={faCog}
-            title="Update"
-            size="2x"
-            pull="left"
-            className="actions update"
-          />
-          <FontAwesomeIcon
-            icon={faEnvelope}
-            title="Messages"
-            size="2x"
-            pull="right"
-            className="actions messages"
-          />
-          <FontAwesomeIcon
-            icon={faTrashAlt}
-            title="Delete"
-            size="2x"
-            pull="right"
-            className="actions delete"
-          /> */}
-        </div>
+        <div className="product_count">{actions}</div>
       </td>
     </tr>
   );
@@ -101,7 +80,11 @@ const UploadedItem = ({ product, deleteProduct }) => {
 
 export default connect(
   (state, ownProps) => ({
-    product: ownProps.product
+    product: ownProps.product,
+    id: state.usersData.user.id
   }),
-  dispatch => ({ deleteProduct: deleteProduct(dispatch) })
+  dispatch => ({
+    deleteProduct: deleteProduct(dispatch),
+    getInbox: getInbox(dispatch)
+  })
 )(UploadedItem);

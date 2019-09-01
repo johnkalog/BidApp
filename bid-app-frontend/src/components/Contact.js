@@ -14,7 +14,7 @@ const submitMessage = (
   const subject = event.target[0].value;
   const message = event.target[1].value;
   if (subject === `${to}-Product`) {
-    changeTheError("You can't send message to anyone");
+    changeTheError("Select options if you have");
     return;
   }
   if (message.length === 0) {

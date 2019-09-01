@@ -30,13 +30,18 @@ const messageReducer = (state = initialState, action) => {
     case GET_MESSAGE:
       return {
         ...state,
+        messages: state.messages.map(item =>
+          item.id === action.payload.id ? action.payload : item
+        ),
         message: action.payload
       };
 
     case DELETE_MESSAGE:
       return {
         ...state,
-        message: state.users.filter(user => user.id !== action.payload)
+        messages: state.messages.filter(
+          message => message.id !== action.payload
+        )
       };
     case CHANGE_MESSAGE:
       return { ...state, errorOnSubmit: action.payload };

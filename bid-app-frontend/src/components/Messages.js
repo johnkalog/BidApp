@@ -12,7 +12,8 @@ import {
   redirectToContact,
   getInbox,
   getSent,
-  showMessage
+  showMessage,
+  deleteFromMessages
 } from '../actions/messageActions';
 
 const Messages = ({
@@ -23,7 +24,8 @@ const Messages = ({
   redirectToContact,
   getInbox,
   getSent,
-  showMessage
+  showMessage,
+  deleteFromMessages
 }) => {
   return (
     <div>
@@ -93,7 +95,7 @@ const Messages = ({
                       key={item.id}
                       onClick={() => {
                         // alert('fewwewefwef');
-                        showMessage(item);
+                        showMessage(item, inboxOrNot ? 'Receiver' : 'Sender');
                       }}
                     >
                       <div className="single_product_menu at-the-left">
@@ -113,6 +115,9 @@ const Messages = ({
                           className="actions"
                           onClick={() => {
                             alert('dedwrb');
+                            inboxOrNot
+                              ? deleteFromMessages(item, 'Receiver')
+                              : deleteFromMessages(item, 'Sender');
                           }}
                         />
                       </div>
@@ -140,6 +145,7 @@ export default connect(
     redirectToContact: redirectToContact(dispatch),
     getInbox: getInbox(dispatch),
     getSent: getSent(dispatch),
-    showMessage: showMessage(dispatch)
+    showMessage: showMessage(dispatch),
+    deleteFromMessages: deleteFromMessages(dispatch)
   })
 )(Messages);

@@ -1,9 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { getInbox } from '../actions/messageActions';
 
-const ShopItem = ({ product }) => {
+const ShopItem = ({ product, id, getInbox }) => {
   const status = product.active ? 'Active' : 'Ended';
   const classForStatus = status === 'Active' ? 'green' : 'red';
+  const actions = !product.active ? (
+    <div>
+      <FontAwesomeIcon
+        icon={faEnvelope}
+        title="Messages"
+        size="2x"
+        pull="left"
+        className="actions messages"
+        onClick={() => getInbox(id)}
+      />
+    </div>
+  ) : (
+    ''
+  );
   return (
     <tr>
       <td>
@@ -30,13 +47,17 @@ const ShopItem = ({ product }) => {
       <td>
         <h5 className={classForStatus}>{status}</h5>
       </td>
+      <td>{actions}</td>
     </tr>
   );
 };
 
 export default connect(
   (state, ownProps) => ({
-    product: ownProps.product
+    product: ownProps.product,
+    id: state.usersData.user.id
   }),
-  null
+  dispatch => ({
+    getInbox: getInbox(dispatch)
+  })
 )(ShopItem);

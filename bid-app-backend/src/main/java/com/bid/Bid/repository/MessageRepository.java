@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface MessageRepository extends CrudRepository<Message, Long> {
 
     Message getById(Long id);
-    Iterable<Message> getByReceiverId(Long ReceiverId);
-    Iterable<Message> getBySenderId(Long SenderId);
+    Iterable<Message> getByReceiverIdAndDeletedFromReceiver(Long ReceiverId,boolean deletedFromReceiver);
+    Iterable<Message> getBySenderIdAndDeletedFromSender(Long SenderId,boolean deletedFromSender);
 
 }

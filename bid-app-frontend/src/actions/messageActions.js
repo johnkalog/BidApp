@@ -55,10 +55,12 @@ export const getInbox = dispatch => id => {
       type: CHANGE_INBOX,
       payload: true
     });
+    history.push('messages');
   });
 };
 
 export const createNewMessage = dispatch => (id, newMessage) => {
+  console.log(newMessage);
   axios.post('http://localhost:8080/api/messages', newMessage).then(result => {
     dispatch({
       type: GET_SUBJECTS,
@@ -86,15 +88,19 @@ export const getSent = dispatch => id => {
   });
 };
 
-export const showMessage = dispatch => message => {
-  dispatch({
-    type: GET_MESSAGE,
-    payload: message
-  });
-  dispatch({
-    type: SHOW_MESSAGE,
-    payload: true
-  });
+export const showMessage = dispatch => (message, where) => {
+  axios
+    .post(`http://localhost:8080/api/messages/readFrom${where}`, message)
+    .then(result => {
+      dispatch({
+        type: GET_MESSAGE,
+        payload: result.data
+      });
+      // dispatch({
+      //   type: SHOW_MESSAGE,
+      //   payload: true
+      // });
+    });
 };
 
 export const changeShow = dispatch => () => {
@@ -102,4 +108,15 @@ export const changeShow = dispatch => () => {
     type: SHOW_MESSAGE,
     payload: false
   });
+};
+
+export const deleteFromMessages = dispatch => (message, where) => {
+  axios
+    .post(`http://localhost:8080/api/messages/deleteFrom${where}`, message)
+    .then(result => {
+      dispatch({
+        type: DELETE_MESSAGE,
+        payload: message.id
+      });
+    });
 };

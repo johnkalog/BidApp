@@ -26,17 +26,19 @@ public class MessageService {
     }
 
 
-    public Iterable<Message> findByReceiverId(Long receiverId){
-        return messageRepository.getByReceiverId(receiverId);
+    public Iterable<Message> findByReceiverIdAndNotDeletedFromReceiver(Long receiverId){
+        return messageRepository.getByReceiverIdAndDeletedFromReceiver(receiverId,false);
     }
 
 
-    public Iterable<Message> findBySenderId(Long senderId){
-        return messageRepository.getBySenderId(senderId);
+    public Iterable<Message> findBySenderIdAndNotDeletedFromSender(Long senderId){
+        return messageRepository.getBySenderIdAndDeletedFromSender(senderId,false);
     }
 
     public void delete(Long id){
         Message message = findById(id);
         messageRepository.delete(message);
     }
+
+
 }

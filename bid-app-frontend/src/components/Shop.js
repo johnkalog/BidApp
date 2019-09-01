@@ -16,6 +16,7 @@ const Shop = ({ products }) => {
                     <th scope="col">Your Bid</th>
                     <th scope="col">Best Bid</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
                   </tr>
                 </thead>
                 <tbody>

@@ -20,6 +20,8 @@ public class MessageController {
     @PostMapping("")
     public ResponseEntity<?> addMessage(@RequestBody Message message){
         message.setMessageDate(LocalDateTime.now());
+        message.setDeletedFromReceiver(false);
+        message.setDeletedFromSender(false);
         Message newMessage = messageService.saveOrUpdateMessage(message);
         return new ResponseEntity<Message>(newMessage, HttpStatus.CREATED);
     }
@@ -43,14 +45,42 @@ public class MessageController {
 
     @GetMapping("inbox/{receiver_id}")
     public Iterable<Message> getMessageByReceiverId(@PathVariable Long receiver_id){
-        Iterable<Message> messages = messageService.findByReceiverId(receiver_id);
+        Iterable<Message> messages = messageService.findByReceiverIdAndNotDeletedFromReceiver(receiver_id);
         return messages;
     }
 
     @GetMapping("sent/{sender_id}")
     public Iterable<Message> getMessageBySenderId(@PathVariable Long sender_id){
-        Iterable<Message> messages = messageService.findBySenderId(sender_id);
+        Iterable<Message> messages = messageService.findBySenderIdAndNotDeletedFromSender(sender_id);
         return messages;
+    }
+
+    @PostMapping("/deleteFromReceiver")
+    public ResponseEntity<?> deleteFromReceiver(@RequestBody Message message){
+        message.setDeletedFromReceiver(true);
+        messageService.saveOrUpdateMessage(message);
+        return new ResponseEntity<String>("Message deleted Receiver", HttpStatus.OK);
+    }
+
+    @PostMapping("/deleteFromSender")
+    public ResponseEntity<?> deleteFromSender(@RequestBody Message message){
+        message.setDeletedFromSender(true);
+        messageService.saveOrUpdateMessage(message);
+        return new ResponseEntity<String>("Message deleted Sender", HttpStatus.OK);
+    }
+
+    @PostMapping("/readFromReceiver")
+    public ResponseEntity<?> readFromReceiver(@RequestBody Message message){
+        message.setReadFromReceiver(true);
+        Message newMessage = messageService.saveOrUpdateMessage(message);
+        return new ResponseEntity<Message>(newMessage, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/readFromSender")
+    public ResponseEntity<?> readFromSender(@RequestBody Message message){
+        message.setReadFromSender(true);
+        Message newMessage = messageService.saveOrUpdateMessage(message);
+        return new ResponseEntity<Message>(newMessage, HttpStatus.CREATED);
     }
 
 }

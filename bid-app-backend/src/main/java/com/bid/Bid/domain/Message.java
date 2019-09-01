@@ -19,6 +19,10 @@ public class Message {
     private String message;
     private String subject;
     private LocalDateTime messageDate;
+    private boolean deletedFromSender;
+    private boolean deletedFromReceiver;
+    private boolean readFromReceiver;
+    private boolean readFromSender;
 
     public Message() {
     }
@@ -77,5 +81,37 @@ public class Message {
 
     public void setSubject(String subject) {
         this.subject = subject;
+    }
+
+    public boolean isDeletedFromSender() {
+        return deletedFromSender;
+    }
+
+    public void setDeletedFromSender(boolean deletedFromSender) {
+        this.deletedFromSender = deletedFromSender;
+    }
+
+    public boolean isDeletedFromReceiver() {
+        return deletedFromReceiver;
+    }
+
+    public void setDeletedFromReceiver(boolean deletedFromReceiver) {
+        this.deletedFromReceiver = deletedFromReceiver;
+    }
+
+    public boolean isReadFromReceiver() {
+        return readFromReceiver;
+    }
+
+    public void setReadFromReceiver(boolean readFromReceiver) {
+        this.readFromReceiver = readFromReceiver;
+    }
+
+    public boolean isReadFromSender() {
+        return readFromSender;
+    }
+
+    public void setReadFromSender(boolean readFromSender) {
+        this.readFromSender = readFromSender;
     }
 }
