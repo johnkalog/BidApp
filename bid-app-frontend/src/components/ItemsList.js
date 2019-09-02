@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Item from './Item';
 import { showCategory } from '../actions/productActions';
+import { createTheOptions } from '../actions/categorieActions';
 
-const ItemsList = ({ products, showCategory }) => {
+const ItemsList = ({ products, categories, showCategory }) => {
   return (
     <div>
       <section>
@@ -17,26 +18,27 @@ const ItemsList = ({ products, showCategory }) => {
                   </div>
                   <div className="widgets_inner">
                     <ul className="list">
-                      <li>
-                        <a href="#" onClick={() => showCategory('Frozen Fish')}>
-                          Frozen Fish
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">Dried Fish</a>
-                      </li>
-                      <li>
-                        <a href="#">Fresh Fish</a>
-                      </li>
-                      <li>
-                        <a href="#">Meat Alternatives</a>
-                      </li>
-                      <li>
-                        <a href="#">Meat</a>
-                      </li>
-                      <li>
-                        <button>&nbsp;{String.fromCharCode(40)}</button>
-                      </li>
+                      {categories.map(item => (
+                        <div>
+                          <li>
+                            <a href="#" onClick={() => showCategory(item.name)}>
+                              {item.name}
+                            </a>
+                          </li>
+                          {item.show
+                            ? item.childs.map(child => (
+                                <li>
+                                  <a
+                                    href="#"
+                                    onClick={() => showCategory(child.name)}
+                                  >
+                                    &nbsp;&nbsp;&nbsp;&nbsp;{child.name}
+                                  </a>
+                                </li>
+                              ))
+                            : ''}
+                        </div>
+                      ))}
                     </ul>
                   </div>
                 </aside>
@@ -70,7 +72,8 @@ const ItemsList = ({ products, showCategory }) => {
 
 export default connect(
   state => ({
-    products: state.productsData.products
+    products: state.productsData.products,
+    categories: state.categoriesData.categories
   }),
   dispatch => ({
     showCategory: showCategory(dispatch)

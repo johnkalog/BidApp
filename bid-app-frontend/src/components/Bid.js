@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 import Login from './Login';
 import SignUp from './SignUp';
 import { changeLogin } from '../actions/userActions';
+import { initAllCategories } from '../actions/categorieActions';
 
-const Bid = ({ login, changeLogin }) => {
+const Bid = ({ login, changeLogin, initAllCategories }) => {
   const forms = login ? <Login /> : <SignUp />;
   return (
     <div>
@@ -33,6 +34,7 @@ const Bid = ({ login, changeLogin }) => {
                         <Link
                           to="./products"
                           className="btn btn-primary py-3 px-5 btn-pill"
+                          onClick={() => initAllCategories()}
                         >
                           Continue as guest
                         </Link>
@@ -79,6 +81,7 @@ export default connect(
     login: state.usersData.login
   }),
   dispatch => ({
-    changeLogin: changeLogin(dispatch)
+    changeLogin: changeLogin(dispatch),
+    initAllCategories: initAllCategories(dispatch)
   })
 )(Bid);

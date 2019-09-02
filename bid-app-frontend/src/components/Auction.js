@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { newAuction } from '../actions/productActions';
 import { inputError } from '../actions/userActions';
 import classnames from 'classnames';
-import categories from '../actions/categories';
+import { createTheOptions } from '../actions/categorieActions';
 
 const createAuction = (event, id, newAuction, inputError) => {
   event.preventDefault();
@@ -44,7 +44,14 @@ const createAuction = (event, id, newAuction, inputError) => {
   newAuction(newProduct);
 };
 
-const Auction = ({ id, errors, auctionError, newAuction, inputError }) => {
+const Auction = ({
+  id,
+  errors,
+  auctionError,
+  categories,
+  newAuction,
+  inputError
+}) => {
   return (
     <div className="product_image_area section_padding">
       <div className="container container2">
@@ -65,7 +72,7 @@ const Auction = ({ id, errors, auctionError, newAuction, inputError }) => {
             <div className="form-group col-md-6">
               <h6>Category</h6>
               <select className="form-control">
-                {categories.map(category => {
+                {createTheOptions(categories).map(category => {
                   if (category.depth === 0) {
                     return <option>{category.name}</option>;
                   } else if (category.depth === 1) {
@@ -160,7 +167,8 @@ export default connect(
   state => ({
     id: state.usersData.user.id,
     errors: state.productsData.errors,
-    auctionError: state.productsData.auctionError
+    auctionError: state.productsData.auctionError,
+    categories: state.categoriesData.categories
   }),
   dispatch => ({
     newAuction: newAuction(dispatch),

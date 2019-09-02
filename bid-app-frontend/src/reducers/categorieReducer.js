@@ -1,4 +1,6 @@
-const categories = [
+import { SHOW_CATEGORY, INIT_CATEGORIES } from '../actions/types';
+
+const initialCategories = [
   {
     name: 'Electronics',
     childs: [
@@ -10,7 +12,8 @@ const categories = [
         name: 'Computers & Tables',
         childs: []
       }
-    ]
+    ],
+    show: false
   },
   {
     name: 'Fashion',
@@ -23,7 +26,8 @@ const categories = [
         name: "Men's Clothing",
         childs: []
       }
-    ]
+    ],
+    show: false
   },
   {
     name: 'Toys & Hobbies',
@@ -36,7 +40,8 @@ const categories = [
         name: 'Toy Models',
         childs: []
       }
-    ]
+    ],
+    show: false
   },
   {
     name: 'Sporting Goods',
@@ -49,7 +54,8 @@ const categories = [
         name: 'Winter Sports',
         childs: []
       }
-    ]
+    ],
+    show: false
   },
   {
     name: 'Other Categories',
@@ -61,28 +67,30 @@ const categories = [
       {
         name: 'Art',
         childs: []
-      },
-      {
-        name: 'Toys & Hobbies',
-        childs: []
       }
-    ]
+    ],
+    show: false
   }
 ];
 
-const iterateTheKids = (kid, all, depth) => {
-  all.push({ name: kid.name, depth });
-  kid.childs.forEach(item => {
-    iterateTheKids(item, all, depth + 1);
-  });
+const initialState = {
+  categories: [...initialCategories]
 };
 
-const createTheOptions = categories => {
-  let all = [];
-  categories.forEach(item => {
-    iterateTheKids(item, all, 0);
-  });
-  return all;
+const categorieReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case SHOW_CATEGORY:
+      return {
+        ...state,
+        categories: state.categories.map(item =>
+          item.name === action.payload ? { ...item, show: !item.show } : item
+        )
+      };
+    case INIT_CATEGORIES:
+      return { ...state, categories: [...initialCategories] };
+    default:
+      return state;
+  }
 };
 
-export default createTheOptions(categories);
+export default categorieReducer;

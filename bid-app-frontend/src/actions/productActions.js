@@ -10,7 +10,9 @@ import {
   ERROR_BID,
   AUCTION_ERROR,
   DELETE_UPLOADED,
-  CHANGE_UPLOAD
+  CHANGE_UPLOAD,
+  SHOW_CATEGORY,
+  INIT_CATEGORIES
 } from './types';
 import history from '../history';
 
@@ -19,6 +21,9 @@ export const getProducts = dispatch => () => {
     dispatch({
       type: GET_PRODUCTS,
       payload: result.data
+    });
+    dispatch({
+      type: INIT_CATEGORIES
     });
   });
 };
@@ -146,6 +151,10 @@ export const showCategory = dispatch => category => {
       dispatch({
         type: GET_PRODUCTS,
         payload: result.data
+      });
+      dispatch({
+        type: SHOW_CATEGORY,
+        payload: category
       });
     });
 };
