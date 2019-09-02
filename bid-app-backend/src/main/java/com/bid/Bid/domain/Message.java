@@ -23,7 +23,6 @@ public class Message {
     private boolean deletedFromSender;
     private boolean deletedFromReceiver;
     private boolean readFromReceiver;
-    private boolean readFromSender;
 
     public Message() {
     }
@@ -106,14 +105,6 @@ public class Message {
 
     public void setReadFromReceiver(boolean readFromReceiver) {
         this.readFromReceiver = readFromReceiver;
-    }
-
-    public boolean isReadFromSender() {
-        return readFromSender;
-    }
-
-    public void setReadFromSender(boolean readFromSender) {
-        this.readFromSender = readFromSender;
     }
 
     public String getSender() {

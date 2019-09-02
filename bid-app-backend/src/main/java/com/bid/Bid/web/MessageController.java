@@ -83,11 +83,10 @@ public class MessageController {
         return new ResponseEntity<Message>(newMessage, HttpStatus.CREATED);
     }
 
-    @PostMapping("/readFromSender")
-    public ResponseEntity<?> readFromSender(@RequestBody Message message){
-        message.setReadFromSender(true);
-        Message newMessage = messageService.saveOrUpdateMessage(message);
-        return new ResponseEntity<Message>(newMessage, HttpStatus.CREATED);
-    }
+//    @PostMapping("/readFromSender")
+//    public ResponseEntity<?> readFromSender(@RequestBody Message message){
+//        Message newMessage = messageService.saveOrUpdateMessage(message);
+//        return new ResponseEntity<Message>(newMessage, HttpStatus.CREATED);
+//    }
 
 }

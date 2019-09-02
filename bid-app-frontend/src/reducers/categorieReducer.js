@@ -9,7 +9,7 @@ const initialCategories = [
         childs: []
       },
       {
-        name: 'Computers & Tables',
+        name: 'Computers & Tablets',
         childs: []
       }
     ],

@@ -28,6 +28,9 @@ public class ProductController {
         if(product.getExpirationDate().isBefore(LocalDateTime.now()) || product.getExpirationDate().isEqual(LocalDateTime.now())) {
             return new ResponseEntity<String>("Wrong expiration date", HttpStatus.OK);
         }
+
+
+        product.setCategory(product.getCategory().replace("\u00a0",""));
         product.setOwnerName(productService.findUserNameById(product.getOwnerId()));
         product.setStartedDate(LocalDateTime.now());
         product.setNumberOfBids(Long.valueOf(0));

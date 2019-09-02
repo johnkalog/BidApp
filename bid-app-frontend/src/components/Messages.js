@@ -132,7 +132,7 @@ const Messages = ({
                             alert('dedwrb');
                             inboxOrNot
                               ? deleteFromMessages(item, 'Receiver')
-                              : deleteFromMessages(item, 'Sender');
+                              : '';
                           }}
                         />
                       </div>

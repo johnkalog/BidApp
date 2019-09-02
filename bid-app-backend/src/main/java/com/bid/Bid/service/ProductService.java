@@ -1,13 +1,17 @@
 package com.bid.Bid.service;
 
+import com.bid.Bid.domain.Category;
 import com.bid.Bid.domain.Product;
 import com.bid.Bid.domain.User;
+import com.bid.Bid.repository.CategoryRepository;
 import com.bid.Bid.repository.ProductRepository;
 import com.bid.Bid.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 @Service
 public class ProductService {
@@ -17,6 +21,11 @@ public class ProductService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
+
+//    HashMap<String, ArrayList<String> > catMap = new HashMap<String, ArrayList<String>>() {{ put("Electronics",); put("Electronics",null ); }};
 
     public Product saveOrUpdateProduct(Product product){
         return productRepository.save(product);
@@ -94,7 +103,30 @@ public class ProductService {
     }
 
     public Iterable<Product> findByCategory(String category){
-        return productRepository.findByCategoryAndIsActiveAndDeleted(category,true,false);
+        Category tempCategory = categoryRepository.findByCategoryName(category);
+        ArrayList<Category> categoryList  = new ArrayList<Category>();
+        ArrayList<Product> productList = new ArrayList<Product>();
+
+        categoryList.add(tempCategory);
+
+        int i = 0;
+        while(i<categoryList.size()){
+            Category addCategory = categoryList.get(i);
+            //System.err.println(addCategory.getCategoryName());
+
+            Iterable<Category> newCategories = categoryRepository.findByFatherCategoryId(addCategory.getId());
+            for(Category copyCategory : newCategories) {
+                categoryList.add(copyCategory);
+            }
+
+            Iterable<Product> products = productRepository.findByCategoryAndIsActiveAndDeleted(addCategory.getCategoryName(),true,false);
+            for(Product addProduct : products) {
+                productList.add(addProduct);
+            }
+            i++;
+        }
+
+        return productList;
     }
 
     public Iterable<Product> findByActive() {
