@@ -215,3 +215,7 @@
   color: red;
   cursor: pointer;
 }
+
+.select-this-message {
+  background-color: blue;
+}

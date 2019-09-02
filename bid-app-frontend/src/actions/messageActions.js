@@ -11,6 +11,7 @@ import {
   SHOW_MESSAGE
 } from './types';
 import history from '../history';
+import { faPhone } from '@fortawesome/free-solid-svg-icons';
 
 export const changeTheError = dispatch => message => {
   dispatch({
@@ -60,7 +61,6 @@ export const getInbox = dispatch => id => {
 };
 
 export const createNewMessage = dispatch => (id, newMessage) => {
-  console.log(newMessage);
   axios.post('http://localhost:8080/api/messages', newMessage).then(result => {
     dispatch({
       type: GET_SUBJECTS,

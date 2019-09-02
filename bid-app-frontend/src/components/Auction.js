@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { newAuction } from '../actions/productActions';
 import { inputError } from '../actions/userActions';
 import classnames from 'classnames';
+import categories from '../actions/categories';
 
 const createAuction = (event, id, newAuction, inputError) => {
   event.preventDefault();
@@ -63,27 +64,23 @@ const Auction = ({ id, errors, auctionError, newAuction, inputError }) => {
             </div>
             <div className="form-group col-md-6">
               <h6>Category</h6>
-              <select class="form-control">
-                <option>Electronics</option>
-                <option>&nbsp;&nbsp;&nbsp;&nbsp;Phone</option>
-                <option>&nbsp;&nbsp;&nbsp;&nbsp;Computers & Tablets </option>
-
-                <option>Fashion</option>
-                <option>&nbsp;&nbsp;&nbsp;&nbsp;Women's Clothing</option>
-                <option>&nbsp;&nbsp;&nbsp;&nbsp;Men's Clothing</option>
-
-                <option>Toys & Hobbies</option>
-                <option>&nbsp;&nbsp;&nbsp;&nbsp;Action Figures</option>
-                <option>&nbsp;&nbsp;&nbsp;&nbsp;Toy Models</option>
-
-                <option>Sporting Goods</option>
-                <option>&nbsp;&nbsp;&nbsp;&nbsp;Water Sports</option>
-                <option>&nbsp;&nbsp;&nbsp;&nbsp;Winter Sports</option>
-
-                <option>Others Categories</option>
-                <option>&nbsp;&nbsp;&nbsp;&nbsp;Musical Instruments</option>
-                <option>&nbsp;&nbsp;&nbsp;&nbsp;Art</option>
-                <option>&nbsp;&nbsp;&nbsp;&nbsp;Toys & Hobbies</option>
+              <select className="form-control">
+                {categories.map(category => {
+                  if (category.depth === 0) {
+                    return <option>{category.name}</option>;
+                  } else if (category.depth === 1) {
+                    return (
+                      <option>&nbsp;&nbsp;&nbsp;&nbsp;{category.name}</option>
+                    );
+                  } else if (category.depth === 2) {
+                    return (
+                      <option>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        {category.name}
+                      </option>
+                    );
+                  }
+                })}
               </select>
             </div>
           </div>

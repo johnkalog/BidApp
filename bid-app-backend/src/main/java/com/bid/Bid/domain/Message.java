@@ -18,6 +18,7 @@ public class Message {
 
     private String message;
     private String subject;
+    private String sender;
     private LocalDateTime messageDate;
     private boolean deletedFromSender;
     private boolean deletedFromReceiver;
@@ -113,5 +114,13 @@ public class Message {
 
     public void setReadFromSender(boolean readFromSender) {
         this.readFromSender = readFromSender;
+    }
+
+    public String getSender() {
+        return sender;
+    }
+
+    public void setSender(String sender) {
+        this.sender = sender;
     }
 }

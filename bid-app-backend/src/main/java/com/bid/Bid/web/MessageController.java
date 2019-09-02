@@ -1,7 +1,9 @@
 package com.bid.Bid.web;
 
 import com.bid.Bid.domain.Message;
+import com.bid.Bid.domain.User;
 import com.bid.Bid.service.MessageService;
+import com.bid.Bid.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +19,16 @@ public class MessageController {
     @Autowired
     private MessageService messageService;
 
+    @Autowired
+    private UserService userService;
+
     @PostMapping("")
     public ResponseEntity<?> addMessage(@RequestBody Message message){
         message.setMessageDate(LocalDateTime.now());
         message.setDeletedFromReceiver(false);
         message.setDeletedFromSender(false);
+        User user = userService.findById(message.getSenderId());
+        message.setSender(user.getUsername());
         Message newMessage = messageService.saveOrUpdateMessage(message);
         return new ResponseEntity<Message>(newMessage, HttpStatus.CREATED);
     }

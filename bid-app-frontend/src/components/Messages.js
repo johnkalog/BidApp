@@ -15,6 +15,7 @@ import {
   showMessage,
   deleteFromMessages
 } from '../actions/messageActions';
+import classnames from 'classnames';
 
 const Messages = ({
   user,
@@ -91,7 +92,17 @@ const Messages = ({
                   </div>
                   {messages.map(item => (
                     <div
-                      className="product_top_bar d-flex justify-content-between align-items-center border-down-email"
+                      className={classnames(
+                        'product_top_bar',
+                        'd-flex", justify-content-between',
+                        'align-items-center',
+                        'border-down-email',
+                        {
+                          'select-this-message': inboxOrNot
+                            ? !item.readFromReceiver
+                            : false
+                        }
+                      )}
                       key={item.id}
                       onClick={() => {
                         // alert('fewwewefwef');
@@ -99,7 +110,11 @@ const Messages = ({
                       }}
                     >
                       <div className="single_product_menu at-the-left">
-                        <p>{item.subject.split('-')[0]}</p>
+                        <p>
+                          {inboxOrNot
+                            ? item.sender
+                            : item.subject.split('-')[0]}
+                        </p>
                       </div>
                       <div className="single_product_menu d-flex at-the-center">
                         <p>{item.subject}</p>

@@ -16,7 +16,8 @@ const initialState = {
   productsForCheck: [],
   errorOnSubmit: '',
   inboxOrNot: true,
-  showTheMessage: false
+  showTheMessage: false,
+  sender: ''
 };
 
 const messageReducer = (state = initialState, action) => {
