@@ -130,9 +130,9 @@ const Messages = ({
                           className="actions"
                           onClick={() => {
                             alert('dedwrb');
-                            inboxOrNot
-                              ? deleteFromMessages(item, 'Receiver')
-                              : '';
+                            if (inboxOrNot) {
+                              deleteFromMessages(item, 'Receiver');
+                            }
                           }}
                         />
                       </div>
