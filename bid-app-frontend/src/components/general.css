@@ -217,5 +217,9 @@
 }
 
 .select-this-message {
-  background-color: blue;
+  background-color: #7971ef;
+}
+
+.bold-for-unread {
+  font-weight: 500;
 }

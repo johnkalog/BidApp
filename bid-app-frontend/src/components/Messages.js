@@ -16,6 +16,7 @@ import {
   deleteFromMessages
 } from '../actions/messageActions';
 import classnames from 'classnames';
+import Moment from 'react-moment';
 
 const Messages = ({
   user,
@@ -105,7 +106,7 @@ const Messages = ({
                       )}
                       key={item.id}
                       onClick={() => {
-                        // alert('fewwewefwef');
+                        alert('fewwewefwef');
                         showMessage(item, inboxOrNot ? 'Receiver' : 'Sender');
                       }}
                     >
@@ -120,18 +121,25 @@ const Messages = ({
                         <p>{item.subject}</p>
                       </div>
                       <div className="single_product_menu d-flex at-the-right-smaller">
-                        <p>{item.messageDate}</p>
+                        <Moment
+                          format="YYYY/MM/DD HH:mm"
+                          className="bold-for-unread"
+                        >
+                          {item.messageDate}
+                        </Moment>
                       </div>
                       <div className="delete-the-message">
                         <FontAwesomeIcon
                           icon={faTrashAlt}
-                          size="1x"
+                          size="2x"
                           pull="right"
                           className="actions"
                           onClick={() => {
                             alert('dedwrb');
                             if (inboxOrNot) {
                               deleteFromMessages(item, 'Receiver');
+                            } else {
+                              deleteFromMessages(item, 'Sender');
                             }
                           }}
                         />

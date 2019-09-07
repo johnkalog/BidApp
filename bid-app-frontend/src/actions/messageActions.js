@@ -11,7 +11,6 @@ import {
   SHOW_MESSAGE
 } from './types';
 import history from '../history';
-import { faPhone } from '@fortawesome/free-solid-svg-icons';
 
 export const changeTheError = dispatch => message => {
   dispatch({
@@ -89,18 +88,25 @@ export const getSent = dispatch => id => {
 };
 
 export const showMessage = dispatch => (message, where) => {
-  axios
-    .post(`http://localhost:8080/api/messages/readFrom${where}`, message)
-    .then(result => {
-      dispatch({
-        type: GET_MESSAGE,
-        payload: result.data
+  if (where === 'Receiver') {
+    axios
+      .post(`http://localhost:8080/api/messages/readFrom${where}`, message)
+      .then(result => {
+        dispatch({
+          type: GET_MESSAGE,
+          payload: result.data
+        });
+        dispatch({
+          type: SHOW_MESSAGE,
+          payload: true
+        });
       });
-      // dispatch({
-      //   type: SHOW_MESSAGE,
-      //   payload: true
-      // });
+  } else if (where === 'Sender') {
+    dispatch({
+      type: SHOW_MESSAGE,
+      payload: true
     });
+  }
 };
 
 export const changeShow = dispatch => () => {

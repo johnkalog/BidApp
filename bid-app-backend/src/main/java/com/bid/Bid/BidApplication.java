@@ -52,7 +52,7 @@ public class BidApplication {
 			repoC.save(new Category("Winter Sports", (long) 10));
 
 
-			repoC.save(new Category("Others Categories", (long) 0));
+			repoC.save(new Category("Other Categories", (long) 0));
 			repoC.save(new Category("Musical Instruments", (long) 13));
 			repoC.save(new Category("Art", (long) 13));
 		};
