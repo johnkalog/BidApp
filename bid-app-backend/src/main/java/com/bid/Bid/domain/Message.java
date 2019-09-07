@@ -27,6 +27,19 @@ public class Message {
     public Message() {
     }
 
+    public Message(Long senderId,Long receiverId,Long productId,String message,String subject,String sender,LocalDateTime messageDate,boolean deletedFromSender,boolean deletedFromReceiver,boolean readFromReceiver) {
+        this.senderId = senderId;
+        this.receiverId = receiverId;
+        this.productId = productId;
+        this.message = message;
+        this.subject = subject;
+        this.sender = sender;
+        this.messageDate = messageDate;
+        this.deletedFromSender = deletedFromSender;
+        this.deletedFromReceiver = deletedFromReceiver;
+        this.readFromReceiver = readFromReceiver;
+    }
+
     public Long getId() {
         return id;
     }

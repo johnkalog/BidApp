@@ -1,10 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import SearchField from 'react-search-field';
 import Item from './Item';
-import { showCategory } from '../actions/productActions';
+import { showCategory, getSearchedProducts } from '../actions/productActions';
 import { createTheOptions } from '../actions/categorieActions';
 
-const ItemsList = ({ products, categories, showCategory }) => {
+const ItemsList = ({
+  products,
+  categories,
+  showCategory,
+  getSearchedProducts
+}) => {
   return (
     <div>
       <section>
@@ -49,9 +55,16 @@ const ItemsList = ({ products, categories, showCategory }) => {
                 <div className="col-lg-12">
                   <div className="product_top_bar d-flex justify-content-between align-items-center">
                     <div className="single_product_menu">
-                      <p>
-                        <span>10000 </span> Search
-                      </p>
+                      <SearchField
+                        placeholder="Search..."
+                        classNames="test-class"
+                        onEnter={event => {
+                          getSearchedProducts(event);
+                        }}
+                        onSearchClick={event => {
+                          getSearchedProducts(event);
+                        }}
+                      />
                     </div>
                   </div>
                 </div>
@@ -76,6 +89,7 @@ export default connect(
     categories: state.categoriesData.categories
   }),
   dispatch => ({
-    showCategory: showCategory(dispatch)
+    showCategory: showCategory(dispatch),
+    getSearchedProducts: getSearchedProducts(dispatch)
   })
 )(ItemsList);

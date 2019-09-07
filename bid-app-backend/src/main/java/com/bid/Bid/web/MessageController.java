@@ -65,15 +65,15 @@ public class MessageController {
     @PostMapping("/deleteFromReceiver")
     public ResponseEntity<?> deleteFromReceiver(@RequestBody Message message){
         message.setDeletedFromReceiver(true);
-        messageService.saveOrUpdateMessage(message);
-        return new ResponseEntity<String>("Message deleted Receiver", HttpStatus.OK);
+        Message newMessage = messageService.saveOrUpdateMessage(message);
+        return new ResponseEntity<Message>(newMessage, HttpStatus.CREATED);
     }
 
     @PostMapping("/deleteFromSender")
     public ResponseEntity<?> deleteFromSender(@RequestBody Message message){
         message.setDeletedFromSender(true);
-        messageService.saveOrUpdateMessage(message);
-        return new ResponseEntity<String>("Message deleted Sender", HttpStatus.OK);
+        Message newMessage = messageService.saveOrUpdateMessage(message);
+        return new ResponseEntity<Message>(newMessage, HttpStatus.CREATED);
     }
 
     @PostMapping("/readFromReceiver")

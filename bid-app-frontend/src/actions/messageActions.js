@@ -8,7 +8,8 @@ import {
   GET_SUBJECTS,
   GET_CURRENT_PRODUCTS,
   CHANGE_INBOX,
-  SHOW_MESSAGE
+  SHOW_MESSAGE,
+  ON_NEW
 } from './types';
 import history from '../history';
 
@@ -49,7 +50,7 @@ export const getInbox = dispatch => id => {
   axios.get(`http://localhost:8080/api/messages/inbox/${id}`).then(result => {
     dispatch({
       type: GET_MESSAGES,
-      payload: result.data
+      payload: { data: result.data, from: 'inbox' }
     });
     dispatch({
       type: CHANGE_INBOX,
@@ -78,7 +79,7 @@ export const getSent = dispatch => id => {
   axios.get(`http://localhost:8080/api/messages/sent/${id}`).then(result => {
     dispatch({
       type: GET_MESSAGES,
-      payload: result.data
+      payload: { data: result.data, from: 'sent' }
     });
     dispatch({
       type: CHANGE_INBOX,
@@ -100,8 +101,17 @@ export const showMessage = dispatch => (message, where) => {
           type: SHOW_MESSAGE,
           payload: true
         });
+        if (!message.readFromReceiver) {
+          dispatch({
+            type: ON_NEW
+          });
+        }
       });
   } else if (where === 'Sender') {
+    dispatch({
+      type: GET_MESSAGE,
+      payload: message
+    });
     dispatch({
       type: SHOW_MESSAGE,
       payload: true

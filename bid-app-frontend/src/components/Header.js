@@ -13,6 +13,7 @@ import history from '../history';
 
 const Header = ({
   user,
+  unread,
   getProducts,
   logOutUser,
   getUsers,
@@ -43,7 +44,7 @@ const Header = ({
           className="nav-link"
           onClick={() => getInbox(user.id)}
         >
-          Messages
+          Messages<span class="badge">{unread}</span>
         </Link>
       </li>
     );
@@ -191,7 +192,8 @@ const Header = ({
 
 export default connect(
   state => ({
-    user: state.usersData.user
+    user: state.usersData.user,
+    unread: state.messagesData.unread
   }),
   dispatch => ({
     getProducts: getProducts(dispatch),

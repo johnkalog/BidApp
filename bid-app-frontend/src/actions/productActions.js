@@ -158,3 +158,14 @@ export const showCategory = dispatch => category => {
       });
     });
 };
+
+export const getSearchedProducts = dispatch => input => {
+  axios
+    .get(`http://localhost:8080/api/products/search/${input}`)
+    .then(result => {
+      dispatch({
+        type: GET_PRODUCTS,
+        payload: result.data
+      });
+    });
+};

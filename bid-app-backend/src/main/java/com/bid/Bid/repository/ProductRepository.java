@@ -1,8 +1,11 @@
 package com.bid.Bid.repository;
 
 import com.bid.Bid.domain.Product;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+
+import java.util.Collection;
 
 @Repository
 public interface ProductRepository extends CrudRepository<Product, Long> {
@@ -17,4 +20,8 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
 
     Iterable<Product> findByBestBidOwnerIdAndIsActiveAndDeleted(Long owner_id, boolean active, boolean deleted);
 
+    @Query(
+            value = "SELECT * FROM Product p WHERE p.is_active = true AND (p.product_name LIKE ?1 OR p.description LIKE ?1 OR p.location LIKE ?1 OR p.category LIKE ?1)",
+            nativeQuery = true)
+    Collection<Product> findAllActiveUsersNative(String search);
 }

@@ -2,6 +2,7 @@ package com.bid.Bid.web;
 
 import com.bid.Bid.domain.Bid;
 import com.bid.Bid.domain.Product;
+import com.bid.Bid.domain.Message;
 import com.bid.Bid.service.BidService;
 import com.bid.Bid.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
+import javax.sql.rowset.spi.XmlReader;
+import javax.swing.text.Document;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
 
 @RestController
 @RequestMapping("/api/products")
@@ -45,6 +55,7 @@ public class ProductController {
     public ResponseEntity<?> delete(@PathVariable Long product_id){
         Product product = productService.findById(product_id);
         product.setDeleted(true);
+        product.setActive(false);
         Product newProduct = productService.saveOrUpdateProduct(product);
         return new ResponseEntity<String>("Deleted", HttpStatus.OK);
     }
@@ -106,6 +117,11 @@ public class ProductController {
         return products;
     }
 
+    @GetMapping("/search/{str_search}")
+    public Iterable<Product> getProductsBySearch(@PathVariable String str_search){
+        Iterable<Product> products = productService.findBySearch(str_search);
+        return products;
+    }
 
     @GetMapping("/dtd/{product_id}")
     public ResponseEntity<?> getXMLById(@PathVariable Long product_id){
@@ -168,5 +184,45 @@ public class ProductController {
                     +"</Item>\n";
         return new ResponseEntity<String>(response+body, HttpStatus.OK);
     }
+
+    @GetMapping("/database")
+    public void createDatabase() throws Exception {
+        List<Integer> list = new ArrayList<Integer>();
+        File file = new File("C:\\Users\\LEO\\Desktop\\tedi\\BidApp\\bid-app-backend\\src\\main\\java\\com\\bid\\Bid\\web\\data1.txt");
+        BufferedReader br = new BufferedReader(new FileReader(file));
+
+//        String st;
+//        while ((st = br.readLine()) != null) {
+//            System.out.println(st);
+//        }
+
+        String line;
+        line = br.readLine();
+        System.out.println(line);
+        line = br.readLine();
+        System.out.println(line);
+
+        StringTokenizer Tok1 = new StringTokenizer(line,">");
+        Tok1.nextToken(">");
+        String productName = Tok1.nextToken("<").substring(1);
+        System.out.println(productName);
+
+        line = br.readLine();
+        System.out.println(line);
+
+        line = br.readLine();
+        System.out.println(line);
+
+        //        ((org.w3c.dom.Document) doc).getDocumentElement().normalize();
+//        StringTokenizer Tok2 = new StringTokenizer(Tok1.nextToken(),"<");
+
+
+//
+//        System.out.println("Root element :" + ((org.w3c.dom.Document) doc).getDocumentElement().getNodeName());
+
+    }
+
+//print out the list
+
 
 }

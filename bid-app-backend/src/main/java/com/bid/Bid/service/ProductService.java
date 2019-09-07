@@ -1,9 +1,11 @@
 package com.bid.Bid.service;
 
 import com.bid.Bid.domain.Category;
+import com.bid.Bid.domain.Message;
 import com.bid.Bid.domain.Product;
 import com.bid.Bid.domain.User;
 import com.bid.Bid.repository.CategoryRepository;
+import com.bid.Bid.repository.MessageRepository;
 import com.bid.Bid.repository.ProductRepository;
 import com.bid.Bid.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class ProductService {
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private MessageRepository messageRepository;
 
 //    HashMap<String, ArrayList<String> > catMap = new HashMap<String, ArrayList<String>>() {{ put("Electronics",); put("Electronics",null ); }};
 
@@ -88,10 +93,16 @@ public class ProductService {
         }
     }
 
+    public Iterable<Product> findBySearch(String search) {
+        return productRepository.findAllActiveUsersNative("%"+search+"%");
+    }
+
 
     public void productUpdateByDate(Product product) {
         if(product.isActive() && (product.getExpirationDate().isBefore(LocalDateTime.now()) || product.getExpirationDate().isEqual(LocalDateTime.now()))) {
             product.setActive(false);
+            Message message = new Message(product.getOwnerId(),product.getBestBidOwnerId(),product.getId(),"Congratulations",product.getProductName(),product.getOwnerName(),LocalDateTime.now(),false,false,false);
+            messageRepository.save(message);
             saveOrUpdateProduct(product);
         }
     }
