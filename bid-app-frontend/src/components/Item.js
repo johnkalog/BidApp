@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 import history from '../history';
 import { getProduct } from '../actions/productActions';
 
-const Item = ({ product, getProduct }) => {
+const Item = ({ user, product, getProduct }) => {
+  const action =
+    Object.keys(user).length !== 0 && user.type === 'Administrator'
+      ? 'Export'
+      : 'Bid It';
   return (
     <div className="col-lg-4 col-sm-6">
       <div className="single_product_item">
@@ -18,7 +22,7 @@ const Item = ({ product, getProduct }) => {
               getProduct(product.id);
             }}
           >
-            Bid It
+            {action}
           </a>
         </div>
       </div>
@@ -28,6 +32,7 @@ const Item = ({ product, getProduct }) => {
 
 export default connect(
   (state, ownProps) => ({
+    user: state.usersData.user,
     product: ownProps.product
   }),
   dispatch => ({

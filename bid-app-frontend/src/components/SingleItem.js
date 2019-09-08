@@ -1,9 +1,52 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { bidIt } from '../actions/productActions';
+import { bidIt, getTheType } from '../actions/productActions';
 
 const SingleItem = ({ product, user, message, bidIt }) => {
   let bid;
+  const actions =
+    Object.keys(user).length !== 0 && user.type === 'Administrator' ? (
+      <div className="card_area d-flex justify-content-between align-items-center">
+        <button
+          className="btn_3 bid_purple first-to-left"
+          onClick={event => {
+            event.preventDefault();
+            getTheType('xml', product.id, product.productName);
+          }}
+        >
+          XML
+        </button>
+        <button
+          className="btn_3 bid_purple"
+          onClick={event => {
+            event.preventDefault();
+            getTheType('json', product.id, product.productName);
+          }}
+        >
+          JSON
+        </button>
+      </div>
+    ) : (
+      <div className="card_area d-flex justify-content-between align-items-center">
+        <input
+          className="bid"
+          type="number"
+          placeholder={`$${product.bestBid + 1}`}
+          onChange={event => {
+            bid = event.currentTarget.value;
+          }}
+        ></input>
+        <button
+          className="btn_3 bid_purple"
+          onClick={event => {
+            event.preventDefault();
+            bidIt(product, user, bid);
+          }}
+        >
+          Bid It
+        </button>
+      </div>
+    );
   return (
     <div>
       <div className="product_image_area section_padding">
@@ -44,25 +87,7 @@ const SingleItem = ({ product, user, message, bidIt }) => {
                   </li>
                 </ul>
                 <p>{product.description}</p>
-                <div className="card_area d-flex justify-content-between align-items-center">
-                  <input
-                    className="bid"
-                    type="number"
-                    placeholder={`$${product.bestBid + 1}`}
-                    onChange={event => {
-                      bid = event.currentTarget.value;
-                    }}
-                  ></input>
-                  <button
-                    className="btn_3 bid_purple"
-                    onClick={event => {
-                      event.preventDefault();
-                      bidIt(product, user, bid);
-                    }}
-                  >
-                    Bid It
-                  </button>
-                </div>
+                {actions}
                 <div className="message_bid_it">{message}</div>
               </div>
             </div>

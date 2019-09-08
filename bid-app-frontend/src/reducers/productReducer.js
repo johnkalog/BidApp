@@ -7,7 +7,8 @@ import {
   INPUT_CLEAR,
   ERROR_BID,
   AUCTION_ERROR,
-  DELETE_UPLOADED
+  DELETE_UPLOADED,
+  CHANGE_ONCE
 } from '../actions/types';
 
 const initialState = {
@@ -23,7 +24,9 @@ const initialState = {
     expirationDate: false
   },
   message: '',
-  auctionError: ''
+  auctionError: '',
+  onceTheProducts: true,
+  type: ''
 };
 
 const productReducer = (state = initialState, action) => {
@@ -81,6 +84,8 @@ const productReducer = (state = initialState, action) => {
         ...state,
         products: state.products.filter(item => item.id !== action.payload)
       };
+    case CHANGE_ONCE:
+      return { ...state, onceTheProducts: action.payload };
     default:
       return state;
   }

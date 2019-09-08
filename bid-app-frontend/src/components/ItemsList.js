@@ -2,15 +2,31 @@ import React from 'react';
 import { connect } from 'react-redux';
 import SearchField from 'react-search-field';
 import Item from './Item';
-import { showCategory, getSearchedProducts } from '../actions/productActions';
+import {
+  showCategory,
+  getSearchedProducts,
+  getProducts,
+  getAllProducts
+} from '../actions/productActions';
 import { createTheOptions } from '../actions/categorieActions';
 
 const ItemsList = ({
   products,
   categories,
+  onceTheProducts,
+  user,
   showCategory,
-  getSearchedProducts
+  getSearchedProducts,
+  getProducts,
+  getAllProducts
 }) => {
+  if (onceTheProducts) {
+    if (Object.keys(user).length !== 0 && user.type === 'Administrator') {
+      getAllProducts();
+    } else {
+      getProducts();
+    }
+  }
   return (
     <div>
       <section>
@@ -85,10 +101,14 @@ const ItemsList = ({
 export default connect(
   state => ({
     products: state.productsData.products,
-    categories: state.categoriesData.categories
+    categories: state.categoriesData.categories,
+    onceTheProducts: state.productsData.onceTheProducts,
+    user: state.usersData.user
   }),
   dispatch => ({
     showCategory: showCategory(dispatch),
-    getSearchedProducts: getSearchedProducts(dispatch)
+    getSearchedProducts: getSearchedProducts(dispatch),
+    getProducts: getProducts(dispatch),
+    getAllProducts: getAllProducts(dispatch)
   })
 )(ItemsList);

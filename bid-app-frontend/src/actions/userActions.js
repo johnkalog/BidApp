@@ -11,7 +11,8 @@ import {
   CHANGE_POP,
   POP_INIT,
   CHANGE_RELOAD,
-  CHANGE_MES
+  CHANGE_MES,
+  CHANGE_ONCE
 } from './types';
 import history from '../history';
 
@@ -66,6 +67,10 @@ export const checkUser = dispatch => forCheckUser => {
             history.push('users');
           } else {
             history.push('products');
+            dispatch({
+              type: CHANGE_ONCE,
+              payload: true
+            });
           }
         } else {
           history.push('waiting');

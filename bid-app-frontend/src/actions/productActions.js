@@ -12,7 +12,8 @@ import {
   DELETE_UPLOADED,
   CHANGE_UPLOAD,
   SHOW_CATEGORY,
-  INIT_CATEGORIES
+  INIT_CATEGORIES,
+  CHANGE_ONCE
 } from './types';
 import history from '../history';
 
@@ -24,6 +25,10 @@ export const getProducts = dispatch => () => {
     });
     dispatch({
       type: INIT_CATEGORIES
+    });
+    dispatch({
+      type: CHANGE_ONCE,
+      payload: false
     });
   });
 };
@@ -168,4 +173,43 @@ export const getSearchedProducts = dispatch => input => {
         payload: result.data
       });
     });
+};
+
+export const getAllProducts = dispatch => () => {
+  axios.get('http://localhost:8080/api/products/all').then(result => {
+    dispatch({
+      type: GET_PRODUCTS,
+      payload: result.data
+    });
+    dispatch({
+      type: CHANGE_ONCE,
+      payload: false
+    });
+  });
+};
+
+const download = (filename, text) => {
+  var element = document.createElement('a');
+  element.setAttribute(
+    'href',
+    'data:text/plain;charset=utf-8,' + encodeURIComponent(text)
+  );
+  element.setAttribute('download', filename);
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+};
+
+export const getTheType = (type, id, productName) => {
+  const url =
+    type === 'xml'
+      ? `http://localhost:8080/api/products/dtd/${id}`
+      : `http://localhost:8080/api/products/dtd/${id}`;
+  axios.get(url).then(result => {
+    download(`${productName}.${type}`, result.data);
+  });
 };

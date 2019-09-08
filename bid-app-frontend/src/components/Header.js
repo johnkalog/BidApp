@@ -9,6 +9,7 @@ import {
 } from '../actions/productActions';
 import { logOutUser, getUsers } from '../actions/userActions';
 import { getInbox } from '../actions/messageActions';
+import { getAllProducts } from '../actions/productActions';
 import history from '../history';
 
 const Header = ({
@@ -21,7 +22,8 @@ const Header = ({
   getProductsBidder,
   getUploadedSeller,
   atActionStart,
-  getInbox
+  getInbox,
+  getAllProducts
 }) => {
   if (
     Object.keys(user).length !== 0 &&
@@ -177,7 +179,16 @@ const Header = ({
                     <Link
                       to="./products"
                       className="nav-link"
-                      onClick={() => getProducts()}
+                      onClick={() => {
+                        if (
+                          Object.keys(user).length !== 0 &&
+                          user.type === 'Administrator'
+                        ) {
+                          getAllProducts();
+                        } else {
+                          getProducts();
+                        }
+                      }}
                     >
                       Products
                     </Link>
@@ -219,6 +230,7 @@ export default connect(
     getProductsBidder: getProductsBidder(dispatch),
     getUploadedSeller: getUploadedSeller(dispatch),
     atActionStart: atActionStart(dispatch),
-    getInbox: getInbox(dispatch)
+    getInbox: getInbox(dispatch),
+    getAllProducts: getAllProducts(dispatch)
   })
 )(Header);
