@@ -139,6 +139,7 @@ const Messages = ({
                               inboxOrNot ? 'Receiver' : 'Sender'
                             );
                           }}
+                          title="Show "
                         />
                         <FontAwesomeIcon
                           icon={faTrashAlt}
@@ -153,6 +154,7 @@ const Messages = ({
                               deleteFromMessages(item, 'Sender');
                             }
                           }}
+                          title="Delete"
                         />
                       </div>
                     </div>

@@ -26,14 +26,14 @@ const ItemsList = ({
                     <ul className="list">
                       {categories.map(item => (
                         <div>
-                          <li>
+                          <li className="change-the-bottom">
                             <a href="#" onClick={() => showCategory(item.name)}>
                               {item.name}
                             </a>
                           </li>
                           {item.show
                             ? item.childs.map(child => (
-                                <li>
+                                <li className="li-bit-near">
                                   <a
                                     href="#"
                                     onClick={() => showCategory(child.name)}
@@ -69,7 +69,6 @@ const ItemsList = ({
                   </div>
                 </div>
               </div>
-
               <div className="row align-items-center latest_product_inner">
                 {products.map(item => (
                   <Item key={item.id} product={item} />
