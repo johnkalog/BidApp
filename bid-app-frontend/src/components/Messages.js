@@ -5,7 +5,8 @@ import {
   faInbox,
   faPaperPlane,
   faPlusCircle,
-  faTrashAlt
+  faTrashAlt,
+  faEnvelopeOpenText
 } from '@fortawesome/free-solid-svg-icons';
 import SpecificMessagePop from './SpecificMessagePop';
 import {
@@ -44,7 +45,7 @@ const Messages = ({
                     <ul className="list to_options_message">
                       <li
                         className="li-of-message"
-                        onClick={() => getInbox(user.id)}
+                        onClick={() => getInbox(user.id, 'After')}
                       >
                         <FontAwesomeIcon icon={faInbox} size="2x" pull="left" />
                         <h5 className="actions email-with-icons">Inbox</h5>
@@ -89,7 +90,9 @@ const Messages = ({
                     <div className="single_product_menu d-flex at-the-right">
                       <p>Date</p>
                     </div>
-                    <div className="delete-the-message"></div>
+                    <div className="single_product_menu d-flex">
+                      <p>Show/Delete</p>
+                    </div>
                   </div>
                   {messages.map(item => (
                     <div
@@ -105,10 +108,6 @@ const Messages = ({
                         }
                       )}
                       key={item.id}
-                      onClick={() => {
-                        alert('fewwewefwef');
-                        showMessage(item, inboxOrNot ? 'Receiver' : 'Sender');
-                      }}
                     >
                       <div className="single_product_menu at-the-left">
                         <p>
@@ -128,7 +127,19 @@ const Messages = ({
                           {item.messageDate}
                         </Moment>
                       </div>
-                      <div className="delete-the-message">
+                      <div>
+                        <FontAwesomeIcon
+                          icon={faEnvelopeOpenText}
+                          size="2x"
+                          pull="left"
+                          className="actions"
+                          onClick={() => {
+                            showMessage(
+                              item,
+                              inboxOrNot ? 'Receiver' : 'Sender'
+                            );
+                          }}
+                        />
                         <FontAwesomeIcon
                           icon={faTrashAlt}
                           size="2x"

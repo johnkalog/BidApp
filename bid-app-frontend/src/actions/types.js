@@ -28,7 +28,8 @@ export const GET_SUBJECTS = 'GET_SUBJECTS';
 export const GET_CURRENT_PRODUCTS = 'GET_CURRENT_PRODUCTS';
 export const CHANGE_INBOX = 'CHANGE_INBOX';
 export const SHOW_MESSAGE = 'SHOW_MESSAGE';
-export const ON_NEW = "ON_NEW";
+export const ON_NEW = 'ON_NEW';
+export const CHANGE_MES = 'CHANGE_MES';
 
 export const SHOW_CATEGORY = 'SHOW_CATEGORY';
 export const INIT_CATEGORIES = 'INIT_CATEGORIES';

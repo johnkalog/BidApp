@@ -14,6 +14,7 @@ import history from '../history';
 const Header = ({
   user,
   unread,
+  timesInHeader,
   getProducts,
   logOutUser,
   getUsers,
@@ -22,10 +23,18 @@ const Header = ({
   atActionStart,
   getInbox
 }) => {
+  if (
+    Object.keys(user).length !== 0 &&
+    user.type !== 'Administrator' &&
+    user.status === 'Accepted' &&
+    timesInHeader
+  ) {
+    getInbox(user.id, 'One');
+  }
   const homeOrBid =
     Object.keys(user).length === 0 || user.status !== 'Accepted'
       ? './'
-      : './home';
+      : './products';
   const userRightUp =
     Object.keys(user).length === 0 || user.status !== 'Accepted'
       ? ''
@@ -35,7 +44,9 @@ const Header = ({
       ? ''
       : 'Log Out';
   const GoToMessages =
-    Object.keys(user).length === 0 || user.type === 'Administrator' ? (
+    Object.keys(user).length === 0 ||
+    user.type === 'Administrator' ||
+    user.status !== 'Accepted' ? (
       ''
     ) : (
       <li>
@@ -44,7 +55,7 @@ const Header = ({
           className="nav-link"
           onClick={() => getInbox(user.id)}
         >
-          Messages<span class="badge">{unread}</span>
+          Messages{unread !== 0 ? <span class="badge">{unread}</span> : ''}
         </Link>
       </li>
     );
@@ -152,11 +163,16 @@ const Header = ({
                 role="navigation"
               >
                 <ul className="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
-                  <li>
-                    <Link to={homeOrBid} className="nav-link">
-                      Home
-                    </Link>
-                  </li>
+                  {Object.keys(user).length === 0 ||
+                  user.status !== 'Accepted' ? (
+                    <li>
+                      <Link to={homeOrBid} className="nav-link">
+                        Home
+                      </Link>
+                    </li>
+                  ) : (
+                    ''
+                  )}
                   <li>
                     <Link
                       to="./products"
@@ -193,7 +209,8 @@ const Header = ({
 export default connect(
   state => ({
     user: state.usersData.user,
-    unread: state.messagesData.unread
+    unread: state.messagesData.unread,
+    timesInHeader: state.messagesData.timesInHeader
   }),
   dispatch => ({
     getProducts: getProducts(dispatch),

@@ -179,7 +179,6 @@
 
 .border-down-email:hover {
   background-color: rgba(148, 137, 137, 0.5);
-  cursor: pointer;
 }
 
 .at-the-left {
@@ -192,11 +191,11 @@
 }
 
 .at-the-right {
-  margin-right: 5%;
+  margin-right: 9%;
 }
 
 .at-the-right-smaller {
-  margin-right: 3%;
+  margin-right: 12%;
 }
 
 .to-options-message {

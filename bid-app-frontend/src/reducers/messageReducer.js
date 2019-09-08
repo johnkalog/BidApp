@@ -7,7 +7,9 @@ import {
   GET_CURRENT_PRODUCTS,
   CHANGE_INBOX,
   SHOW_MESSAGE,
-  ON_NEW
+  ON_NEW,
+  CHANGE_MES,
+  TO_SHOW
 } from '../actions/types';
 
 const initialState = {
@@ -19,7 +21,8 @@ const initialState = {
   inboxOrNot: true,
   showTheMessage: false,
   sender: '',
-  unread: 0
+  unread: 0,
+  timesInHeader: true
 };
 
 const messageReducer = (state = initialState, action) => {
@@ -66,6 +69,8 @@ const messageReducer = (state = initialState, action) => {
       return { ...state, showTheMessage: action.payload };
     case ON_NEW:
       return { ...state, unread: state.unread - 1 };
+    case CHANGE_MES:
+      return { ...state, timesInHeader: action.payload };
     default:
       return state;
   }

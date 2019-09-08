@@ -9,7 +9,8 @@ import {
   GET_CURRENT_PRODUCTS,
   CHANGE_INBOX,
   SHOW_MESSAGE,
-  ON_NEW
+  ON_NEW,
+  CHANGE_MES
 } from './types';
 import history from '../history';
 
@@ -46,7 +47,7 @@ export const redirectToContact = dispatch => (id, type) => {
   });
 };
 
-export const getInbox = dispatch => id => {
+export const getInbox = dispatch => (id, when) => {
   axios.get(`http://localhost:8080/api/messages/inbox/${id}`).then(result => {
     dispatch({
       type: GET_MESSAGES,
@@ -56,7 +57,13 @@ export const getInbox = dispatch => id => {
       type: CHANGE_INBOX,
       payload: true
     });
-    history.push('messages');
+    dispatch({
+      type: CHANGE_MES,
+      payload: false
+    });
+    if (when === 'After') {
+      history.push('messages');
+    }
   });
 };
 
@@ -134,5 +141,10 @@ export const deleteFromMessages = dispatch => (message, where) => {
         type: DELETE_MESSAGE,
         payload: message.id
       });
+      if (where === 'Receiver' && !message.readFromReceiver) {
+        dispatch({
+          type: ON_NEW
+        });
+      }
     });
 };

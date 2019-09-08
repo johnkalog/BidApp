@@ -10,7 +10,8 @@ import {
   CHANGE_STATUS,
   CHANGE_POP,
   POP_INIT,
-  CHANGE_RELOAD
+  CHANGE_RELOAD,
+  CHANGE_MES
 } from './types';
 import history from '../history';
 
@@ -56,11 +57,15 @@ export const checkUser = dispatch => forCheckUser => {
           type: GET_USER,
           payload: result.data
         });
+        dispatch({
+          type: CHANGE_MES,
+          payload: true
+        });
         if (result.data.status === 'Accepted') {
           if (result.data.type === 'Administrator') {
             history.push('users');
           } else {
-            history.push('home');
+            history.push('products');
           }
         } else {
           history.push('waiting');
