@@ -132,7 +132,7 @@ const Messages = ({
                           icon={faEnvelopeOpenText}
                           size="2x"
                           pull="left"
-                          className="actions"
+                          className="actions messages"
                           onClick={() => {
                             showMessage(
                               item,
@@ -145,9 +145,8 @@ const Messages = ({
                           icon={faTrashAlt}
                           size="2x"
                           pull="right"
-                          className="actions"
+                          className="actions delete"
                           onClick={() => {
-                            alert('dedwrb');
                             if (inboxOrNot) {
                               deleteFromMessages(item, 'Receiver');
                             } else {

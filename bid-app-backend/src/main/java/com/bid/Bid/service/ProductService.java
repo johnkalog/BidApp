@@ -10,7 +10,12 @@ import com.bid.Bid.repository.ProductRepository;
 import com.bid.Bid.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -150,5 +155,13 @@ public class ProductService {
 
     public Iterable<Product> findByBestBidderIdAndIsNotActive(Long bidder_id) {
         return productRepository.findByBestBidOwnerIdAndIsActiveAndDeleted(bidder_id,false,false);
+    }
+
+    public String saveImage(MultipartFile imageFile) throws Exception{
+        String folder = "/photos/";
+        byte[] bytes = imageFile.getBytes();
+        Path path = Paths.get(folder + imageFile.getOriginalFilename());
+        Files.write(path, bytes);
+        return folder+imageFile.getOriginalFilename();
     }
 }

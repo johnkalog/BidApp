@@ -213,3 +213,11 @@ export const getTheType = (type, id, productName) => {
     download(`${productName}.${type}`, result.data);
   });
 };
+
+export const doThePost = fd => {
+  axios
+    .post('http://localhost:8080/api/products/uploadImage', fd)
+    .then(result => {
+      // return result.data;
+    });
+};

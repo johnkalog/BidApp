@@ -1,12 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { newAuction } from '../actions/productActions';
+import { newAuction, doThePost } from '../actions/productActions';
 import { inputError } from '../actions/userActions';
 import classnames from 'classnames';
 import { createTheOptions } from '../actions/categorieActions';
 
-const createAuction = (event, id, newAuction, inputError) => {
+const createAuction = (event, id, newAuction, file, inputError) => {
   event.preventDefault();
+  if (file.length === 0) {
+    inputError('productImage');
+  }
+  const fd = new FormData();
+  fd.append('imageFile', file, file.name);
   const newProduct = {
     productName: event.target[0].value,
     category: event.target[1].value,
@@ -14,7 +19,6 @@ const createAuction = (event, id, newAuction, inputError) => {
     buyPrice: event.target[3].value,
     location: event.target[4].value,
     description: event.target[5].value,
-    productImage: event.target[6].value,
     expirationDate: event.target[7].value,
     ownerId: id
     //status: true
@@ -34,13 +38,16 @@ const createAuction = (event, id, newAuction, inputError) => {
   if (newProduct.description.length === 0) {
     inputError('description');
   }
-  if (newProduct.productImage.length === 0) {
-    inputError('productImage');
-  }
+  // if (newProduct.productImage.length === 0) {
+  //   inputError('productImage');
+  // }
   if (newProduct.expirationDate.length === 0) {
     inputError('expirationDate');
     return;
   }
+  const image = doThePost(fd);
+  newProduct.productImage = image;
+  console.log(newProduct);
   newAuction(newProduct);
 };
 
@@ -52,11 +59,14 @@ const Auction = ({
   newAuction,
   inputError
 }) => {
+  let file = '';
   return (
     <div className="product_image_area section_padding">
       <div className="container container2">
         <form
-          onSubmit={event => createAuction(event, id, newAuction, inputError)}
+          onSubmit={event =>
+            createAuction(event, id, newAuction, file, inputError)
+          }
         >
           <div className="form-row">
             <div className="form-group col-md-6">
@@ -136,10 +146,14 @@ const Auction = ({
             <div className="form-group col-md-6">
               <h6>Image</h6>
               <input
-                type="text"
+                type="file"
                 className={classnames('form-control', {
                   'is-invalid': errors.productImage
                 })}
+                name="imageFile"
+                onChange={event => {
+                  file = event.target.files[0];
+                }}
               />
             </div>
             <div className="form-group ">

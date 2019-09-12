@@ -4,6 +4,7 @@ import com.bid.Bid.domain.Product;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Collection;
 
@@ -24,4 +25,6 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
             value = "SELECT * FROM Product p WHERE p.is_active = true AND (p.product_name LIKE ?1 OR p.description LIKE ?1 OR p.location LIKE ?1 OR p.category LIKE ?1)",
             nativeQuery = true)
     Collection<Product> findAllActiveUsersNative(String search);
+
+//    void saveImage(MultipartFile imageFile) throws Exception;
 }

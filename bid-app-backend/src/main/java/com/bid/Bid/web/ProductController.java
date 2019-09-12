@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.sql.rowset.spi.XmlReader;
 import javax.swing.text.Document;
@@ -224,5 +225,16 @@ public class ProductController {
 
 //print out the list
 
+    @PostMapping("/uploadImage")
+    public String uploadImage(@RequestParam("imageFile") MultipartFile imageFile) {
+        String where= "";
+        try {
+            where = productService.saveImage(imageFile);
+        } catch (Exception e){
+            e.printStackTrace();
+            return "false";
+        }
+        return where;
+    }
 
 }
