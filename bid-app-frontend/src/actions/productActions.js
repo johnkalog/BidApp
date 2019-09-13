@@ -43,22 +43,27 @@ export const atActionStart = dispatch => () => {
   });
 };
 
-export const newAuction = dispatch => theNewAuction => {
+export const newAuction = dispatch => (theNewAuction, fd) => {
   axios
-    .post('http://localhost:8080/api/products', theNewAuction)
+    .post('http://localhost:8080/api/products/uploadImage', fd)
     .then(result => {
-      if (typeof result.data === 'string') {
-        dispatch({
-          type: AUCTION_ERROR,
-          payload: result.data
+      theNewAuction.productImage = result.data;
+      axios
+        .post('http://localhost:8080/api/products', theNewAuction)
+        .then(product => {
+          if (typeof product.data === 'string') {
+            dispatch({
+              type: AUCTION_ERROR,
+              payload: product.data
+            });
+          } else if (typeof product.data === 'object') {
+            dispatch({
+              type: CHANGE_UPLOAD,
+              payload: true
+            });
+            history.push('uploaded');
+          }
         });
-      } else if (typeof result.data === 'object') {
-        dispatch({
-          type: CHANGE_UPLOAD,
-          payload: true
-        });
-        history.push('uploaded');
-      }
     });
 };
 
@@ -212,12 +217,4 @@ export const getTheType = (type, id, productName) => {
   axios.get(url).then(result => {
     download(`${productName}.${type}`, result.data);
   });
-};
-
-export const doThePost = fd => {
-  axios
-    .post('http://localhost:8080/api/products/uploadImage', fd)
-    .then(result => {
-      // return result.data;
-    });
 };

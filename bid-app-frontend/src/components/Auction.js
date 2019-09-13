@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { newAuction, doThePost } from '../actions/productActions';
+import { newAuction } from '../actions/productActions';
 import { inputError } from '../actions/userActions';
 import classnames from 'classnames';
 import { createTheOptions } from '../actions/categorieActions';
@@ -45,10 +45,7 @@ const createAuction = (event, id, newAuction, file, inputError) => {
     inputError('expirationDate');
     return;
   }
-  const image = doThePost(fd);
-  newProduct.productImage = image;
-  console.log(newProduct);
-  newAuction(newProduct);
+  newAuction(newProduct, fd);
 };
 
 const Auction = ({
