@@ -234,7 +234,7 @@ public class ProductController {
             e.printStackTrace();
             return "false";
         }
-        return where;
+        return "./photos/" + where;
     }
 
 }

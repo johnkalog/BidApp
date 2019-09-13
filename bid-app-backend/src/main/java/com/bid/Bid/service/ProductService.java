@@ -158,10 +158,10 @@ public class ProductService {
     }
 
     public String saveImage(MultipartFile imageFile) throws Exception{
-        String folder = "/photos/";
+        String folder = "./../bid-app-frontend/src/components/photos/";
         byte[] bytes = imageFile.getBytes();
         Path path = Paths.get(folder + imageFile.getOriginalFilename());
         Files.write(path, bytes);
-        return folder+imageFile.getOriginalFilename();
+        return imageFile.getOriginalFilename();
     }
 }
