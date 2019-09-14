@@ -5,7 +5,15 @@ import { inputError } from '../actions/userActions';
 import classnames from 'classnames';
 import { createTheOptions } from '../actions/categorieActions';
 
-const createAuction = (event, id, newAuction, file, inputError) => {
+const createAuction = (
+  event,
+  id,
+  product,
+  newOrUpdate,
+  newAuction,
+  file,
+  inputError
+) => {
   event.preventDefault();
   if (file.length === 0) {
     inputError('productImage');
@@ -53,6 +61,8 @@ const Auction = ({
   errors,
   auctionError,
   categories,
+  product,
+  newOrUpdate,
   newAuction,
   inputError
 }) => {
@@ -74,6 +84,7 @@ const Auction = ({
                   'is-invalid': errors.productName
                 })}
                 placeholder="Product Name"
+                value={!newOrUpdate ? product.productName : ''}
               />
             </div>
             <div className="form-group col-md-6">
@@ -179,7 +190,9 @@ export default connect(
     id: state.usersData.user.id,
     errors: state.productsData.errors,
     auctionError: state.productsData.auctionError,
-    categories: state.categoriesData.categories
+    categories: state.categoriesData.categories,
+    product: state.productsData.product,
+    newOrUpdate: state.productsData.newOrUpdate
   }),
   dispatch => ({
     newAuction: newAuction(dispatch),

@@ -13,7 +13,8 @@ import {
   CHANGE_UPLOAD,
   SHOW_CATEGORY,
   INIT_CATEGORIES,
-  CHANGE_ONCE
+  CHANGE_ONCE,
+  UPDATE
 } from './types';
 import history from '../history';
 
@@ -40,6 +41,10 @@ export const atActionStart = dispatch => () => {
   dispatch({
     type: AUCTION_ERROR,
     payload: ''
+  });
+  dispatch({
+    type: UPDATE,
+    payload: true
   });
 };
 
@@ -217,4 +222,16 @@ export const getTheType = (type, id, productName) => {
   axios.get(url).then(result => {
     download(`${productName}.${type}`, result.data);
   });
+};
+
+export const theUpdateAuction = dispatch => product => {
+  dispatch({
+    type: GET_PRODUCT,
+    payload: product
+  });
+  dispatch({
+    type: UPDATE,
+    payload: false
+  });
+  history.push('auction');
 };

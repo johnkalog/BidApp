@@ -8,7 +8,8 @@ import {
   ERROR_BID,
   AUCTION_ERROR,
   DELETE_UPLOADED,
-  CHANGE_ONCE
+  CHANGE_ONCE,
+  UPDATE
 } from '../actions/types';
 
 const initialState = {
@@ -26,7 +27,8 @@ const initialState = {
   message: '',
   auctionError: '',
   onceTheProducts: true,
-  type: ''
+  type: '',
+  newOrUpdate: true
 };
 
 const productReducer = (state = initialState, action) => {
@@ -86,6 +88,8 @@ const productReducer = (state = initialState, action) => {
       };
     case CHANGE_ONCE:
       return { ...state, onceTheProducts: action.payload };
+    case UPDATE:
+      return { ...state, newOrUpdate: action.payload };
     default:
       return state;
   }

@@ -6,10 +6,16 @@ import {
   faEnvelope,
   faTrashAlt
 } from '@fortawesome/free-solid-svg-icons';
-import { deleteProduct } from '../actions/productActions';
+import { deleteProduct, theUpdateAuction } from '../actions/productActions';
 import { getInbox } from '../actions/messageActions';
 
-const UploadedItem = ({ product, id, deleteProduct, getInbox }) => {
+const UploadedItem = ({
+  product,
+  id,
+  deleteProduct,
+  getInbox,
+  theUpdateAuction
+}) => {
   const actions =
     product.bestBidOwnerId === null ? (
       <div>
@@ -19,6 +25,7 @@ const UploadedItem = ({ product, id, deleteProduct, getInbox }) => {
           size="2x"
           pull="left"
           className="actions update"
+          onClick={() => theUpdateAuction(product)}
         />
         <FontAwesomeIcon
           icon={faTrashAlt}
@@ -85,6 +92,7 @@ export default connect(
   }),
   dispatch => ({
     deleteProduct: deleteProduct(dispatch),
-    getInbox: getInbox(dispatch)
+    getInbox: getInbox(dispatch),
+    theUpdateAuction: theUpdateAuction(dispatch)
   })
 )(UploadedItem);
