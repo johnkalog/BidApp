@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bidIt, getTheType } from '../actions/productActions';
+import OpenMapItem from './OpenMapItem';
 
 const SingleItem = ({ product, user, message, bidIt }) => {
   let bid;
@@ -92,6 +93,11 @@ const SingleItem = ({ product, user, message, bidIt }) => {
               </div>
             </div>
           </div>
+          {Object.keys(user).length !== 0 && user.type === 'Administrator' ? (
+            ''
+          ) : (
+            <OpenMapItem />
+          )}
         </div>
       </div>
     </div>

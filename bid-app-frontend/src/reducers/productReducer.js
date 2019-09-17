@@ -9,7 +9,8 @@ import {
   AUCTION_ERROR,
   DELETE_UPLOADED,
   CHANGE_ONCE,
-  UPDATE
+  UPDATE,
+  GET_DIRECTIONS
 } from '../actions/types';
 
 const initialState = {
@@ -28,7 +29,9 @@ const initialState = {
   auctionError: '',
   onceTheProducts: true,
   type: '',
-  newOrUpdate: true
+  newOrUpdate: true,
+  latitude: 0,
+  longitude: 0
 };
 
 const productReducer = (state = initialState, action) => {
@@ -90,6 +93,12 @@ const productReducer = (state = initialState, action) => {
       return { ...state, onceTheProducts: action.payload };
     case UPDATE:
       return { ...state, newOrUpdate: action.payload };
+    case GET_DIRECTIONS:
+      return {
+        ...state,
+        latitude: action.payload.latitude,
+        longitude: action.payload.longitude
+      };
     default:
       return state;
   }

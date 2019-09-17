@@ -235,3 +235,10 @@
 .first-to-left {
   margin-left: 12%;
 }
+
+.leaflet-container {
+  height: 600px;
+  width: 73%;
+  margin-left: auto;
+  margin-right: auto;
+}

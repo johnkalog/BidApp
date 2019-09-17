@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { confirmAlert } from 'react-confirm-alert';
+import Nodinatim from 'nodinatim';
 
 import {
   GET_PRODUCTS,
@@ -14,7 +15,8 @@ import {
   SHOW_CATEGORY,
   INIT_CATEGORIES,
   CHANGE_ONCE,
-  UPDATE
+  UPDATE,
+  GET_DIRECTIONS
 } from './types';
 import history from '../history';
 
@@ -77,6 +79,17 @@ export const getProduct = dispatch => id => {
     dispatch({
       type: GET_PRODUCT,
       payload: result.data
+    });
+    const geocoder = new Nodinatim();
+    geocoder.geocode(result.data.location).then(function(results) {
+      console.log(results);
+      dispatch({
+        type: GET_DIRECTIONS,
+        payload: {
+          latitude: results.latitude,
+          longitude: results.longitude
+        }
+      });
     });
     history.push('single');
   });

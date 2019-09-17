@@ -14,6 +14,7 @@ import SingleItem from './components/SingleItem';
 import Auction from './components/Auction';
 import Uploaded from './components/Uploaded';
 import Messages from './components/Messages';
+import OpenMapItem from './components/OpenMapItem';
 
 import './components/general.css';
 import './components/fonts/icomoon/style.css';
@@ -36,6 +37,7 @@ import './components/css/style3.css';
 
 import './components/css/style2.css';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+// import 'leaflet/dist/leaflet.css';
 
 class App extends Component {
   render() {
