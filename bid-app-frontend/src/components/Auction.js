@@ -8,15 +8,16 @@ import { createTheOptions } from '../actions/categorieActions';
 const createAuction = (
   event,
   id,
-  product,
-  newOrUpdate,
   newAuction,
   file,
+  newOrUpdate,
+  productId,
   inputError
 ) => {
   event.preventDefault();
   if (file.length === 0) {
     inputError('productImage');
+    return;
   }
   const fd = new FormData();
   fd.append('imageFile', file, file.name);
@@ -53,6 +54,9 @@ const createAuction = (
     inputError('expirationDate');
     return;
   }
+  if (!newOrUpdate) {
+    newProduct.id = productId;
+  }
   newAuction(newProduct, fd);
 };
 
@@ -72,7 +76,15 @@ const Auction = ({
       <div className="container container2">
         <form
           onSubmit={event =>
-            createAuction(event, id, newAuction, file, inputError)
+            createAuction(
+              event,
+              id,
+              newAuction,
+              file,
+              newOrUpdate,
+              product.id,
+              inputError
+            )
           }
         >
           <div className="form-row">
@@ -84,7 +96,7 @@ const Auction = ({
                   'is-invalid': errors.productName
                 })}
                 placeholder="Product Name"
-                value={!newOrUpdate ? product.productName : ''}
+                defaultValue={!newOrUpdate ? product.productName : ''}
               />
             </div>
             <div className="form-group col-md-6">
@@ -92,14 +104,32 @@ const Auction = ({
               <select className="form-control">
                 {createTheOptions(categories).map(category => {
                   if (category.depth === 0) {
-                    return <option>{category.name}</option>;
+                    return (
+                      <option
+                        selected={
+                          !newOrUpdate && product.category == category.name
+                        }
+                      >
+                        {category.name}
+                      </option>
+                    );
                   } else if (category.depth === 1) {
                     return (
-                      <option>&nbsp;&nbsp;&nbsp;&nbsp;{category.name}</option>
+                      <option
+                        selected={
+                          !newOrUpdate && product.category == category.name
+                        }
+                      >
+                        &nbsp;&nbsp;&nbsp;&nbsp;{category.name}
+                      </option>
                     );
                   } else if (category.depth === 2) {
                     return (
-                      <option>
+                      <option
+                        selected={
+                          !newOrUpdate && product.category == category.name
+                        }
+                      >
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         {category.name}
                       </option>
@@ -118,6 +148,7 @@ const Auction = ({
                   'is-invalid': errors.firstBid
                 })}
                 placeholder="minimum price *"
+                defaultValue={!newOrUpdate ? product.firstBid : ''}
               />
             </div>
             <div className="form-group col-md-6">
@@ -127,6 +158,7 @@ const Auction = ({
                 className="form-control"
                 id="inputPassword4"
                 placeholder="maximum price"
+                defaultValue={!newOrUpdate ? product.buyPrice : ''}
               />
             </div>
           </div>
@@ -149,6 +181,7 @@ const Auction = ({
                 })}
                 rows="4"
                 placeholder="Write here..."
+                defaultValue={!newOrUpdate ? product.description : ''}
               ></textarea>
             </div>
             <div className="form-group col-md-6">
@@ -172,12 +205,17 @@ const Auction = ({
                   'is-invalid': errors.expirationDate
                 })}
                 placeholder="dd-mm-yyy"
+                defaultValue={!newOrUpdate ? product.expirationDate : ''}
               />
             </div>
           </div>
           <div className="message-auction-red">{auctionError}</div>
           <div className="form-group">
-            <input type="submit" className="btn btn-primary" value="Submit" />
+            <input
+              type="submit"
+              className="btn btn-primary"
+              value={!newOrUpdate ? 'Update' : 'Submit'}
+            />
           </div>
         </form>
       </div>
