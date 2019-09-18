@@ -170,6 +170,7 @@ const Auction = ({
                 'is-invalid': errors.location
               })}
               placeholder="Location *"
+              defaultValue={!newOrUpdate ? product.location : ''}
             />
           </div>
           <div className="form-row">
