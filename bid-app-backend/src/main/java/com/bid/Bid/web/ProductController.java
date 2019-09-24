@@ -68,6 +68,12 @@ public class ProductController {
         return products;
     }
 
+    @GetMapping("/notall/{page}")
+    public Iterable<Product> getNotAllproducts(@PathVariable int page){
+        Iterable<Product> products = productService.findNotAll(page);
+        productService.allProductsUpdateByDate(products);
+        return products;
+    }
     @GetMapping("/allActive")
     public Iterable<Product> getAllActiveproducts(){
         Iterable<Product> products = productService.findByActive();
@@ -226,15 +232,15 @@ public class ProductController {
 //print out the list
 
     @PostMapping("/uploadImage")
-    public String uploadImage(@RequestParam("imageFile") MultipartFile imageFile) {
-        String where= "";
-        try {
-            where = productService.saveImage(imageFile);
-        } catch (Exception e){
-            e.printStackTrace();
-            return "false";
+        public String uploadImage(@RequestParam("imageFile") MultipartFile imageFile) {
+            String where= "";
+            try {
+                where = productService.saveImage(imageFile);
+            } catch (Exception e){
+                e.printStackTrace();
+                return "false";
+            }
+            return "./photos/" + where;
         }
-        return "./photos/" + where;
-    }
 
 }

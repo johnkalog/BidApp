@@ -20,6 +20,24 @@ public class Bid {
     public Bid() {
     }
 
+    public Bid(Long bidderId,Long offer,Long productId,LocalDateTime biddingDate ) {
+        this.offer = offer;
+        this.productId = productId;
+        this.bidderId = bidderId;
+        this.biddingDate = biddingDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Bid{" +
+                "id=" + id +
+                ", bidderId='" + bidderId + '\'' +
+                ", offer='" + offer + '\'' +
+                ", productId=" + productId +
+                ", biddingDate=" + biddingDate +
+                '}';
+    }
+
     public Long getId() {
         return id;
     }

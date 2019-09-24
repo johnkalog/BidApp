@@ -1,6 +1,9 @@
 package com.bid.Bid.repository;
 
 import com.bid.Bid.domain.Product;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -26,5 +29,6 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
             nativeQuery = true)
     Collection<Product> findAllActiveUsersNative(String search);
 
-//    void saveImage(MultipartFile imageFile) throws Exception;
+
+    Page<Product> findAll(Pageable pageable);
 }

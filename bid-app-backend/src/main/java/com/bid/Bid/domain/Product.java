@@ -1,10 +1,8 @@
 package com.bid.Bid.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 public class Product {
@@ -15,6 +13,7 @@ public class Product {
     private String productName;
     private String category;
     private String location;
+    @Column(length = 100000)
     private String description;
 
 
@@ -43,6 +42,30 @@ public class Product {
         this.BestBid = BestBid;
     }
 
+    public Product(String productName,Long BestBid, String category,Long firstBid,String location,LocalDateTime startedDate, LocalDateTime expirationDate, String description,String productImage,boolean isActive) {
+        this.productName = productName;
+        this.BestBid = BestBid;
+        this.category = category;
+        this.firstBid = firstBid;
+        this.location = location;
+        this.startedDate = startedDate;
+        this.expirationDate = expirationDate;
+        this.description = description;
+        this.productImage = productImage;
+        this.isActive = isActive;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", productName='" + productName + '\'' +
+                ", category=" + category +
+                ", firstBid=" + firstBid +
+                ", location=" + location +
+                '}';
+    }
     public Long getId() {
         return id;
     }

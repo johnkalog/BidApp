@@ -9,6 +9,9 @@ import com.bid.Bid.repository.MessageRepository;
 import com.bid.Bid.repository.ProductRepository;
 import com.bid.Bid.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,6 +19,8 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -157,6 +162,12 @@ public class ProductService {
         return productRepository.findByBestBidOwnerIdAndIsActiveAndDeleted(bidder_id,false,false);
     }
 
+    public Iterable<Product> findNotAll(int k) {
+        Page<Product> page =  productRepository.findAll(PageRequest.of(k, 10));
+        Iterable<Product> nRecords = page.getContent();
+        return nRecords;
+    }
+    
     public String saveImage(MultipartFile imageFile) throws Exception{
         String folder = "./../bid-app-frontend/src/components/photos/";
         byte[] bytes = imageFile.getBytes();

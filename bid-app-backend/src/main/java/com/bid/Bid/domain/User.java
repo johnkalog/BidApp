@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.ArrayList;
 
 @Entity
 public class User {
@@ -23,6 +24,7 @@ public class User {
     private String afm;
     private String type;
     private String status;
+    private ArrayList<Long> visited;
 
     public User(String username, String password, String firstName, String lastName, String email, String phone, String location, String afm, String type, String status) {
         this.username = username;
@@ -33,6 +35,14 @@ public class User {
         this.phone = phone;
         this.location = location;
         this.afm = afm;
+        this.type = type;
+        this.status = status;
+    }
+
+
+    public User(String username, String password,String type,String status) {
+        this.username = username;
+        this.password = password;
         this.type = type;
         this.status = status;
     }
@@ -126,5 +136,13 @@ public class User {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public ArrayList<Long> getVisited() {
+        return visited;
+    }
+
+    public void setVisited(ArrayList<Long> visited) {
+        this.visited = visited;
     }
 }

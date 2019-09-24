@@ -39,6 +39,18 @@ public class UserService {
         return userRepository.getByUsername(username);
     }
 
+    public void addViseted(Long product_id,Long user_id) {
+        System.out.println(user_id);
+
+        User user = userRepository.getById(user_id);
+        ArrayList<Long> visited = user.getVisited();
+        if(visited == null) {
+            visited = new ArrayList<>();
+        }
+        visited.add(product_id);
+        user.setVisited(visited);
+        saveOrUpdateUser(user);
+    }
 
 
     public void delete(Long id){

@@ -59,6 +59,12 @@ public class UserController {
 //        return new ResponseEntity<String>("User found?", HttpStatus.OK);
     }
 
+    @GetMapping("/visited/{product_id}/{user_id}")
+    public ResponseEntity<?> addVisited(@PathVariable Long product_id,@PathVariable Long user_id){
+        userService.addViseted(product_id,user_id);
+        return new ResponseEntity<String>("Visited added", HttpStatus.OK);
+    }
+
     @PostMapping("/new")
     public ResponseEntity<?> checkNew(@RequestBody  LoginRequest loginRequest){
         User user = userService.findByUsername(loginRequest.getUsername());
