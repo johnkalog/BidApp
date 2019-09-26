@@ -5,7 +5,8 @@ import {
   getProducts,
   getProductsBidder,
   getUploadedSeller,
-  atActionStart
+  atActionStart,
+  getProductBonus
 } from '../actions/productActions';
 import { logOutUser, getUsers } from '../actions/userActions';
 import { getInbox } from '../actions/messageActions';
@@ -23,7 +24,8 @@ const Header = ({
   getUploadedSeller,
   atActionStart,
   getInbox,
-  getAllProducts
+  getAllProducts,
+  getProductBonus
 }) => {
   if (
     Object.keys(user).length !== 0 &&
@@ -186,7 +188,11 @@ const Header = ({
                         ) {
                           getAllProducts();
                         } else {
-                          getProducts();
+                          if (Object.keys(user).length === 0) {
+                            getProducts();
+                          } else {
+                            getProductBonus(user);
+                          }
                         }
                       }}
                     >
@@ -231,6 +237,7 @@ export default connect(
     getUploadedSeller: getUploadedSeller(dispatch),
     atActionStart: atActionStart(dispatch),
     getInbox: getInbox(dispatch),
-    getAllProducts: getAllProducts(dispatch)
+    getAllProducts: getAllProducts(dispatch),
+    getProductBonus: getProductBonus(dispatch)
   })
 )(Header);

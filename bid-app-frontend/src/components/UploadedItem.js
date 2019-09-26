@@ -44,7 +44,7 @@ const UploadedItem = ({
           size="2x"
           pull="left"
           className="actions messages"
-          onClick={() => getInbox(id)}
+          onClick={() => getInbox(id, 'After')}
         />
       </div>
     ) : (

@@ -15,7 +15,7 @@ const ShopItem = ({ product, id, getInbox }) => {
         size="2x"
         pull="left"
         className="actions messages"
-        onClick={() => getInbox(id)}
+        onClick={() => getInbox(id, 'After')}
       />
     </div>
   ) : (

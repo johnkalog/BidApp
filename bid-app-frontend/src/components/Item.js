@@ -14,12 +14,12 @@ const Item = ({ user, product, getProduct }) => {
         <img src={require(`${product.productImage}`)} alt="" />
         <div className="single_product_text">
           <h4>{product.productName}</h4>
-          <h3>{product.bestBid}</h3>
+          <h3>{'$' + product.bestBid}</h3>
           <a
             href="#"
             className="add_cart"
             onClick={() => {
-              getProduct(product.id);
+              getProduct(product.id,user);
             }}
           >
             {action}

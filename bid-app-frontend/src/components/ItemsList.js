@@ -6,7 +6,8 @@ import {
   showCategory,
   getSearchedProducts,
   getProducts,
-  getAllProducts
+  getAllProducts,
+  getProductBonus
 } from '../actions/productActions';
 import { createTheOptions } from '../actions/categorieActions';
 
@@ -18,13 +19,18 @@ const ItemsList = ({
   showCategory,
   getSearchedProducts,
   getProducts,
-  getAllProducts
+  getAllProducts,
+  getProductBonus
 }) => {
   if (onceTheProducts) {
     if (Object.keys(user).length !== 0 && user.type === 'Administrator') {
       getAllProducts();
     } else {
-      getProducts();
+      if (Object.keys(user).length === 0) {
+        getProducts();
+      } else {
+        getProductBonus(user);
+      }
     }
   }
   return (
@@ -109,6 +115,7 @@ export default connect(
     showCategory: showCategory(dispatch),
     getSearchedProducts: getSearchedProducts(dispatch),
     getProducts: getProducts(dispatch),
-    getAllProducts: getAllProducts(dispatch)
+    getAllProducts: getAllProducts(dispatch),
+    getProductBonus: getProductBonus(dispatch)
   })
 )(ItemsList);

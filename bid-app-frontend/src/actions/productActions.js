@@ -36,6 +36,32 @@ export const getProducts = dispatch => () => {
   });
 };
 
+export const getProductBonus = dispatch => user => {
+  axios.get('http://localhost:8080/api/products/allActive').then(res => {
+    axios.get(`http://localhost:8080/api/bids/lsh/${user.id}`).then(result => {
+      if (typeof result.data === 'string') {
+        dispatch({
+          type: GET_PRODUCTS,
+          payload: res.data
+        });
+      } else if (result.data.isArray()) {
+        console.log('fweewfwg');
+        dispatch({
+          type: GET_PRODUCTS,
+          payload: [...result.data, ...res.data]
+        });
+      }
+      dispatch({
+        type: INIT_CATEGORIES
+      });
+      dispatch({
+        type: CHANGE_ONCE,
+        payload: false
+      });
+    });
+  });
+};
+
 export const atActionStart = dispatch => () => {
   dispatch({
     type: INPUT_CLEAR
@@ -74,15 +100,17 @@ export const newAuction = dispatch => (theNewAuction, fd) => {
     });
 };
 
-export const getProduct = dispatch => id => {
+export const getProduct = dispatch => (id, user) => {
   axios.get(`http://localhost:8080/api/products/${id}`).then(result => {
     dispatch({
       type: GET_PRODUCT,
       payload: result.data
     });
+    if (Object.keys(user).length !== 0 && user.type != 'Administrator') {
+      axios.get(`http://localhost:8080/api/users/visited/${id}/${user.id}`);
+    }
     const geocoder = new Nodinatim();
     geocoder.geocode(result.data.location).then(function(results) {
-      console.log(results);
       dispatch({
         type: GET_DIRECTIONS,
         payload: {
