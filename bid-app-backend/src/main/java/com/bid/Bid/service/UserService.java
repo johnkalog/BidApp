@@ -22,7 +22,7 @@ public class UserService {
     }
 
     public Iterable<User> findAll(int k){
-        Page<User>  page = userRepository.findAll(PageRequest.of(k, 9));
+        Page<User>  page = userRepository.findAllByOrderByIdDesc(PageRequest.of(k, 9));
         Iterable<User> all = page.getContent();
 
         ArrayList<User> userArrayList = new ArrayList<>();

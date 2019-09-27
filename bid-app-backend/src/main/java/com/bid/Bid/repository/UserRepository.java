@@ -11,6 +11,6 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     User getById(Long id);
     User getByUsername(String username);
-    Page<User> findAll(Pageable pageable);
+    Page<User> findAllByOrderByIdDesc(Pageable pageable);
 
 }

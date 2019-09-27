@@ -49,7 +49,8 @@ public class XMLService {
         try {
          for(int k =0;k<1;k++) {
              // fake end point that returns XML response
-             String URL = "C:\\Users\\john\\Desktop\\BidApp\\bid-app-backend\\src\\main\\java\\com\\bid\\Bid\\web\\ebay-data\\items-" + k + ".xml";
+             String URL = "./src/main/java/com/bid/Bid/web/ebay-data/items-" + k + ".xml";
+
              System.out.println(URL);
 
              DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
