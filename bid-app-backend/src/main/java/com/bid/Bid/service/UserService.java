@@ -49,6 +49,7 @@ public class UserService {
         }
         visited.add(product_id);
         user.setVisited(visited);
+        System.out.println("dewfewfw"+visited);
         saveOrUpdateUser(user);
     }
 

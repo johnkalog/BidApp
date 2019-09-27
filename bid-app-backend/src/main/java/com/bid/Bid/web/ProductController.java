@@ -192,6 +192,40 @@ public class ProductController {
         return new ResponseEntity<String>(response+body, HttpStatus.OK);
     }
 
+    @GetMapping("/json/{product_id}")
+    public ResponseEntity<?> getJSONById(@PathVariable Long product_id){
+        Product product = productService.findById(product_id);
+        Iterable<Bid> bids = bidService.findByProductId(product.getId());
+        String strbid = "";
+        for(Bid bid : bids) {
+            if(strbid.length() > 0) {
+                strbid += ",\n";
+            }
+            strbid += "\t{"
+                    +"\t\"username\"= "+bid.getBidderId()+",\n"
+                    +"\t\"bidding_date\": \""+bid.getBiddingDate() +"\",\n"
+                    +"\t\"amount\": "+bid.getOffer()+"\n"
+                    +"\t}\n";
+        }
+        String response = "{\n \"id\": "+product.getId()+",\n"
+                +"\"username\": \""+product.getProductName()+"\",\n"
+                +"\"category\": \""+product.getCategory()+"\",\n"
+                +"\"first_bid\": "+product.getFirstBid()+",\n"
+                +"\"number_of_bids\": "+product.getNumberOfBids()+",\n"
+                +"\"bids\" : ["
+                +strbid
+                +"],\n"
+
+                +"\"location\": \""+product.getLocation()+"\",\n"
+                +"\"start_date\": \""+ product.getStartedDate()+"\",\n"
+                +"\"end_date\": \""+product.getExpirationDate()+"\",\n"
+                +"\"id\":"+product.getOwnerId()+",\n"
+                +"\"description\": \""+product.getDescription()+"\",\n"
+                +"\n" +
+                "}";
+        return new ResponseEntity<String>(response, HttpStatus.OK);
+    }
+
     @GetMapping("/database")
     public void createDatabase() throws Exception {
         List<Integer> list = new ArrayList<Integer>();

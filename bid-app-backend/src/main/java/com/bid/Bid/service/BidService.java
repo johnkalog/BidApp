@@ -66,7 +66,7 @@ public class BidService {
         for(int i=0; i < arrayList2.size(); i++) {
             int pos = Math.toIntExact(arrayList2.get(i));
             if(pos < array1.length) {
-                array1[pos] += 1;
+                array1[pos-1] += 1;
             }
         }
         return array1;
@@ -170,7 +170,7 @@ public class BidService {
         int i;
         for(i=0; i<array1.length; i++) {
             if(array1[i]==0 && array2[i]!=0) {
-                result.add((long) i);
+                result.add((long) i+1);
             }
         }
         return result;

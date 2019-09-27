@@ -16,7 +16,8 @@ import {
   INIT_CATEGORIES,
   CHANGE_ONCE,
   UPDATE,
-  GET_DIRECTIONS
+  GET_DIRECTIONS,
+  EXTRA
 } from './types';
 import history from '../history';
 
@@ -33,22 +34,30 @@ export const getProducts = dispatch => () => {
       type: CHANGE_ONCE,
       payload: false
     });
+    dispatch({
+      type: EXTRA,
+      payload: { arr: [], bonusIsHere: false }
+    });
   });
 };
 
 export const getProductBonus = dispatch => user => {
   axios.get('http://localhost:8080/api/products/allActive').then(res => {
     axios.get(`http://localhost:8080/api/bids/lsh/${user.id}`).then(result => {
+      console.log(result.data);
       if (typeof result.data === 'string') {
         dispatch({
           type: GET_PRODUCTS,
           payload: res.data
         });
-      } else if (result.data.isArray()) {
-        console.log('fweewfwg');
+      } else if (Array.isArray(result.data)) {
         dispatch({
           type: GET_PRODUCTS,
-          payload: [...result.data, ...res.data]
+          payload: res.data
+        });
+        dispatch({
+          type: EXTRA,
+          payload: { arr: result.data, bonusIsHere: true }
         });
       }
       dispatch({
@@ -259,7 +268,7 @@ export const getTheType = (type, id, productName) => {
   const url =
     type === 'xml'
       ? `http://localhost:8080/api/products/dtd/${id}`
-      : `http://localhost:8080/api/products/dtd/${id}`;
+      : `http://localhost:8080/api/products/json/${id}`;
   axios.get(url).then(result => {
     download(`${productName}.${type}`, result.data);
   });

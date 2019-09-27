@@ -93,11 +93,7 @@ const SingleItem = ({ product, user, message, bidIt }) => {
               </div>
             </div>
           </div>
-          {Object.keys(user).length !== 0 && user.type === 'Administrator' ? (
-            ''
-          ) : (
-            <OpenMapItem />
-          )}
+          <OpenMapItem />
         </div>
       </div>
     </div>

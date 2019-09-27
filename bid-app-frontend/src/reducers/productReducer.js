@@ -10,11 +10,13 @@ import {
   DELETE_UPLOADED,
   CHANGE_ONCE,
   UPDATE,
-  GET_DIRECTIONS
+  GET_DIRECTIONS,
+  EXTRA
 } from '../actions/types';
 
 const initialState = {
   products: [],
+  extra: [],
   product: {},
   errors: {
     productName: false,
@@ -31,7 +33,8 @@ const initialState = {
   type: '',
   newOrUpdate: true,
   latitude: 0,
-  longitude: 0
+  longitude: 0,
+  bonusIsHere: false
 };
 
 const productReducer = (state = initialState, action) => {
@@ -98,6 +101,12 @@ const productReducer = (state = initialState, action) => {
         ...state,
         latitude: action.payload.latitude,
         longitude: action.payload.longitude
+      };
+    case EXTRA:
+      return {
+        ...state,
+        extra: action.payload.arr,
+        bonusIsHere: action.payload.bonusIsHere
       };
     default:
       return state;

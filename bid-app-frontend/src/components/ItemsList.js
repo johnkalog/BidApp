@@ -16,6 +16,8 @@ const ItemsList = ({
   categories,
   onceTheProducts,
   user,
+  extra,
+  bonusIsHere,
   showCategory,
   getSearchedProducts,
   getProducts,
@@ -91,6 +93,16 @@ const ItemsList = ({
                   </div>
                 </div>
               </div>
+              {bonusIsHere ? <p className="center-the-sugge">Suggested</p> : ''}
+              {bonusIsHere ? (
+                <div className="row align-items-center latest_product_inner beTheLine">
+                  {extra.map(item => (
+                    <Item key={item.id} product={item} />
+                  ))}
+                </div>
+              ) : (
+                ''
+              )}
               <div className="row align-items-center latest_product_inner">
                 {products.map(item => (
                   <Item key={item.id} product={item} />
@@ -109,7 +121,9 @@ export default connect(
     products: state.productsData.products,
     categories: state.categoriesData.categories,
     onceTheProducts: state.productsData.onceTheProducts,
-    user: state.usersData.user
+    user: state.usersData.user,
+    extra: state.productsData.extra,
+    bonusIsHere: state.productsData.bonusIsHere
   }),
   dispatch => ({
     showCategory: showCategory(dispatch),
