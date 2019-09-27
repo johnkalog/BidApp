@@ -23,6 +23,7 @@ export const CHANGE_ONCE = 'CHANGE_ONCE';
 export const UPDATE = 'UPDATE';
 export const GET_DIRECTIONS = 'GET_DIRECTIONS';
 export const EXTRA = 'EXTRA';
+export const CHANGE_PAGE = 'CHANGE_PAGE';
 
 export const GET_MESSAGES = 'GET_MESSAGES';
 export const DELETE_MESSAGE = 'DELETE_MESSAGE';

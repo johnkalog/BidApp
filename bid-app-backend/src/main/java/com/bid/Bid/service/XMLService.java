@@ -89,12 +89,8 @@ public class XMLService {
                              itemElem.getElementsByTagName("Category").item(0).getTextContent(),
                              ((long) Double.parseDouble(itemElem.getElementsByTagName("First_Bid").item(0).getTextContent().substring(1).replace(",",""))),
                              itemElem.getElementsByTagName("Location").item(0).getTextContent(),
-//                             LocalDateTime.parse(itemElem.getElementsByTagName("Started").item(0).getTextContent(), DateTimeFormatter.ofPattern("LLL-dd-yy HH:mm:ss").withLocale(Locale.ENGLISH)),
-//                             LocalDateTime.parse(itemElem.getElementsByTagName("Ends").item(0).getTextContent(), DateTimeFormatter.ofPattern("LLL-dd-yy HH:mm:ss").withLocale(Locale.ENGLISH)),
-//                             null,
-//                             null,
-                             LocalDateTime.now(),
-                             LocalDateTime.now(),
+                            LocalDateTime.parse(itemElem.getElementsByTagName("Started").item(0).getTextContent(), DateTimeFormatter.ofPattern("MMM-dd-yy HH:mm:ss").withLocale(Locale.ENGLISH)),
+                            LocalDateTime.parse(itemElem.getElementsByTagName("Ends").item(0).getTextContent(), DateTimeFormatter.ofPattern("MMM-dd-yy HH:mm:ss").withLocale(Locale.ENGLISH)),
                              itemElem.getElementsByTagName("Description").item(0).getTextContent(),
                              "./img/product/single-product/product_1.png",
                              true
@@ -130,9 +126,7 @@ public class XMLService {
                                      (long) Double.parseDouble(elem.getElementsByTagName("Amount").item(0).getTextContent().substring(1).replace(",","")),
                                      product.getId(),
                                      //                            userRepository.getByUsername(elem.getElementsByTagName("Bidder").item(0).getAttributes().getNamedItem("UserID").getTextContent()).getId(),
-//                                     LocalDateTime.parse(elem.getElementsByTagName("Time").item(0).getTextContent(), DateTimeFormatter.ofPattern("LLL-dd-yy HH:mm:ss").withLocale(Locale.ENGLISH))
-//                                     null,
-                                     LocalDateTime.now()
+                                     LocalDateTime.parse(elem.getElementsByTagName("Time").item(0).getTextContent(), DateTimeFormatter.ofPattern("MMM-dd-yy HH:mm:ss").withLocale(Locale.ENGLISH))
                              );
                              //System.out.println(bid);
 

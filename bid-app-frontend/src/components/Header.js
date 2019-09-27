@@ -17,6 +17,7 @@ const Header = ({
   user,
   unread,
   timesInHeader,
+  page,
   getProducts,
   logOutUser,
   getUsers,
@@ -186,12 +187,12 @@ const Header = ({
                           Object.keys(user).length !== 0 &&
                           user.type === 'Administrator'
                         ) {
-                          getAllProducts();
+                          getAllProducts(page);
                         } else {
                           if (Object.keys(user).length === 0) {
-                            getProducts();
+                            getProducts(page);
                           } else {
-                            getProductBonus(user);
+                            getProductBonus(user, page);
                           }
                         }
                       }}
@@ -227,7 +228,8 @@ export default connect(
   state => ({
     user: state.usersData.user,
     unread: state.messagesData.unread,
-    timesInHeader: state.messagesData.timesInHeader
+    timesInHeader: state.messagesData.timesInHeader,
+    page: state.productsData.page
   }),
   dispatch => ({
     getProducts: getProducts(dispatch),

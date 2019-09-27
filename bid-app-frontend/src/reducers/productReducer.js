@@ -11,7 +11,8 @@ import {
   CHANGE_ONCE,
   UPDATE,
   GET_DIRECTIONS,
-  EXTRA
+  EXTRA,
+  CHANGE_PAGE
 } from '../actions/types';
 
 const initialState = {
@@ -34,7 +35,8 @@ const initialState = {
   newOrUpdate: true,
   latitude: 0,
   longitude: 0,
-  bonusIsHere: false
+  bonusIsHere: false,
+  page: 0
 };
 
 const productReducer = (state = initialState, action) => {
@@ -108,6 +110,8 @@ const productReducer = (state = initialState, action) => {
         extra: action.payload.arr,
         bonusIsHere: action.payload.bonusIsHere
       };
+    case CHANGE_PAGE:
+      return { ...state, page: state.page + action.payload };
     default:
       return state;
   }

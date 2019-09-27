@@ -17,32 +17,35 @@ import {
   CHANGE_ONCE,
   UPDATE,
   GET_DIRECTIONS,
-  EXTRA
+  EXTRA,
+  CHANGE_PAGE
 } from './types';
 import history from '../history';
 
-export const getProducts = dispatch => () => {
-  axios.get('http://localhost:8080/api/products/allActive').then(result => {
-    dispatch({
-      type: GET_PRODUCTS,
-      payload: result.data
+export const getProducts = dispatch => page => {
+  axios
+    .get(`http://localhost:8080/api/products/notall/${page}`)
+    .then(result => {
+      dispatch({
+        type: GET_PRODUCTS,
+        payload: result.data
+      });
+      dispatch({
+        type: INIT_CATEGORIES
+      });
+      dispatch({
+        type: CHANGE_ONCE,
+        payload: false
+      });
+      dispatch({
+        type: EXTRA,
+        payload: { arr: [], bonusIsHere: false }
+      });
     });
-    dispatch({
-      type: INIT_CATEGORIES
-    });
-    dispatch({
-      type: CHANGE_ONCE,
-      payload: false
-    });
-    dispatch({
-      type: EXTRA,
-      payload: { arr: [], bonusIsHere: false }
-    });
-  });
 };
 
-export const getProductBonus = dispatch => user => {
-  axios.get('http://localhost:8080/api/products/allActive').then(res => {
+export const getProductBonus = dispatch => (user, page) => {
+  axios.get(`http://localhost:8080/api/products/notall/${page}`).then(res => {
     axios.get(`http://localhost:8080/api/bids/lsh/${user.id}`).then(result => {
       console.log(result.data);
       if (typeof result.data === 'string') {
@@ -235,17 +238,19 @@ export const getSearchedProducts = dispatch => input => {
     });
 };
 
-export const getAllProducts = dispatch => () => {
-  axios.get('http://localhost:8080/api/products/all').then(result => {
-    dispatch({
-      type: GET_PRODUCTS,
-      payload: result.data
+export const getAllProducts = dispatch => page => {
+  axios
+    .get(`http://localhost:8080/api/products/notall/${page}`)
+    .then(result => {
+      dispatch({
+        type: GET_PRODUCTS,
+        payload: result.data
+      });
+      dispatch({
+        type: CHANGE_ONCE,
+        payload: false
+      });
     });
-    dispatch({
-      type: CHANGE_ONCE,
-      payload: false
-    });
-  });
 };
 
 const download = (filename, text) => {
@@ -284,4 +289,15 @@ export const theUpdateAuction = dispatch => product => {
     payload: false
   });
   history.push('auction');
+};
+
+export const changeThePage = dispatch => value => {
+  dispatch({
+    type: CHANGE_PAGE,
+    payload: value
+  });
+  dispatch({
+    type: CHANGE_ONCE,
+    payload: true
+  });
 };

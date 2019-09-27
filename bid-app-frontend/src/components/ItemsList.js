@@ -7,7 +7,8 @@ import {
   getSearchedProducts,
   getProducts,
   getAllProducts,
-  getProductBonus
+  getProductBonus,
+  changeThePage
 } from '../actions/productActions';
 import { createTheOptions } from '../actions/categorieActions';
 
@@ -18,20 +19,22 @@ const ItemsList = ({
   user,
   extra,
   bonusIsHere,
+  page,
   showCategory,
   getSearchedProducts,
   getProducts,
   getAllProducts,
-  getProductBonus
+  getProductBonus,
+  changeThePage
 }) => {
   if (onceTheProducts) {
     if (Object.keys(user).length !== 0 && user.type === 'Administrator') {
-      getAllProducts();
+      getAllProducts(page);
     } else {
       if (Object.keys(user).length === 0) {
-        getProducts();
+        getProducts(page);
       } else {
-        getProductBonus(user);
+        getProductBonus(user, page);
       }
     }
   }
@@ -90,6 +93,22 @@ const ItemsList = ({
                         }}
                       />
                     </div>
+                    <div className="single_product_menu d-flex">
+                      {page != 0 ? (
+                        <span
+                          className="point"
+                          onClick={() => changeThePage(-1)}
+                        >
+                          Previous
+                        </span>
+                      ) : (
+                        ''
+                      )}
+                      <span>&nbsp;/&nbsp;</span>
+                      <span className="point" onClick={() => changeThePage(1)}>
+                        Next
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -123,13 +142,15 @@ export default connect(
     onceTheProducts: state.productsData.onceTheProducts,
     user: state.usersData.user,
     extra: state.productsData.extra,
-    bonusIsHere: state.productsData.bonusIsHere
+    bonusIsHere: state.productsData.bonusIsHere,
+    page: state.productsData.page
   }),
   dispatch => ({
     showCategory: showCategory(dispatch),
     getSearchedProducts: getSearchedProducts(dispatch),
     getProducts: getProducts(dispatch),
     getAllProducts: getAllProducts(dispatch),
-    getProductBonus: getProductBonus(dispatch)
+    getProductBonus: getProductBonus(dispatch),
+    changeThePage: changeThePage(dispatch)
   })
 )(ItemsList);
