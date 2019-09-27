@@ -12,12 +12,14 @@ import {
   POP_INIT,
   CHANGE_RELOAD,
   CHANGE_MES,
-  CHANGE_ONCE
+  CHANGE_ONCE,
+  CHANGE_VIEW,
+  FOR_THE_USER
 } from './types';
 import history from '../history';
 
-export const getUsers = dispatch => () => {
-  axios.get('http://localhost:8080/api/users/all').then(result => {
+export const getUsers = dispatch => page => {
+  axios.get(`http://localhost:8080/api/users/all/${page}`).then(result => {
     dispatch({
       type: GET_USERS,
       payload: result.data
@@ -137,5 +139,16 @@ export const changePop = dispatch => id => {
   dispatch({
     type: CHANGE_POP,
     payload: id
+  });
+};
+
+export const changeTheP = dispatch => page => {
+  dispatch({
+    type: CHANGE_VIEW,
+    payload: page
+  });
+  dispatch({
+    type: FOR_THE_USER,
+    payload: true
   });
 };

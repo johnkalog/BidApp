@@ -18,6 +18,7 @@ const Header = ({
   unread,
   timesInHeader,
   page,
+  paging,
   getProducts,
   logOutUser,
   getUsers,
@@ -125,7 +126,7 @@ const Header = ({
             to="./users"
             className="nav-link"
             onClick={() => {
-              getUsers();
+              getUsers(paging);
             }}
           >
             Users
@@ -229,7 +230,8 @@ export default connect(
     user: state.usersData.user,
     unread: state.messagesData.unread,
     timesInHeader: state.messagesData.timesInHeader,
-    page: state.productsData.page
+    page: state.productsData.page,
+    paging: state.usersData.paging
   }),
   dispatch => ({
     getProducts: getProducts(dispatch),

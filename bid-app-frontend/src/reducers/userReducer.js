@@ -10,7 +10,9 @@ import {
   CHANGE_POP,
   POP_INIT,
   CHANGE_RELOAD,
-  CHANGE_UPLOAD
+  CHANGE_UPLOAD,
+  CHANGE_VIEW,
+  FOR_THE_USER
 } from '../actions/types';
 
 const initialState = {
@@ -27,7 +29,8 @@ const initialState = {
   signUpMessage: '',
   popups: [], //for controlling Info at each user
   forUserAppear: false,
-  forSellerAppear: false
+  forSellerAppear: false,
+  paging: 0
 };
 
 const userReducer = (state = initialState, action) => {
@@ -118,6 +121,10 @@ const userReducer = (state = initialState, action) => {
       };
     case CHANGE_UPLOAD:
       return { ...state, forSellerAppear: action.payload };
+    case FOR_THE_USER:
+      return { ...state, forUserAppear: action.payload };
+    case CHANGE_VIEW:
+      return { ...state, paging: state.paging + action.payload };
     default:
       return state;
   }

@@ -1,8 +1,11 @@
 package com.bid.Bid.service;
 
+import com.bid.Bid.domain.Product;
 import com.bid.Bid.domain.User;
 import com.bid.Bid.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,18 +21,18 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public Iterable<User> findAll(){
-        Iterable<User> all = userRepository.findAll();
-        Iterator<User> iter = all.iterator();
-        User tmp;
-        while( iter.hasNext() ){
-            tmp = iter.next();
-            if ( tmp.getUsername().equals("admin")){
-                iter.remove();
-                break;
+    public Iterable<User> findAll(int k){
+        Page<User>  page = userRepository.findAll(PageRequest.of(k, 9));
+        Iterable<User> all = page.getContent();
+
+        ArrayList<User> userArrayList = new ArrayList<>();
+        for(User user : all) {
+            if(user.getId() != 1) {
+                userArrayList.add(user);
             }
         }
-        return all;
+ 
+        return userArrayList;
     }
 
     public User findById(Long id){
@@ -49,7 +52,6 @@ public class UserService {
         }
         visited.add(product_id);
         user.setVisited(visited);
-        System.out.println("dewfewfw"+visited);
         saveOrUpdateUser(user);
     }
 

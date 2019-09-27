@@ -24,9 +24,9 @@ public class UserController {
         return new ResponseEntity<User>(newUser, HttpStatus.CREATED);
     }
 
-    @GetMapping("/all")
-    public Iterable<User> getAllusers(){
-        return userService.findAll();
+    @GetMapping("/all/{k}")
+    public Iterable<User> getAllusers(@PathVariable int k){
+        return userService.findAll(k);
     }
 
     @GetMapping("/{user_id}")

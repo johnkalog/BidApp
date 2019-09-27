@@ -1,17 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import User from './User';
-import { getUsers } from '../actions/userActions';
+import { getUsers, changeTheP } from '../actions/userActions';
 
-const UsersList = ({ users, forUserAppear, getUsers }) => {
+const UsersList = ({ users, forUserAppear, paging, getUsers, changeTheP }) => {
   if (forUserAppear) {
-    getUsers();
+    getUsers(paging);
   }
   return (
     <div>
       <section className="cart_area padding_top">
         <div className="container container2">
           <div className="cart_inner">
+            <div className="userForN">
+              {paging !== 0 ? (
+                <span className="point" onClick={() => changeTheP(-1)}>
+                  Previous
+                </span>
+              ) : (
+                ' '
+              )}
+              <span>&nbsp;/&nbsp;</span>
+              <span className="point" onClick={() => changeTheP(1)}>
+                Next
+              </span>
+            </div>
             <div className="table-responsive">
               <table className="table">
                 <thead>
@@ -42,9 +55,11 @@ const UsersList = ({ users, forUserAppear, getUsers }) => {
 export default connect(
   state => ({
     users: state.usersData.users,
-    forUserAppear: state.usersData.forUserAppear
+    forUserAppear: state.usersData.forUserAppear,
+    paging: state.usersData.paging
   }),
   dispatch => ({
-    getUsers: getUsers(dispatch)
+    getUsers: getUsers(dispatch),
+    changeTheP: changeTheP(dispatch)
   })
 )(UsersList);

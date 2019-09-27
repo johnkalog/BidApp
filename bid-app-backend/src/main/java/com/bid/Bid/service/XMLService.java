@@ -80,7 +80,7 @@ public class XMLService {
                                  sellerName,
                                  sellerName,
                                  "Seller",
-                                 "Active"
+                                 "Waiting"
                          );
                          userRepository.save(user);
                      }
@@ -119,7 +119,7 @@ public class XMLService {
                                          bidderName,
                                          bidderName,
                                          "Seller",
-                                         "Active"
+                                         "Waiting"
                                  );
                                  userRepository.save(user);
                              }
