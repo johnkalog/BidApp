@@ -30,5 +30,7 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     Collection<Product> findAllActiveUsersNative(String search);
 
 
+    Page<Product> findByIsActive(Pageable pageable,boolean active);
+
     Page<Product> findAll(Pageable pageable);
 }

@@ -18,7 +18,8 @@ import {
   UPDATE,
   GET_DIRECTIONS,
   EXTRA,
-  CHANGE_PAGE
+  CHANGE_PAGE,
+  INIT_PAGE
 } from './types';
 import history from '../history';
 
@@ -240,7 +241,7 @@ export const getSearchedProducts = dispatch => input => {
 
 export const getAllProducts = dispatch => page => {
   axios
-    .get(`http://localhost:8080/api/products/notall/${page}`)
+    .get(`http://localhost:8080/api/products/notAllActive/${page}`)
     .then(result => {
       dispatch({
         type: GET_PRODUCTS,
@@ -292,6 +293,11 @@ export const theUpdateAuction = dispatch => product => {
 };
 
 export const changeThePage = dispatch => value => {
+  if (value === 0) {
+    dispatch({
+      type: INIT_PAGE
+    });
+  }
   dispatch({
     type: CHANGE_PAGE,
     payload: value

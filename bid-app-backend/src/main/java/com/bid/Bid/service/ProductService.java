@@ -1,9 +1,6 @@
 package com.bid.Bid.service;
 
-import com.bid.Bid.domain.Category;
-import com.bid.Bid.domain.Message;
-import com.bid.Bid.domain.Product;
-import com.bid.Bid.domain.User;
+import com.bid.Bid.domain.*;
 import com.bid.Bid.repository.CategoryRepository;
 import com.bid.Bid.repository.MessageRepository;
 import com.bid.Bid.repository.ProductRepository;
@@ -30,6 +27,9 @@ public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private BidService bidService;
 
     @Autowired
     private UserRepository userRepository;
@@ -144,6 +144,9 @@ public class ProductService {
             for(Product addProduct : products) {
                 productList.add(addProduct);
             }
+            if(productList.size() >= 9) {
+                break;
+            }
             i++;
         }
 
@@ -163,16 +166,97 @@ public class ProductService {
     }
 
     public Iterable<Product> findNotAll(int k) {
-        Page<Product> page =  productRepository.findAll(PageRequest.of(k, 10));
+        Page<Product> page =  productRepository.findAll(PageRequest.of(k, 9));
         Iterable<Product> nRecords = page.getContent();
         return nRecords;
     }
-    
-    public String saveImage(MultipartFile imageFile) throws Exception{
+
+    public String saveImage(MultipartFile imageFile) throws Exception {
         String folder = "./../bid-app-frontend/src/components/photos/";
         byte[] bytes = imageFile.getBytes();
         Path path = Paths.get(folder + imageFile.getOriginalFilename());
         Files.write(path, bytes);
         return imageFile.getOriginalFilename();
     }
+
+    public Iterable<Product> findNotAllActive(int k) {
+        Page<Product> page =  productRepository.findByIsActive(PageRequest.of(k, 9),true);
+        Iterable<Product> nRecords = page.getContent();
+        return nRecords;
+
+    }
+
+
+
+        public String findAllXmlById() {
+            String response = "<?xml version=\"1.0\"?>\n"
+                    + "<!DOCTYPE note [\n"
+                    + "<!ELEMENT Items (Item*)>\n"
+                    +"<!ELEMENT Item (Name, Category+, Currently,Buy_Price?,First_Bid, Number_of_Bids,Bids, Location, Country, Started, Ends,Seller, Description)>\n"
+                    +"<!ATTLIST Item ItemID CDATA #REQUIRED>\n"
+                    +"<!ELEMENT Name (#PCDATA)>\n"
+                    +"<!ELEMENT Category (#PCDATA)>\n"
+                    +"<!ELEMENT Currently (#PCDATA)>\n"
+                    +"<!ELEMENT Buy_Price (#PCDATA)>\n"
+                    +"<!ELEMENT First_Bid (#PCDATA)>\n"
+                    +"<!ELEMENT Number_of_Bids (#PCDATA)>\n"
+                    +"<!ELEMENT Bids (Bid*)>\n"
+                    +"<!ELEMENT Bid (Bidder, Time, Amount)>\n"
+                    +"<!ATTLIST Bidder UserID CDATA #REQUIRED Rating CDATA\n"
+                    +"#REQUIRED>\n"
+                    +"<!ELEMENT Bidder (Location?, Country?)>\n"
+                    +"<!ELEMENT Time (#PCDATA)>\n"
+                    +"<!ELEMENT Amount (#PCDATA)>\n"
+                    +"<!ELEMENT Location (#PCDATA)>\n"
+                    +"<!ATTLIST Location Latitude CDATA #IMPLIED\n"
+                    +"Longitude CDATA #IMPLIED>\n"
+                    +"<!ELEMENT Country (#PCDATA)>\n"
+                    +"<!ELEMENT Started (#PCDATA)>\n"
+                    +"<!ELEMENT Ends (#PCDATA)>\n"
+                    +"<!ELEMENT Seller EMPTY>\n"
+                    +"<!ATTLIST Seller UserID CDATA #REQUIRED\n"
+                    +" Rating CDATA #REQUIRED>\n"
+                    +"<!ELEMENT Description (#PCDATA)>\n"
+                    +"]>\n";
+            Iterable<Product> products = findAll();
+            for(Product product : products) {
+                response += findXmlById(product.getId());
+            }
+
+            return response;
+        }
+        public String findXmlById(Long product_id) {
+        Product product = findById(product_id);
+        Iterable<Bid> bids = bidService.findByProductId(product.getId());
+        String strbid = "";
+        for(Bid bid : bids) {
+            strbid += "\t<Bid>"
+                    +"\t\t<Bidder Rating=\"229\" UserID=\""+bid.getBidderId()+"\""+">\n"
+                    +"<Location>Sydney</Location>\n"
+                    +"<Country>Australia</Country>\n"
+                    +"\t\t</Bidder>\n"
+                    +"<Time>"+bid.getBiddingDate() +"</Time>\n"
+                    +"<Amount>"+bid.getOffer()+"</Amount>\n"
+                    +"\t</Bid>\n";
+        }
+
+        String body = "<Item ItemID=\""+product.getId()+"\">\n"
+                +"<Name>"+product.getProductName()+"</Name>\n"
+                +"<Category>"+product.getCategory()+"</Category>\n"
+                +"<First_Bid>"+product.getFirstBid()+"</First_Bid>\n"
+                +"<Number_of_Bids>"+product.getNumberOfBids()+"</Number_of_Bids>\n"
+                +"<Bids>\n"
+                +strbid
+                +"\t</Bids>\n"
+                +"<Location>"+product.getLocation()+"</Location>\n"
+                +"<Country>USA</Country>\n"
+                +"<Started>"+ product.getStartedDate()+"</Started>\n"
+                +"<Ends>"+product.getExpirationDate()+"</Ends>\n"
+                +"<Seller Rating=\"117\" UserID=\""+product.getOwnerId()+"\" />\n"
+                +"<Description>"+product.getDescription()+"</Description>\n"
+                +"</Item>\n";
+        return body;
+
+    }
+
 }

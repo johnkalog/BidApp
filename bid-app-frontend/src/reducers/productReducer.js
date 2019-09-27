@@ -12,7 +12,8 @@ import {
   UPDATE,
   GET_DIRECTIONS,
   EXTRA,
-  CHANGE_PAGE
+  CHANGE_PAGE,
+  INIT_PAGE
 } from '../actions/types';
 
 const initialState = {
@@ -112,6 +113,8 @@ const productReducer = (state = initialState, action) => {
       };
     case CHANGE_PAGE:
       return { ...state, page: state.page + action.payload };
+    case INIT_PAGE:
+      return { ...state, page: 0 };
     default:
       return state;
   }

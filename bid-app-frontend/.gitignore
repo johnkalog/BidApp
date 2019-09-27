@@ -2,10 +2,11 @@
 
 # dependencies
 /node_modules
-/src/components/fonts
-/src/components/images
+# /src/components/fonts
+# /src/components/images
 /src/components/img
 /src/components/photos
+/src/products/products
 # /src/components/css
 # /src/components/js
 # /src/components/scss

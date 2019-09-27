@@ -94,6 +94,11 @@ const ItemsList = ({
                       />
                     </div>
                     <div className="single_product_menu d-flex">
+                      <span className="point" onClick={() => changeThePage(0)}>
+                        First
+                      </span>
+                    </div>
+                    <div className="single_product_menu d-flex">
                       {page != 0 ? (
                         <span
                           className="point"

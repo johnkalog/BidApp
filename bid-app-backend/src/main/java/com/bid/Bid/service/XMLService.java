@@ -5,6 +5,7 @@ import com.bid.Bid.domain.Product;
 //import com.attacomsian.xml.models.Student;
 import com.bid.Bid.domain.User;
 import com.bid.Bid.repository.BidRepository;
+import com.bid.Bid.repository.CategoryRepository;
 import com.bid.Bid.repository.ProductRepository;
 import com.bid.Bid.repository.UserRepository;
 //import info.debatty.java.lsh.LSHMinHash;
@@ -38,7 +39,8 @@ public class XMLService {
     private ProductRepository productRepository;
     @Autowired
     private BidRepository bidRepository;
-
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     public Product parseCourse() {
 
@@ -82,17 +84,20 @@ public class XMLService {
                          );
                          userRepository.save(user);
                      }
-
+                     Random rand = new Random();
+                     int rand_int = rand.nextInt(8);
+                     int rand_int2 = rand.nextInt(14);
                      product = new Product(
                              itemElem.getElementsByTagName("Name").item(0).getTextContent(),
                              ((long) Double.parseDouble(doc.getElementsByTagName("Currently").item(0).getTextContent().substring(1).replace(",",""))),
-                             itemElem.getElementsByTagName("Category").item(0).getTextContent(),
+//                             itemElem.getElementsByTagName("Category").item(0).getTextContent(),
+                             categoryRepository.getById((long) 1+rand_int2).getCategoryName(),
                              ((long) Double.parseDouble(itemElem.getElementsByTagName("First_Bid").item(0).getTextContent().substring(1).replace(",",""))),
                              itemElem.getElementsByTagName("Location").item(0).getTextContent(),
-                            LocalDateTime.parse(itemElem.getElementsByTagName("Started").item(0).getTextContent(), DateTimeFormatter.ofPattern("MMM-dd-yy HH:mm:ss").withLocale(Locale.ENGLISH)),
-                            LocalDateTime.parse(itemElem.getElementsByTagName("Ends").item(0).getTextContent(), DateTimeFormatter.ofPattern("MMM-dd-yy HH:mm:ss").withLocale(Locale.ENGLISH)),
+                             LocalDateTime.parse(itemElem.getElementsByTagName("Started").item(0).getTextContent(), DateTimeFormatter.ofPattern("MMM-dd-yy HH:mm:ss").withLocale(Locale.ENGLISH)),
+                             LocalDateTime.parse(itemElem.getElementsByTagName("Ends").item(0).getTextContent(), DateTimeFormatter.ofPattern("MMM-dd-yy HH:mm:ss").withLocale(Locale.ENGLISH)),
                              itemElem.getElementsByTagName("Description").item(0).getTextContent(),
-                             "./img/product/single-product/product_1.png",
+                             "./products/product_"+(rand_int+1)+".png",
                              true
                      );
 
